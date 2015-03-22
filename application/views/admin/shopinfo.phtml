@@ -1,0 +1,189 @@
+<!--header-->
+<?php
+  echo Yaf_View_Simple::render('admin/tpl/header.phtml', array('css' => array('/static/admin/css/shopinfo.css')));
+?>
+<link rel="stylesheet" type="text/css" href="/static/plugin/uploadify/uploadify.css">
+<!--/header-->
+      <!--navbar-->
+      <?php
+        echo Yaf_View_Simple::render('admin/tpl/navbar.phtml');
+      ?>
+      <!--navbar-->
+
+      <!-- Left side column. contains the logo and sidebar -->
+      <!--sidebar-->
+      <?php
+        echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
+      ?>
+      <!--sidebar-->
+
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <?=htmlspecialchars($page_title)?>
+            <small>Preview</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">店铺管理</a></li>
+            <li class="active"><?=htmlspecialchars($page_title)?></li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-8">
+              <!-- general form elements -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title"></h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label>店铺名称</label>
+                      <input type="hidden" name="shop_id" id="shop_id" value="<?=isset($shop['id']) ? htmlspecialchars($shop['id']) : ''?>">
+                      <input type="text" class="form-control" id="shop_name" placeholder="请输入店铺名称" value="<?=isset($shop['name']) ? htmlspecialchars($shop['name']) : ''?>">
+                    </div>
+
+                    <div class="form-group">
+                      <label>店铺简单描述</label>
+                      <input type="text" class="form-control" id="shop_slogan" placeholder="请输入标题或为空" value="<?=isset($shop['slogan']) ? htmlspecialchars($shop['slogan']) : ''?>">
+                    </div>
+
+                    <div class="form-group">
+                      <label>店铺logo</label>
+                      <input type="file" id="shop_logo_file">
+                      <p class="help-block">请选择上传图片</p>
+                    </div>
+
+                    <div class="form-group" id="shopLogoBox">
+                        <div class="row">
+                            <?php if(isset($shop['logo'])){?>
+                                <div class="col-md-3">
+                                    <div class="uploaded_pic">
+                                        <img src="<?=htmlspecialchars($shop['logo_url'])?>" alt="..." class="img-thumbnail">
+                                        <!--<button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>-->
+                                    </div>
+                                </div>
+                            <?php }?>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>店铺详细描述</label>
+                      <textarea class="form-control" rows="3" placeholder="请输入店铺描述" id="shop_des"><?=isset($shop['describe']) ? htmlspecialchars($shop['describe']) : ''?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label>店铺位置经度</label>
+                      <input type="text" class="form-control" id="shop_long" placeholder="请输入位置经度" value="<?=isset($shop['long']) ? htmlspecialchars($shop['long']) : ''?>">
+                    </div>
+
+                    <div class="form-group">
+                      <label>店铺位置纬度</label>
+                      <input type="text" class="form-control" id="shop_lat" placeholder="请输入位置纬度" value="<?=isset($shop['lat']) ? htmlspecialchars($shop['lat']) : ''?>">
+                    </div>
+
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                    <button type="button" class="btn btn-primary" id="submit">保存</button>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+            </div><!--/.col (left) -->
+          </div>   <!-- /.row -->
+        </section>
+        <!-- /.content -->
+
+      </div>
+      <!-- /.content-wrapper -->
+
+<!--footer-->
+<?php
+  echo Yaf_View_Simple::render('admin/tpl/footer.phtml');
+?>
+<!--footer-->
+<script type="text/javascript" src="/static/plugin/uploadify/jquery.uploadify.min.js"></script>
+<?php $timestamp = time();?>
+<script type="text/javascript">
+
+  var logoJson = '<?=isset($shop["logo"]) ? $shop["logo"] : ""?>';
+  function getPicTpl($src){
+      var pic_tpl =
+          '<div class="col-md-3">'
+            + '<div class="uploaded_pic">'
+                + '<img src="'+$src+'" alt="..." class="img-thumbnail">'
+                //+ '<button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>'
+            + '</div>'
+          + '</div>';
+      return pic_tpl;
+  }
+
+  $("#shop_logo_file").uploadify({
+      'swf'           : '/static/plugin/uploadify/uploadify.swf',
+      'uploader'      : '/admin/upload',
+      'fileObjName' : 'file',
+      'buttonText' : '请选择上传图片',
+      'fileTypeExts' : '*.gif; *.jpg; *.png',
+      'fileSizeLimit' : '3MB',
+      'onSelectOnce'   : function(event,data) {
+
+        },
+      'onUploadSuccess' : function(file, data, response) {
+          //alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+          //{"status":1,"data":{"code":0,"info":"uplode success!","md5":"489bd2daea761d3d65019bbe2e9ff7cc","ext":"jpg"}}
+
+          var res = $.parseJSON(data);
+          if(1 != res.status){
+              alert('图片上传出问题了....');
+          }
+          src = '/source/images/thb2/100x100/' + res.data.dir + '/' +res.data.md5 + '.' + res.data.ext;
+          var picTpl =getPicTpl(src);
+          $('#shopLogoBox').find('.row').html(picTpl);
+
+          logoJson = JSON.stringify({'md5':res.data.md5, 'ext': res.data.ext});
+        }
+    });
+
+
+  $("#submit").click(function () {
+    var shop_name =   $("#shop_name").val();
+    var shop_slogan =   $("#shop_slogan").val();
+    var shop_des =    $("#shop_des").val();
+    var shop_lat  =   $("#shop_lat").val();
+    var shop_long =   $("#shop_long").val();
+    var shop_id = $('#shop_id').val();
+
+    if(!shop_name || !shop_slogan || !shop_des || !shop_lat || !shop_long){
+      alert("您填入的数据不完整,请你检查后重新提交!");
+      return false;
+    }
+
+    $.post("/admin/saveshop", {
+      'shop_name':shop_name,
+      'shop_slogan':shop_slogan,
+      'shop_des': shop_des,
+      'shop_lat': shop_lat,
+      'shop_long': shop_long,
+      'shop_logo':logoJson,
+      'shop_id' : shop_id
+    },function(response){
+      //console.log(response);
+
+      if(0 == response.errno){
+          alert('保存成功.');
+          location.href = '/admin/shoplist';
+      }else{
+          alert('好像出问题了.');
+      }
+    })
+  })
+</script>

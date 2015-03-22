@@ -1,0 +1,16 @@
+INSTALL.txt
+LICENSE.txt
+README.txt
+demos/
+extras/documentation
+.DS_Store
+.htaccess
+*.o
+*~
+*.swp
+*.swo
+*.dSYM
+a.out
+tags
+favicon.ico
+.netrwhist

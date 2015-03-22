@@ -1,0 +1,6 @@
+1.MResult 类要从所有的lib中移除
+2.安装imagick php扩展
+3.安装ImageMagick 服务
+4.将服务器upload 文件夹改为raw
+
+5.mysql  Ver 14.14 Distrib 5.6.23, for osx10.8 (x86_64) using  EditLine wrapper

@@ -1,0 +1,11 @@
+.uploaded_pic{
+    width: 110px;
+    position: relative;
+    display: inline-block;
+}
+
+.uploaded_pic button{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

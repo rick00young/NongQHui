@@ -1,0 +1,77 @@
+<!--header-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/header.phtml', array('css' => array('/static/admin/css/shopinfo.css')));
+?>
+<link rel="stylesheet" type="text/css" href="/static/plugin/uploadify/uploadify.css">
+<!--/header-->
+<!--navbar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/navbar.phtml');
+?>
+<!--navbar-->
+
+<!-- Left side column. contains the logo and sidebar -->
+<!--sidebar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
+?>
+<!--sidebar-->
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            我的店铺
+            <small>Preview</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">店铺管理</a></li>
+            <li class="active">我的店铺</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <?php foreach($shops as $shop){?>
+            <div class="col-md-3">
+                <div class="box box-solid">
+                    <div class="box-body">
+                        <p style="text-align: center;">
+                            <a href="<?=htmlspecialchars($shop['href'])?>"><img src="<?=htmlspecialchars($shop['logo'])?>" alt="..." class="img-thumbnail"></a>
+                        </p>
+                    </div><!-- /.box-body -->
+                    <div class="box-header" style="text-align: center;">
+                        <p class="" style="font-size: 14px;">
+                            <a href="<?=htmlspecialchars($shop['href'])?>" title="<?=htmlspecialchars($shop['name'])?>">
+                                共10件商品
+                            </a>
+                        </p>
+                        <h3 class="box-title">
+                            <a href="<?=htmlspecialchars($shop['href'])?>" title="<?=htmlspecialchars($shop['name'])?>">
+                                <?=htmlspecialchars(mb_strimwidth($shop['name'],0,30,'…', 'utf-8'))?>
+                            </a>
+                        </h3>
+                    </div>
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+            <?php }?>
+        </div><!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+
+<!--footer-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/footer.phtml');
+?>
+<!--footer-->
+<script type="text/javascript" src="/static/plugin/uploadify/jquery.uploadify.min.js"></script>
+<?php $timestamp = time();?>
+<script type="text/javascript">
+
+</script>

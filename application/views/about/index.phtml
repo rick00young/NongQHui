@@ -1,0 +1,96 @@
+  <!-- Header Start -->
+  <?php
+    echo Yaf_View_Simple::render('tpl/header.phtml', array('cssArr'=>array('sy.css')));
+  ?>
+  <!-- Header End -->
+
+  <!-- Nav Start -->
+  <?php
+    echo Yaf_View_Simple::render('tpl/nav.phtml', array('currentNav'=>'about'));
+  ?>
+  <!-- Nav End -->
+
+  <!-- Page Wrapper -->
+  <div class="wrapper">
+    <!-- Banner Start -->
+    <!--
+    <div class="banner padd">
+      <div class="container">
+        <img class="img-responsive" src="../imgs/crown-white.png" alt="" />
+        <h2 class="white">关于我们</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.html">首页</a></li>
+          <li class="active">关于我们</li>
+        </ol>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    -->
+    <!-- Banner End -->
+    <!-- Inner Content -->
+    <div class="inner-page padd">
+      <!-- About company -->
+      <div class="about-company padd">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- About Compnay Item -->
+              <div class="about-company-item">
+                <!-- About Company Image -->
+                <img class="img-responsive img-thumbnail" src="/static/imgs/about-1.jpg" alt="" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <!-- About Compnay Item -->
+              <div class="about-company-item">
+                <!-- Heading -->
+                <h3>关于我们 <span class="lblue"></span></h3>
+                <!-- Paragraph -->
+                <p>我们致力于生态农业的开发与研究,成员多是来自中国农业大学的大学生.我们有先进的科学理论,扎实的动手能力,努力打造一个全新的现代化的农业平台.</p>
+                <br /><!--/ Line break -->
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <!-- About company inner items -->
+                    <div class="about-company-inner">
+                      <!-- Paragraph with icon -->
+                      <span class="company-feature"><i class="fa fa-building-o br-red"></i> <b class="red">3</b> 农场</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <!-- About company inner items -->
+                    <div class="about-company-inner">
+                      <!-- Paragraph with icon -->
+                      <span class="company-feature"><i class="fa fa-trophy br-lblue"></i> <b class="lblue">2</b> 奖项</span>
+                    </div>
+                  </div>
+                  <div class="clearfix visible-xs"></div>
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <!-- About company inner items -->
+                    <div class="about-company-inner">
+                      <!-- Paragraph with icon -->
+                      <span class="company-feature"><i class="fa fa-users br-green"></i> <b class="green">40</b> 伙伴</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <!-- About company inner items -->
+                    <div class="about-company-inner">
+                      <!-- Paragraph with icon -->
+                      <span class="company-feature"><i class="fa fa-shopping-cart br-purple"></i> <b class="purple">21</b> 交易</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / Inner Page Content End -->
+  </div>
+  <!-- / Wrapper End -->
+
+  <!-- Footer Start -->
+  <?php
+    echo Yaf_View_Simple::render('tpl/footer.phtml', array('cssArr'=>array('sy.css')));
+  ?>
+  <!-- Footer End -->

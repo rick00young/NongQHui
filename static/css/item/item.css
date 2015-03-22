@@ -1,0 +1,92 @@
+.itemImg img{
+	width: 100%;
+	cursor: pointer;
+	border: 1px solid #eee;
+	padding: 2px;
+}
+
+.itemThumb{
+	overflow: hidden;
+}
+.itemThumb img{
+	width: 80px;
+	margin-top: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+	border: 1px solid #eee;
+	padding: 2px;
+}
+
+.item_title{
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+	color: #333;
+}
+
+#mapbox{
+	width: 100%;
+	height: 300px;
+	background: #ddd;
+}
+p.shop_pic_des{
+	margin: 10px 0;
+	font: 14px/24px "Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
+	color: #666;
+}
+p.shop_reco_title{
+	font: 14px/24px "Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
+	color: #333;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 36px;
+	border-radius: 0;
+	border-left: 4px solid #2bb8aa;
+	margin-bottom: 10px;
+}
+
+.shop_reco img{
+	width: 100%;
+	border: 1px solid #eee;
+	padding: 2px;
+}
+
+.shop_contact .contact-details i {
+	display: block;
+	margin-bottom: 15px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	float: left;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	border-radius: 30px;
+}
+
+.shop_contact .contact-details span {
+	display: inline-block;
+	margin-left: 10px;
+	margin-bottom: 15px;
+	font-size: 13px;
+	line-height: 25px;
+	color: #9a9a9a;
+}
+
+.contact_title{
+	font: 14px/24px "Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
+	color: #333;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 36px;
+	border-radius: 0;
+	border-left: 4px solid #2bb8aa;
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
+.contact_item{
+	text-decoration: none;
+}
+.contact_item:hover{
+	text-decoration: underline;
+};
