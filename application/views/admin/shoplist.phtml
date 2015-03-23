@@ -45,8 +45,9 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
                     </div><!-- /.box-body -->
                     <div class="box-header" style="text-align: center;">
                         <p class="" style="font-size: 14px;">
-                            <a href="<?=htmlspecialchars($shop['href'])?>" title="<?=htmlspecialchars($shop['name'])?>">
-                                共10件商品
+                            <a href="<?php echo 0 == $shop['good_count'] ? htmlspecialchars($shop['new_good']) : htmlspecialchars($shop['good_list'])?>" title="<?=htmlspecialchars($shop['name'])?>">
+
+                                <?php echo 0 == $shop['good_count'] ? '创建商品' : '共有'.$shop['good_count'].'件商品'?>
                             </a>
                         </p>
                         <h3 class="box-title">

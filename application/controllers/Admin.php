@@ -49,7 +49,7 @@ class AdminController extends Yaf_Controller_Abstract
 
         'goodlist'  => 'admin/goodlist.php',
         'goodinfo'  => 'admin/goodinfo.php',
-        'goodsave'  => 'admin/goodsave.php',
+        'savegood'  => 'admin/ajax/good/savegood.php',
         'newgood'   => 'admin/newgood.php',
         'goodmoreinfo' => 'admin/goodMoreInfo.php',
     );

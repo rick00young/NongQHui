@@ -23,6 +23,9 @@ define('PERMIT_COOKIE','aapp');
 //pin
 define('PIN', 'aa_pin');
 
+//code encrypt
+define('ID_SIMPLE_KEY', 'abc');
+
 
 /*****************************image******************************/
 //图片相关

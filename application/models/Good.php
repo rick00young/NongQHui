@@ -65,4 +65,17 @@ class GoodModel {
         DB::insert($data, self::TABLE_NAME, array('logo'));
         return DB::lastInsertId();
     }
+
+    public static function getGoodCountWithShopIds($shopIds, $isOnline = 1){
+        $sql  = sprintf('SELECT shop_id, count(*) as count FROM `%s` ', self::TABLE_NAME);
+        $sql .= sprintf('WHERE `shop_id` in (%s)', DB::escape(implode(',', $shopIds)));
+        if('all' == $isOnline){
+
+        }else{
+            $sql .= sprintf(' and `status` = %d', intval($isOnline));
+        }
+        $sql .= sprintf(' group by shop_id');
+
+        return DB::getAll($sql);
+    }
 } 

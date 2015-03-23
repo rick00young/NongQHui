@@ -24,7 +24,7 @@ class goodlistAction extends BaseAction{
 
         }
         unset($value);
-        $this->assign('goods', $shopRes);
+        $this->assign('good', $shopRes);
 
         $this->getView()->display('admin/goodlist.phtml');
     }

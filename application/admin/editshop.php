@@ -11,8 +11,12 @@ class editshopAction extends BaseAction
     public function run($arg = null)
     {
         Yaf_Dispatcher::getInstance()->disableView();
-        $shopId = $this->get('shop_id');
-        $shopRes = ShopModel::getShopById(intval($shopId));
+        $shopId = intval(GenerateEncrypt::decrypt($this->get('shop_id'), ID_SIMPLE_KEY));
+        if(!$shopId){
+            $this->display404();
+        }
+
+        $shopRes = ShopModel::getShopById($shopId);
 
         if(!$shopRes){
             $this->display404();
