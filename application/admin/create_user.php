@@ -7,7 +7,6 @@ class create_userAction extends BaseAction
 {
     public function run($arg = null)
     {
-        Yaf_Dispatcher::getInstance()->disableView();
         $redirect = '/admin/register';
 
         if (! isset($_POST) || ! isset($_POST['email']))
