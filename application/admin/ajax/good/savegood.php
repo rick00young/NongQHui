@@ -15,25 +15,29 @@ class savegoodAction extends BaseAction
             //TODO 用户身份验证
             $this->jsonReturn($returnData);
         }
-        $goodId = intval($this->post('shop_id', 0));
+        if($this->post('good_id')){
+            $goodId = intval(GenerateEncrypt::decrypt($this->post('good_id'), ID_SIMPLE_KEY));
+            if(!$goodId){
+                $returnData = HelperResponse::result(HelperResponse::FAIL, 'good_id must be number!', array());
+                $this->jsonReturn($returnData);
+            }
+        }
+
 
         $data = array();
-        $goodData['name'] = $this->post('shop_name');
-        $goodData['slogan'] = $this->post('shop_slogan');
-        $goodData['logo'] = $this->post_unescape('shop_logo');
-        $goodData['describe'] = $this->post('shop_des');
-        $goodData['own_id'] = $own_id;
-        $goodData['long'] = $this->post('shop_long');
-        $goodData['lat'] = $this->post('shop_lat');
+        $goodData['title'] = $this->post('good_title');
+        $goodData['slogan'] = $this->post('good_slogan');
+        $goodData['price'] = $this->post_unescape('good_price');
+        $goodData['discount_price'] = $this->post('good_d_price');
+        $goodData['shop_id'] = intval(GenerateEncrypt::decrypt($this->post('shop_id'), ID_SIMPLE_KEY));
+
 
         $rules = array(
-            'name'=>array('required'=>true,'type'=>'string'),
-            'slogan'=>array('type'=>'string'),
-            'logo'=>array('type'=>'string'),
-            'describe' => array('type'=>'string'),
-            'own_id'=>array('required'=>true,'type'=>'number'),
-            'long' => array('type'=>'string'),
-            'lat'=>array('type'=>'string'),
+            'title'=>array('required'=>true,'type'=>'string'),
+            'slogan'=>array('required' => true,'type'=>'string'),
+            'price'=>array('required' => true,'type'=>'string'),
+            'discount_price' => array('required' => true,'type'=>'string'),
+            'shop_id'=>array('required'=>true,'type'=>'number'),
         );
         $result = HelperValidate::check($goodData, $rules);
         if(!$result){
@@ -41,19 +45,19 @@ class savegoodAction extends BaseAction
             $returnData = HelperResponse::result(HelperResponse::FAIL, $msg, array());
             $this->jsonReturn($returnData);
         }
-
+var_export($goodData);die;
         $res = array();
         if($goodId){
             //update
-            $updateRes = ShopModel::updateShop($goodData, $goodId);
+            $updateRes = GoodModel::updateGood($goodData, $goodId);
             if($updateRes){
-                $res['shop_id'] = $goodId;
+                $res['good_id'] = $goodId;
             }
         }else{
             //insert
-            $insertRes = ShopModel::createNewShop($goodData);
+            $insertRes = GoodModel::createNewGood($goodData);
             if($insertRes){
-                $res['shop_id'] = $insertRes;
+                $res['good_id'] = $insertRes;
             }
         }
         if(empty($res)){
