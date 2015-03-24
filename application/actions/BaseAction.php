@@ -20,6 +20,7 @@ abstract class BaseAction extends Yaf_Action_Abstract
         {
             $this->user_info = $_SESSION['user_info'];
         }
+        $this->assign('_uid_', $this->user_info['uid']);
 
         /**
          * 一些常用公共数据

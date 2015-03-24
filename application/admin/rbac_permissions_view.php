@@ -7,8 +7,6 @@ class rbac_permissions_viewAction extends BaseAction
 {
     public function run($arg = null)
     {
-        $rbac = RbacService::getInstance();
-
         $permissions = RbacService::getAllPermissions();
 
         $this->assign('permissions', $permissions);

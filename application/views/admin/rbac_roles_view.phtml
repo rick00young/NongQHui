@@ -21,13 +21,13 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            权限
+            角色
             <small></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-            <li><a href="#">查看权限</a></li>
-            <li class="active">权限列表</li>
+            <li><a href="#">查看角色</a></li>
+            <li class="active">角色列表</li>
         </ol>
     </section>
 
@@ -44,25 +44,25 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
         <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>权限</th>
-                  <th>权限描述</th>
+                  <th>角色名</th>
+                  <th>角色职能描述</th>
                   <th>操作</th>
                 </tr>
               </thead>
               <tbody>
 
 <?php
-foreach ($permissions as $prmssn)
+foreach ($roles as $rl)
 {
 ?>
                 <tr>
                   <th scope="row">
-                    <?php echo $prmssn['title']; ?>
+                    <?php echo $rl['title']; ?>
                   </th>
-                  <td><?php echo $prmssn['description']; ?></td>
+                  <td><?php echo $rl['description']; ?></td>
                   <td>
-                    <a href="/admin/rbac_permissions_edit?pid=<?php echo $prmssn['pid']; ?>">编辑</a>&nbsp;|&nbsp;
-                    <a href="/admin/rbac_permissions_remove?pid=<?php echo $prmssn['pid']; ?>">删除</a>
+                    <a href="/admin/rbac_roles_edit?rid=<?php echo $rl['rid']; ?>">编辑</a>&nbsp;|&nbsp;
+                    <a href="/admin/rbac_roles_remove?rid=<?php echo $rl['rid']; ?>">删除</a>
                   </td>
                 </tr>
 <?php
@@ -72,16 +72,16 @@ foreach ($permissions as $prmssn)
         </table>
     </div>
 
-    <form class="form-inline" action="/admin/rbac_permissions_add" method="post">
+    <form class="form-inline" action="/admin/rbac_roles_add" method="post">
       <div class="form-group">
-        <label for="title">权限</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="create_permission">
+        <label for="title">角色</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="create_roles">
       </div>
       <div class="form-group">
-        <label for="description">权限描述</label>
+        <label for="description">角色职能描述</label>
         <input type="text" class="form-control" name="description" id="description" placeholder="权限的中文描述">
       </div>
-      <button type="submit" class="btn btn-default">新增权限</button>
+      <button type="submit" class="btn btn-default">新增角色</button>
     </form>
     </section>
 </div>

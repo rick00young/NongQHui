@@ -26,11 +26,23 @@
           <ul class="sidebar-menu">
             <li class="header">导航栏</li>
             <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>控制台</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
+              <a href="#"><i class="fa fa-dashboard"></i><span>控制台</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li class="active"><a href="/admin"><i class="fa fa-circle-o"></i> 概况</a></li>
+<?php
+if (SUPERVISOR_UID == $_uid_)
+{
+?>
+                <li><a href="/admin/rbac_permissions_view"><i class="fa fa-circle-o"></i>权限列表</a></li>
+                <li><a href="/admin/rbac_permissions_edit"><i class="fa fa-circle-o"></i>编辑权限</a></li>
+                <li><a href="/admin/rbac_roles_view"><i class="fa fa-circle-o"></i>角色列表</a></li>
+                <li><a href="/admin/rbac_roles_edit"><i class="fa fa-circle-o"></i>编辑角色</a></li>
+                <li><a href="/admin/rbac_roles_assign"><i class="fa fa-circle-o"></i>角色授权</a></li>
+                <li><a href="/admin/rbac_users_view"><i class="fa fa-circle-o"></i>用户列表</a></li>
+                <li><a href="/admin/rbac_users_assign"><i class="fa fa-circle-o"></i>用户角色划分</a></li>
+<?php
+}
+?>
               </ul>
             </li>
 

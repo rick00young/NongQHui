@@ -35,6 +35,15 @@ class AdminController extends Yaf_Controller_Abstract
         'rbac_permissions_edit'     => 'admin/rbac_permissions_edit.php',       /** 编辑权限 */
         'rbac_permissions_remove'   => 'admin/rbac_permissions_remove.php',     /** 删除权限 */
 
+        'rbac_roles_view'   => 'admin/rbac_roles_view.php',         /** 查看角色 */
+        'rbac_roles_add'    => 'admin/rbac_roles_add.php',          /** 增加角色 */
+        'rbac_roles_edit'   => 'admin/rbac_roles_edit.php',         /** 编辑角色 */
+        'rbac_roles_remove' => 'admin/rbac_roles_remove.php',       /** 删除角色 */
+        'rbac_roles_assign' => 'admin/rbac_roles_assign.php',       /** 给角色授权 */
+
+        'rbac_users_view'   => 'admin/rbac_users_view.php',         /** 查看用户列表 */
+        'rbac_users_assign' => 'admin/rbac_users_assign',           /** 为用户分配和回收角色 */
+
         /** }}} */
 
         'forget'    => '', // 忘记密码
