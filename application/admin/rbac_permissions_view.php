@@ -7,7 +7,12 @@ class rbac_permissions_viewAction extends BaseAction
 {
     public function run($arg = null)
     {
-        echo __METHOD__;
+        $rbac = RbacService::getInstance();
+
+        $permissions = RbacService::getAllPermissions();
+
+        $this->assign('permissions', $permissions);
+        $this->getView()->display('admin/rbac_permissions_view.phtml');
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */

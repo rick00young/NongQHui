@@ -1,0 +1,71 @@
+<!--header-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/header.phtml', array('css' => array('/static/admin/css/shopinfo.css')));
+?>
+<!--/header-->
+<!--navbar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/navbar.phtml');
+?>
+<!--navbar-->
+
+<!-- Left side column. contains the logo and sidebar -->
+<!--sidebar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
+?>
+<!--sidebar-->
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            权限
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">查看权限</a></li>
+            <li class="active">权限列表</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    <div>
+        <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>权限</th>
+                  <th>权限描述</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+<?php
+foreach ($permissions as $prmssn)
+{
+?>
+                <tr>
+                  <th scope="row">
+                    <?php echo $prmssn['title']; ?>
+                  </th>
+                  <td><?php echo $prmssn['description']; ?></td>
+                </tr>
+<?php
+}
+?>
+              </tbody>
+        </table>
+    </div>
+    </section>
+    <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+
+<!--footer-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/footer.phtml');
+?>

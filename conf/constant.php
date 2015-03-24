@@ -71,6 +71,8 @@ define('MAX_FILE_SIZE', 20971520);//20M
 /** 超级用户 id */
 define('SUPERVISOR_UID', 1);
 
+define('ENV_ONLINE', ! isset($_SERVER['ENVIRONMENT']) || 'online' == $_SERVER['ENVIRONMENT'] ? 1 : 0);
+
 //这xie文件夹必须设置php的可写权限
 define('IMG_PUBLIC', '/Users/rick/nginx/html/agrovips/public/');
 define('IMG_RAW', '/data/'.RAW_FOLDER);

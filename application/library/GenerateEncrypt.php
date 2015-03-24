@@ -25,6 +25,11 @@ class GenerateEncrypt
 
     public static function encrypt($txt, $key)
     {
+        if (defined('ENV_ONLINE') && ! ENV_ONLINE)
+        {
+            return $txt;
+        }
+
         $encrypt_key = md5(((float) date('YmdisH') + rand(100000, 999999)) . rand(10000, 99999));
         $ctr = 0;
         $tmp = '';
@@ -45,6 +50,11 @@ class GenerateEncrypt
 
     public static function decrypt($txt, $key)
     {
+        if (defined('ENV_ONLINE') && ! ENV_ONLINE)
+        {
+            return $txt;
+        }
+
         $txt = self::keyED(self::base64decode($txt), $key);
         $tmp = '';
 
