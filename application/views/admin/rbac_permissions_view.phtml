@@ -18,9 +18,6 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
 
 <!-- Right side column. Contains the navbar and content of the page -->
 <div class="content-wrapper">
-<?php
-    Html::showFlash();
-?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -36,6 +33,13 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
 
     <!-- Main content -->
     <section class="content">
+
+<p>
+<?php
+    Html::showFlash();
+?>
+</p>
+
     <div>
         <table class="table table-striped">
               <thead>
@@ -71,11 +75,11 @@ foreach ($permissions as $prmssn)
     <form class="form-inline" action="/admin/rbac_permissions_add" method="post">
       <div class="form-group">
         <label for="title">权限</label>
-        <input type="text" class="form-control" id="title" placeholder="create_permission">
+        <input type="text" class="form-control" name="title" id="title" placeholder="create_permission">
       </div>
       <div class="form-group">
         <label for="description">权限描述</label>
-        <input type="text" class="form-control" id="description" placeholder="权限的中文描述">
+        <input type="text" class="form-control" name="description" id="description" placeholder="权限的中文描述">
       </div>
       <button type="submit" class="btn btn-default">新增权限</button>
     </form>
