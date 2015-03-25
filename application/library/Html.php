@@ -122,7 +122,7 @@ class Html
     {
         if (isset($_SESSION['user_info']) && isset($_SESSION['user_info']['flash']))
         {
-            echo '<div class="box box-solid box-danger">'
+            echo '<div class="box box-solid box-danger box-flash">'
                 . ' <div class="box-header">'
                 . '  <h3 class="box-title">友情提示</h3>'
                 . ' </div>'

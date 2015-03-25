@@ -39,6 +39,7 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
     Html::showFlash();
 ?>
 </p>
+<p>当前角色: <span class="label label-success"><?php echo $tpl['role']['description']; ?></span></p>
     <form class="form-inline" action="rbac_roles_assign" method="post">
         <input type="hidden" name="rid" value="<?php echo $tpl['rid']; ?>" />
 

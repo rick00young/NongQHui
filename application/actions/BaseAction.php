@@ -41,7 +41,11 @@ abstract class BaseAction extends Yaf_Action_Abstract
                 return false;
             }
 
-            // 认证后需要写 session, user_info.
+            /** rbac 权限控制 */
+            if (false !== strpos($action_name, 'rbac_'))
+            {
+                //
+            }
         }
 
         return true;
