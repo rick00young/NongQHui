@@ -10,22 +10,20 @@ class goodlistAction extends BaseAction{
     public function run($arg = null)
     {
         $uid = $this->getUid();
-        $shopRes = ShopModel::getShopsByUid(intval($uid));
-        //var_export($shopRes);
+        $shopId = intval(GenerateEncrypt::decrypt($this->get('shop_id'), ID_SIMPLE_KEY));
 
-        $shopsInfo = array();
-        $imageServer = ImageServer::getInstance();
-        foreach($shopRes as &$value){
-            $md5Ext = json_decode($value['logo'], true);
-            if(is_array($md5Ext)){
-                $value['logo'] = $imageServer->getThumbUrl($md5Ext['md5'], $md5Ext['ext'], 200, 200, TYPE_NO_BLANK);
-                $value['href'] = '/admin/editshop?shop_id=' . $value['id'];
-            }
-
+        if(!$shopId){
+            $this->display404();
         }
-        unset($value);
-        $this->assign('good', $shopRes);
 
-        $this->getView()->display('admin/goodlist.phtml');
+        $shopRes= ShopModel::getShopById($shopId);
+
+        $goodRes = GoodModel::getGoodsByShopId($shopId);
+
+
+        $this->assign('good', $goodRes);
+        $this->assign('shop', $shopRes);
+
+        $this->getView()->display('admin/goodList.phtml');
     }
 } 

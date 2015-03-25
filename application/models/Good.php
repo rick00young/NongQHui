@@ -17,7 +17,7 @@ class GoodModel {
 
     public static function createNewGood($goodData){
         $goodData['add_time'] = time();
-        DB::insert($goodData, self::TABLE_NAME, array('logo'));
+        DB::insert($goodData, self::TABLE_NAME);
         return DB::lastInsertId();
     }
 
@@ -28,7 +28,7 @@ class GoodModel {
     public static function getGoodsByShopId($goodId)
     {
         $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
-        $sql .= sprintf('WHERE `good_id` = "%s" ', DB::escape($goodId));
+        $sql .= sprintf('WHERE `shop_id` = "%s" ', DB::escape($goodId));
         //echo $sql . PHP_EOL;exit;
 
         return DB::getAll($sql);

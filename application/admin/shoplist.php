@@ -21,7 +21,7 @@ class shoplistAction extends BaseAction
 
         $goodCounts = array();
         if(!empty($shopIds)){
-            $goodCounts = GoodModel::getGoodCountWithShopIds($shopIds, 1);
+            $goodCounts = GoodModel::getGoodCountWithShopIds($shopIds, 'all');
             $goodCounts = HelperTool::arrToHashmap($goodCounts, 'shop_id');
         }
 

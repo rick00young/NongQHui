@@ -77,7 +77,7 @@ define('SUPERVISOR_UID', 1);
 define('ENV_ONLINE', ! isset($_SERVER['ENVIRONMENT']) || 'online' == $_SERVER['ENVIRONMENT'] ? 1 : 0);
 
 //这xie文件夹必须设置php的可写权限
-define('IMG_PUBLIC', '/Users/rick/nginx/html/agrovips/public/');
+define('IMG_PUBLIC', APPLICATION_PATH . '/../public/');
 define('IMG_RAW', '/data/'.RAW_FOLDER);
 define('IMG_ROOT', IMG_PUBLIC . IMAGE_FOLDER);//for imageserver
 define('IMG_WATER', IMG_ROOT . 'water/');
