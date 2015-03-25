@@ -49,6 +49,10 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
 
                                 <?php echo 0 == $shop['good_count'] ? '创建商品' : '共有'.$shop['good_count'].'件商品'?>
                             </a>
+                            <?php if($shop['good_count'] > 0){?>
+                            <span style="color: #3c8dbc;">|</span>
+                            <a href="<?=htmlspecialchars($shop['new_good'])?>" title="<?=htmlspecialchars($shop['name'])?>"> 新商品 </a>
+                            <?php }?>
                         </p>
                         <h3 class="box-title">
                             <a href="<?=htmlspecialchars($shop['href'])?>" title="<?=htmlspecialchars($shop['name'])?>">

@@ -29,6 +29,7 @@ class savegoodAction extends BaseAction
         $goodData['slogan'] = $this->post('good_slogan');
         $goodData['price'] = $this->post_unescape('good_price');
         $goodData['discount_price'] = $this->post('good_d_price');
+        $goodData['status'] = 1;
         $goodData['shop_id'] = intval(GenerateEncrypt::decrypt($this->post('shop_id'), ID_SIMPLE_KEY));
 
 
@@ -45,7 +46,7 @@ class savegoodAction extends BaseAction
             $returnData = HelperResponse::result(HelperResponse::FAIL, $msg, array());
             $this->jsonReturn($returnData);
         }
-var_export($goodData);die;
+
         $res = array();
         if($goodId){
             //update
@@ -56,6 +57,7 @@ var_export($goodData);die;
         }else{
             //insert
             $insertRes = GoodModel::createNewGood($goodData);
+
             if($insertRes){
                 $res['good_id'] = $insertRes;
             }
