@@ -122,6 +122,7 @@ class RbacService
         return $rbac->Roles->hasPermission($rid, $pid);
     }
 
+    /** 权限和角色的授权与回收 {{{ */
     public static function assign($rid, $pid)
     {
         $rid += 0;
@@ -138,6 +139,53 @@ class RbacService
         $rbac = self::getInstance();
 
         return $rbac->Roles->unassign($rid, $pid);
+    }
+    /** }}} */
+
+    /** Checks whether a user has a permission or not. */
+    /**
+     *  @return Returns true if a user has a permission, false if otherwise.
+     */
+    public static function check($pid, $uid)
+    {
+        $pid += 0;
+        $uid += 0;
+        $rbac = self::getInstance();
+
+        return $rbac->check($pid, $uid);
+    }
+
+    public static function usersAssign($rid, $uid)
+    {
+        $rid += 0;
+        $uid += 0;
+        $rbac = self::getInstance();
+
+        return $rbac->Users->assign($rid, $uid);
+    }
+
+    public static function usersUnassign($rid, $uid)
+    {
+        $rid += 0;
+        $uid += 0;
+        $rbac = self::getInstance();
+
+        return $rbac->Users->unassign($rid, $uid);
+    }
+
+    public static function getallRolesByUid($uid)
+    {
+        $uid += 0;
+        $rbac = self::getInstance();
+
+        $dt = array();
+        $ret= $rbac->Users->allRoles($uid);
+        if (null !== $ret)
+        {
+            $dt = $ret;
+        }
+
+        return $dt;
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
