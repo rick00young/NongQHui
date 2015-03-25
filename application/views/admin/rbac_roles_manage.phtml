@@ -43,15 +43,17 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
         <input type="hidden" name="rid" value="<?php echo $tpl['rid']; ?>" />
 
 <?php
+$permissions_4_role = array_values($tpl['permissions_4_role']);
 foreach ($tpl['permissions'] as $pid => $ps)
 {
 ?>
         <div class="checkbox">
             <label>
-            <input type="checkbox" name="ps[<?php echo $pid?>]" value="<?php echo $pid; ?>" />
+            <input type="checkbox" name="ps[<?php echo $pid?>]" value="<?php echo $pid; ?>" <?php echo in_array($pid, $permissions_4_role) ? 'checked' : ''; ?>/>
             <span class="label label-primary"><?php echo $ps['description']; ?></span>
             (<?php echo $ps['title']; ?>)&nbsp;
             </label>
+            &nbsp;&nbsp;
         </div>
 <?php
 }
