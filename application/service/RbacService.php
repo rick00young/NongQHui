@@ -97,6 +97,48 @@ class RbacService
 
         return $role;
     }
+
+    public static function getPermissions4RoleByRid($rid)
+    {
+        $rid += 0;
+        $dt = array();
+        $rbac = self::getInstance();
+
+        $ret = $rbac->Roles->permissions($rid);
+        if (null !== $ret)
+        {
+            $dt = $ret;
+        }
+
+        return $dt;
+    }
+
+    public static function checkRoleHasPermission($rid, $pid)
+    {
+        $rid += 0;
+        $pid += 0;
+        $rbac = self::getInstance();
+
+        return $rbac->Roles->hasPermission($rid, $pid);
+    }
+
+    public static function assign($rid, $pid)
+    {
+        $rid += 0;
+        $pid += 0;
+        $rbac = self::getInstance();
+
+        return $rbac->Roles->assign($rid, $pid);
+    }
+
+    public static function unassign($rid, $pid)
+    {
+        $rid += 0;
+        $pid += 0;
+        $rbac = self::getInstance();
+
+        return $rbac->Roles->unassign($rid, $pid);
+    }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
 
