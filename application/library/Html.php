@@ -40,11 +40,11 @@ class Html
 
         $page_count = ceil($total / $page_size);
 
-        $html .= '<div class="page">';
+        $html .= '<nav><ul class="pagination">';
 
         if ($page > 1 && $page_count > 10)
         {
-            $html .= sprintf('<a class="prev-page" href="%s">%s</a>', $url . '1', '首页');
+            $html .= sprintf('<li><a href="%s">%s</a></li>', $url . '1', '首页');
         }
 
         $start = 1;
@@ -66,19 +66,25 @@ class Html
 
         for ($i = $start; $i < $end && $i <= $page_count; $i++)
         {
-            $html .= $i == $page ? '<span class="current-page">' . $i . '</span>'
-                : '<a href="' . $url . $i . '">' . $i . '</a>';
+            if ($i == $page)
+            {
+                $html .= "<li class=\"active\"><a href=\"{$url}{$i}\">{$i}</a></li>";
+            }
+            else
+            {
+                $html .= "<li><a href=\"{$url}{$i}\">{$i}</a></li>";
+            }
         }
 
         if ($page_count > 10 && $page < $page_count)
         {
-            $html .= sprintf('<a class="next-page" href="%s">%s</a>', $url . $page_count, '尾页');
+            $html .= sprintf('<li><a href="%s">%s</a></li>', $url . $page_count, '尾页');
         }
-        $html .= "总计 <div class=\"notice\">{$total}</div> 个结果, ";
-        $html .= "共 <div class=\"notice\">{$page_count}</div> 页 ";
-        $html .= '每页条数 <input id="set_page_size" value="' . $page_size . '" /> ';
-        $html .= '<button id="reset_page_size">GO</button>';
-        $html .= '</div> ';
+        $html .= "总计 <span class=\"label label-info\">{$total}</span> 个结果, ";
+        $html .= "共 <span class=\"label label-info\">{$page_count}</span> 页 ";
+        //$html .= '每页条数 <input id="set_page_size" value="' . $page_size . '" /> ';
+        //$html .= '<button id="reset_page_size">GO</button>';
+        $html .= '</ul></nav>';
 
         return $html;
     }
