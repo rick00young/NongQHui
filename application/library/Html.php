@@ -6,7 +6,7 @@
 class Html
 {
     const page_name = 'cpage';
-    const page_size = 5;
+    const page_size = 15;
 
     /**
      * total: 记录总数
@@ -36,7 +36,8 @@ class Html
         {
             unset($p_uri[$page_name]);
         }
-        $url = '?v=v1.0&' . http_build_query($p_uri) . '&' . $page_name . '=';
+        $hbq = http_build_query($p_uri);
+        $url = '?v=v1.0' . ($hbq ? '&' . $hbq : '') . '&' . $page_name . '=';
 
         $page_count = ceil($total / $page_size);
 
@@ -68,7 +69,7 @@ class Html
         {
             if ($i == $page)
             {
-                $html .= "<li class=\"active\"><a href=\"{$url}{$i}\">{$i}</a></li>";
+                $html .= "<li class=\"active\"><a href=\"###\">{$i}</a></li>";
             }
             else
             {
@@ -176,6 +177,39 @@ class Html
         }
 
         echo $resource . '?v=' . $version;
+    }
+
+    public static function renderRegisterModel($register_model)
+    {
+        $html = '';
+
+        switch ($register_model)
+        {
+        case REGISTER_MODEL_NORMAL:
+            $html = '<span class="label label-default">普通用户</span>';
+            break;
+
+        case REGISTER_MODEL_BUSINESS:
+            $html = '<span class="label label-info">商家</span>';
+            break;
+
+        default:
+            $html = '<span class="label label-warning">未知</span>';
+        }
+
+        return $html;
+    }
+
+    public static function renderAccountStat($stat)
+    {
+        $html = '<span class="label label-success">正常</span>';
+
+        if ($stat)
+        {
+            $html = '<span class="label label-danger">已删除</span>';
+        }
+
+        return $html;
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */

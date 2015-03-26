@@ -57,6 +57,30 @@ class UserModel
 
         DB::update($update_dt, self::TABLE_NAME, $uid);
     }
+
+    public static function getCountFromUser()
+    {
+        $count = 0;
+
+        $sql = sprintf('SELECT COUNT(id) AS `count` FROM `%s` WHERE 1 LIMIT 1', self::TABLE_NAME);
+        $ret = DB::getOne($sql);
+        if (is_array($ret) && isset($ret['count']))
+        {
+            $count = $ret['count'] + 0;
+        }
+
+        return $count;
+    }
+
+    public static function getUserData($offset, $page_size)
+    {
+        $sql  = 'SELECT `id`, `nickname`, `email`, `register_time`, `last_login_time`, `register_model`, `deleted` ';
+        $sql .= sprintf('FROM `%s` ', self::TABLE_NAME);
+        $sql .= 'WHERE 1 = 1 ';
+        $sql .= sprintf('LIMIT %d, %d', $offset, $page_size);
+
+        return DB::getAll($sql);
+    }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
 
