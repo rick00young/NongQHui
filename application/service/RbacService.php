@@ -21,6 +21,19 @@ class RbacService
         return self::$_rbac;
     }
 
+    /**
+        * @brief getPidByTitle
+        *
+        * @param: $title 由调用方来防 SQL 注入
+        *
+        * @return: Returns the Entity's ID if successful, null if unsuccessful.
+     */
+    public static function getPidByTitle($title)
+    {
+        $rbac  = self::getInstance();
+        return $rbac->Permissions->returnId($title);
+    }
+
     public static function getAllPermissions()
     {
         $permissions = array();

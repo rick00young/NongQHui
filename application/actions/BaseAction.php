@@ -42,9 +42,35 @@ abstract class BaseAction extends Yaf_Action_Abstract
             }
 
             /** rbac 权限控制 */
+            $uid = $this->user_info['uid'];
             if (false !== strpos($action_name, 'rbac_'))
             {
-                //
+                if (SUPERVISOR_UID == $uid)
+                {
+                    return true;
+                }
+                else
+                {
+                    Html::setFlash('没有授权');
+                    header('Location: /admin');
+                    return false;
+                }
+            }
+
+            $pid = RbacService::getPidByTitle($action_name);
+            if ($pid > 1) // 1: root
+            {
+                // 说明此 action 有权限控制
+                if (RbacService::check($pid, $uid))
+                {
+                    return true;
+                }
+                else
+                {
+                    Html::setFlash('没有授权,请联系管理员');
+                    $this->redirect('/admin');
+                    return false;
+                }
             }
         }
 
