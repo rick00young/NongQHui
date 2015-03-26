@@ -1,0 +1,92 @@
+<!--header-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/header.phtml');
+?>
+<!--/header-->
+<!--navbar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/navbar.phtml');
+?>
+<!--navbar-->
+
+<!-- Left side column. contains the logo and sidebar -->
+<!--sidebar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
+?>
+<!--sidebar-->
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            管理用户
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">查看用户</a></li>
+            <li class="active">用户列表</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+<p>
+<?php
+    Html::showFlash();
+?>
+</p>
+
+    <div>
+        <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>用户ID</th>
+                  <th>电子邮箱</th>
+                  <th>昵称</th>
+                  <th>注册类型</th>
+                  <th>注册时间</th>
+                  <th>最后登陆时间</th>
+                  <th>账户状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+<?php
+foreach ($tpl['user_data'] as $ud)
+{
+?>
+                <tr>
+                  <th scope="row"><?php echo $ud['id']; ?></th>
+                  <td><?php echo $ud['email']; ?></td>
+                  <td><?php echo $ud['nickname']; ?></td>
+                  <td><?php echo Html::renderRegisterModel($ud['register_model']); ?></td>
+                  <td><?php echo date('Y-m-d H:i', $ud['register_time']);  ?></td>
+                  <td><?php echo $ud['last_login_time'] > 0 ? date('Y-m-d H:i', $ud['last_login_time']) : '-';  ?></td>
+                  <td><?php echo Html::renderAccountStat($ud['deleted']); ?></td>
+                  <td><a href="">管理角色</a></td>
+                </tr>
+<?php
+}
+?>
+              </tbody>
+        </table>
+
+<?php
+    echo $tpl['pagination'];
+?>
+
+    </div>
+
+    </section>
+</div>
+<!-- /.content-wrapper -->
+
+<!--footer-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/footer.phtml');
+?>
