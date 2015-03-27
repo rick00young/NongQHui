@@ -206,7 +206,7 @@ class Html
 
         if ($stat)
         {
-            $html = '<span class="label label-danger">已删除</span>';
+            $html = '<span class="label label-danger">禁闭</span>';
         }
 
         return $html;

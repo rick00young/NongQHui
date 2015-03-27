@@ -126,6 +126,20 @@ class RbacService
         return $dt;
     }
 
+    public static function getRoles4UserByUid($uid)
+    {
+        $uid += 0;
+        $dt = array();
+
+        $user_roles = self::getallRolesByUid($uid);
+        foreach ($user_roles as $k => $v)
+        {
+            $dt[] = $v['ID'];
+        }
+
+        return $dt;
+    }
+
     public static function checkRoleHasPermission($rid, $pid)
     {
         $rid += 0;
@@ -133,6 +147,15 @@ class RbacService
         $rbac = self::getInstance();
 
         return $rbac->Roles->hasPermission($rid, $pid);
+    }
+
+    public static function checkUserHasRoles($rid, $uid)
+    {
+        $rid += 0;
+        $uid += 0;
+        $rbac = self::getInstance();
+
+        return $rbac->Users->hasRole($rid, $uid);
     }
 
     /** 权限和角色的授权与回收 {{{ */

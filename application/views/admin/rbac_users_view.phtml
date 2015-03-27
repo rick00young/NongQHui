@@ -68,7 +68,7 @@ foreach ($tpl['user_data'] as $ud)
                   <td><?php echo date('Y-m-d H:i', $ud['register_time']);  ?></td>
                   <td><?php echo $ud['last_login_time'] > 0 ? date('Y-m-d H:i', $ud['last_login_time']) : '-';  ?></td>
                   <td><?php echo Html::renderAccountStat($ud['deleted']); ?></td>
-                  <td><a href="">管理角色</a></td>
+                  <td><a href="/admin/rbac_users_manage?uid=<?php echo $ud['id']; ?>">管理角色</a></td>
                 </tr>
 <?php
 }

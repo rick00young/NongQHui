@@ -43,7 +43,8 @@ class AdminController extends Yaf_Controller_Abstract
         'rbac_roles_assign' => 'admin/rbac_roles_assign.php',       /** 给角色授权 */
 
         'rbac_users_view'   => 'admin/rbac_users_view.php',         /** 查看用户列表 */
-        'rbac_users_assign' => 'admin/rbac_users_assign',           /** 为用户分配和回收角色 */
+        'rbac_users_manage' => 'admin/rbac_users_manage.php',       /** 用户分配角色管理界面 */
+        'rbac_users_assign' => 'admin/rbac_users_assign.php',       /** 为用户分配和回收角色 */
 
         /** }}} */
 
