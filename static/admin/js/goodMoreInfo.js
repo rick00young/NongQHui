@@ -19,11 +19,12 @@
     var editor = UE.getEditor('editor');
 
     var GOODINFO = {
-        'good_intro': good_intro,
+        'good_intro': good_intro ? $.parseJSON(good_intro) : {},
         'buy_needKnow': buy_needKnow,
         'buy_detail': buy_detail,
         'use_list': use_list
     };
+    var GOOD_REQUEST_DATA = {};
     var CURRENT_OPERATION = 'good_intro';
 
     $("#good_photo").uploadify({
@@ -53,32 +54,41 @@
     });
 
     $("#submit").click(function () {
-        var good_name =   $("#good_name").val();
-        var good_slogan =   $("#good_slogan").val();
-        var good_des =    $("#good_des").val();
-        var good_lat  =   $("#good_lat").val();
-        var good_long =   $("#good_long").val();
+        saveCacheDataByType(CURRENT_OPERATION);
+
+        var good_intro = JSON.stringify(GOODINFO.good_intro);
+        var buy_needKnow = getCacheDataByType('buy_needKnow');
+        var buy_detail = getCacheDataByType('buy_detail');
+        var use_list = getCacheDataByType('use_list');
+
+        var shop_id = $('#shop_id').val();
         var good_id = $('#good_id').val();
 
-        if(!good_name || !good_slogan || !good_des || !good_lat || !good_long){
-            alert("您填入的数据不完整,请你检查后重新提交!");
+        var _confirm = confirm('您确定要保存当前的信息吗?');
+        if(!_confirm){
             return false;
         }
 
-        $.post("/admin/savegood", {
-            'good_name':good_name,
-            'good_slogan':good_slogan,
-            'good_des': good_des,
-            'good_lat': good_lat,
-            'good_long': good_long,
-            'good_logo':logoJson,
-            'good_id' : good_id
-            },function(response){
+        if(!shop_id || !good_id){
+            alert('出错了,请联系管理员!');
+            return;
+        }
+        var request_data = {
+            'good_intro':good_intro,
+            'buy_needKnow':buy_needKnow,
+            'buy_detail': buy_detail,
+            'use_list': use_list,
+            'shop_id': shop_id,
+            'good_id':good_id
+
+        };
+        console.log(request_data);return;
+        $.post("/admin/save_good_info",request_data ,function(response){
             //console.log(response);
 
             if(0 == response.errno){
-            alert('保存成功.');
-                location.href = '/admin/goodlist';
+                alert('保存成功.');
+                //location.href = '/admin/goodlist';
             }else{
                 alert('好像出问题了.');
             }
@@ -101,9 +111,12 @@
             $('#segment_title').text(segments[data_title]);
 
         }
-        saveCacheDataByType(CURRENT_OPERATION);
-        CURRENT_OPERATION = data_title;
-        getCacheDataByType(CURRENT_OPERATION);
+        if(CURRENT_OPERATION != data_title){
+            saveCacheDataByType(CURRENT_OPERATION);
+            CURRENT_OPERATION = data_title;
+            setEditorContentByType(CURRENT_OPERATION);
+        }
+
 
         $segments.removeClass('btn-info').addClass('btn-default');
         $(this).addClass('btn-info').removeClass('btn-default');
@@ -123,6 +136,18 @@
     }
 
     function getCacheDataByType(type){
-        var content = GOODINFO[type];
-        editor.setContent(content);
+        if('good_intro' == type){
+
+        }else{
+            var content = GOODINFO[type];
+        }
+
+
+        return content ? content :  '';
+    }
+
+    function setEditorContentByType( type){
+        if('good_intro' != type){
+            editor.setContent(GOODINFO[type]);
+        }
     }
