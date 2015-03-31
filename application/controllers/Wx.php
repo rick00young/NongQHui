@@ -17,20 +17,8 @@ class WxController extends Yaf_Controller_Abstract
     {
         //print_r($_SERVER);
         //echo Yaf_Registry::get('config')->cookie->domain;
-        echo '<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>';
-        echo <<<JS
-<script>
-var _u = window.location.href;
-var _pos = _u.indexOf('#');
-if (-1 == _pos)
-{
-    _pos = _u.length;
-}
-var _c_url = _u.substr(0, _pos);
-var _s_url = '/wx/wxconfig?debug=0&url=' + encodeURIComponent(_c_url)  + '&p=' + (+(new Date()));
-document.write('<script src="' + _s_url + '"><\/script>');
-</script>
-JS;
+
+        echo Html::wxJsSDK();
 
         return false;
     }
