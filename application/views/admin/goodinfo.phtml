@@ -58,11 +58,16 @@
                     </div>
 
                     <div class="form-group">
+                      <label>库存</label>
+                      <input type="text" class="form-control" id="good_stock" placeholder="请输入商品库存" value="<?=isset($good['discount_price']) ? htmlspecialchars($shop['discount_price']) : ''?>">
+                    </div>
+
+                    <div class="form-group">
                       <label>价格</label>
                       <input type="text" class="form-control" id="good_price" placeholder="请输入商品价格" value="<?=isset($good['price']) ? htmlspecialchars($shop['price']) : ''?>">
                     </div>
 
-                     <div class="form-group">
+                    <div class="form-group">
                       <label>折后价</label>
                       <input type="text" class="form-control" id="good_d_price" placeholder="请输入商品折后价格" value="<?=isset($good['discount_price']) ? htmlspecialchars($shop['discount_price']) : ''?>">
                     </div>
@@ -100,7 +105,7 @@ $("#submit").click(function () {
 
     if(!good_title || !good_slogan || !good_price || !good_d_price || !shop_id){
       alert("您填入的数据不完整,请你检查后重新提交!");
-      //return false;
+      return false;
     }
 
     var postData = {

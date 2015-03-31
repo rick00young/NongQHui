@@ -23,11 +23,25 @@ class goodMoreInfoAction extends BaseAction
         $this->assign('shop_id', $this->get('shop_id'));
         $this->assign('good_id', $this->get('good_id'));
         $this->assign('page_title', '完善商品信息');
-//        $shop_id = $this->get('shop_id');
-//        if(!intval($shop_id)){
-//            $this->display404();
-//        }
-        //$this->assign('shop_id', intval($shop_id));
+
+        $good_intro = GoodModel::getGoodALLExInfoByGoodId($goodId);
+        //var_export($good_intro);
+        $good = array();
+        foreach($good_intro as $info){
+            if($info['type'] == GoodModel::EXT_GOOD_INFO){
+                $good['good_intro'] = $info['content'];
+            }
+            if($info['type'] == GoodModel::EXT_BUY_NEEDKNOW){
+                $good['buy_needKnow'] = $info['content'];
+            }
+            if($info['type'] == GoodModel::EXT_BUY_DETAIL){
+                $good['buy_detail'] = $info['content'];
+            }
+            if($info['type'] == GoodModel::EXT_USE_LIST){
+                $good['use_list']  = $info['content'];
+            }
+        }
+        $this->assign('good', $good);
         $this->getView()->display('admin/goodMoreInfo.phtml');
     }
 }

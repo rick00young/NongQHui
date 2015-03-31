@@ -57,6 +57,28 @@
                     </div>
 
                     <div class="form-group">
+                        <label>所在地区</label>
+                        <div></div>
+                        <div style="display: inline-block;width: 45%;float: left;">
+                            <select class="form-control" id="province">
+                                <!--<option>省/直辖市</option>-->
+                                <option selected="selected" value="<?=$city['city']['id']?>"><?=$city['name']?></option>
+                            </select>
+                        </div>
+
+                        <div style="display: inline-block;width: 45%;float: right;">
+                            <select class="form-control" id="district">
+                                <!--<option>城市/区</option>-->
+                                <?php foreach($city['city']['county'] as $dis){?>
+                                    <option value="<?=$dis['id']?>"><?=$dis['name']?></option>
+                                <?php }?>
+                            </select>
+                        </div>
+                        <div style="clear: both;"></div>
+
+                    </div>
+
+                    <div class="form-group">
                       <label>店铺logo</label>
                       <input type="file" id="shop_logo_file">
                       <p class="help-block">请选择上传图片</p>
@@ -112,6 +134,8 @@
 ?>
 <!--footer-->
 <script type="text/javascript" src="/static/plugin/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="/static/js/city.js"></script>
+
 <?php $timestamp = time();?>
 <script type="text/javascript">
 
@@ -161,6 +185,8 @@
     var shop_lat  =   $("#shop_lat").val();
     var shop_long =   $("#shop_long").val();
     var shop_id = $('#shop_id').val();
+
+    //TODO city_id
 
     if(!shop_name || !shop_slogan || !shop_des || !shop_lat || !shop_long){
       alert("您填入的数据不完整,请你检查后重新提交!");

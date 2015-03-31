@@ -1,11 +1,16 @@
-    function getPicTpl($src, $md5, $ext){
+    function getPicTpl($src, md5, ext){
         var button = $('<button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>');
         button.click(function(){
         //TODO删除图片数据
-            alert('delete data...');
+            if(!confirm('您确定要删除此图片吗?')){
+                return false;
+            }
+
+            //console.log($(this).parent('div.uploaded_pic').parent('div.col-md-3'));
+            $(this).parent('div.uploaded_pic').parent('div.col-md-3').attr('is_deleted','1').fadeOut();
             return false;
         });
-        var $tpl = $('<div class="col-md-3">'
+        var $tpl = $('<div class="col-md-3" ext="'+ext+'" md5="'+md5+'">'
                         + '<div class="uploaded_pic">'
                         + '<img src="'+$src+'" alt="..." class="img-thumbnail">'
                             //+ '<button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>'
@@ -25,6 +30,17 @@
         'use_list': use_list
     };
     var GOOD_REQUEST_DATA = {};
+
+
+    //draw info images
+    console.log(GOODINFO.good_intro);
+    for(var md5Ext in GOODINFO.good_intro){
+        var img = GOODINFO.good_intro[md5Ext];
+        src = '/source/images/thb2/100x100/' + img.md5.substring(0, 3) + '/' +img.md5 + '.' + img.ext;
+        var picTpl = getPicTpl(src, img.md5, img.ext);
+        $('#goodPhotoBox').find('.row').append(picTpl);
+        console.log(src);
+    }
     var CURRENT_OPERATION = 'good_intro';
 
     $("#good_photo").uploadify({
@@ -47,7 +63,7 @@
                 return;
             }
             src = '/source/images/thb2/100x100/' + res.data.dir + '/' +res.data.md5 + '.' + res.data.ext;
-            var picTpl =getPicTpl(src);
+            var picTpl =getPicTpl(src, res.data.md5, res.data.ext);
             $('#goodPhotoBox').find('.row').append(picTpl);
             //logoJson = JSON.stringify({'md5':res.data.md5, 'ext': res.data.ext});
         }
@@ -56,7 +72,15 @@
     $("#submit").click(function () {
         saveCacheDataByType(CURRENT_OPERATION);
 
-        var good_intro = JSON.stringify(GOODINFO.good_intro);
+        var good_intro = [];
+        $('#goodPhotoBox').find('div.row').find('div.col-md-3').each(function(){
+
+            if(1 != $(this).attr('is_deleted')){
+                good_intro.push({'md5': $(this).attr('md5'), 'ext': $(this).attr('ext')});
+            }
+        })
+
+        good_intro = JSON.stringify(good_intro);
         var buy_needKnow = getCacheDataByType('buy_needKnow');
         var buy_detail = getCacheDataByType('buy_detail');
         var use_list = getCacheDataByType('use_list');
@@ -82,7 +106,7 @@
             'good_id':good_id
 
         };
-        console.log(request_data);return;
+        console.log(request_data);//return;
         $.post("/admin/save_good_info",request_data ,function(response){
             //console.log(response);
 
