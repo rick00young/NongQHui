@@ -52,6 +52,8 @@ echo Yaf_View_Simple::render('admin/tpl/header.phtml', array('css' => array('/st
                 <form role="form">
                   <div class="box-body">
                       <div class="form-group" id="upload">
+                          <input type="hidden" name="shop_id" id="shop_id" value="<?=htmlspecialchars($shop_id)?>">
+                          <input type="hidden" name="good_id" id="good_id" value="<?=htmlspecialchars($good_id)?>">
                           <label>产品介绍</label>
                           <input type="file" id="good_photo">
                           <p class="help-block">请选择上传图片</p>
@@ -59,14 +61,6 @@ echo Yaf_View_Simple::render('admin/tpl/header.phtml', array('css' => array('/st
 
                       <div class="form-group" id="goodPhotoBox">
                           <div class="row">
-                              <?php if(isset($shop['logo'])){?>
-                                  <div class="col-md-3">
-                                      <div class="uploaded_pic">
-                                          <img src="<?=htmlspecialchars($shop['logo_url'])?>" alt="..." class="img-thumbnail">
-                                          <!--<button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>-->
-                                      </div>
-                                  </div>
-                              <?php }?>
 
                           </div>
                       </div>
@@ -101,11 +95,10 @@ echo Yaf_View_Simple::render('admin/tpl/header.phtml', array('css' => array('/st
 <!--footer-->
 
 <script type="text/javascript">
-    var logoJson = '<?=isset($good["logo"]) ? $good["logo"] : ""?>';
-    var good_intro = '<?=isset($good["logo"]) ? $good["logo"] : ""?>';
-    var buy_needKnow ='<?=isset($good["logo"]) ? $good["logo"] : ""?>';
-    var buy_detail = '<?=isset($good["logo"]) ? $good["logo"] : ""?>';
-    var use_list = '<?=isset($good["logo"]) ? $good["logo"] : ""?>';
+    var good_intro = '<?=isset($good["good_intro"]) ? $good["good_intro"] : ""?>';
+    var buy_needKnow ='<?=isset($good["buy_needKnow"]) ? $good["buy_needKnow"] : ""?>';
+    var buy_detail = '<?=isset($good["buy_detail"]) ? $good["buy_detail"] : ""?>';
+    var use_list = '<?=isset($good["use_list"]) ? $good["use_list"] : ""?>';
 </script>
 <script type="text/javascript" charset="utf-8" src="/static/plugin/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/static/plugin/ueditor/ueditor.all.min.js"> </script>
