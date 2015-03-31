@@ -59,11 +59,17 @@ foreach ($roles as $rl)
                   <th scope="row">
                     <?php echo $rl['title']; ?>
                   </th>
-                  <td><?php echo $rl['description']; ?></td>
+                  <td><span class="label label-primary"><?php echo $rl['description']; ?></span></td>
                   <td>
-                    <a href="/admin/rbac_roles_edit?rid=<?php echo $rl['rid']; ?>">编辑</a>&nbsp;|&nbsp;
-                    <a href="/admin/rbac_roles_manage?rid=<?php echo $rl['rid']; ?>">管理授权</a>&nbsp;|&nbsp;
+                    <a href="/admin/rbac_roles_edit?rid=<?php echo $rl['rid']; ?>">编辑</a>
+                    &nbsp;|&nbsp;
+                    <a href="/admin/rbac_roles_manage?rid=<?php echo $rl['rid']; ?>">管理授权</a>
+<?php
+/**
+                    &nbsp;|&nbsp;
                     <a href="/admin/rbac_roles_remove?rid=<?php echo $rl['rid']; ?>">删除</a>
+ */
+?>
                   </td>
                 </tr>
 <?php

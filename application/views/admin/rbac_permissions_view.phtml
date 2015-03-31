@@ -59,10 +59,17 @@ foreach ($permissions as $prmssn)
                   <th scope="row">
                     <?php echo $prmssn['title']; ?>
                   </th>
-                  <td><?php echo $prmssn['description']; ?></td>
                   <td>
-                    <a href="/admin/rbac_permissions_edit?pid=<?php echo $prmssn['pid']; ?>">编辑</a>&nbsp;|&nbsp;
+                    <span class="label label-primary"><?php echo $prmssn['description']; ?></span>
+                  </td>
+                  <td>
+                    <a href="/admin/rbac_permissions_edit?pid=<?php echo $prmssn['pid']; ?>">编辑</a>
+<?php
+/**
+                    &nbsp;|&nbsp;
                     <a href="/admin/rbac_permissions_remove?pid=<?php echo $prmssn['pid']; ?>">删除</a>
+ */
+?>
                   </td>
                 </tr>
 <?php
