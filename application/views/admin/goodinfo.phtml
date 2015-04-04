@@ -49,27 +49,27 @@
                       <label>商品名称</label>
                       <input type="hidden" name="good_id" id="good_id" value="<?=isset($good['id']) ? htmlspecialchars($good['id']) : ''?>">
                       <input type="hidden" name="shop_id" id="shop_id" value="<?=isset($shop_id) ? htmlspecialchars($shop_id) : 0?>">
-                      <input type="text" class="form-control" id="good_title" placeholder="请输入商品名称" value="<?=isset($good['title']) ? htmlspecialchars($shop['title']) : ''?>">
+                      <input type="text" class="form-control" id="good_title" placeholder="请输入商品名称" value="<?=isset($good['title']) ? htmlspecialchars($good['title']) : ''?>">
                     </div>
 
                     <div class="form-group">
                       <label>商品简单描述</label>
-                      <input type="text" class="form-control" id="good_slogan" placeholder="请输入商品简单描述" value="<?=isset($good['slogan']) ? htmlspecialchars($shop['slogan']) : ''?>">
+                      <input type="text" class="form-control" id="good_slogan" placeholder="请输入商品简单描述" value="<?=isset($good['slogan']) ? htmlspecialchars($good['slogan']) : ''?>">
                     </div>
 
                     <div class="form-group">
                       <label>库存</label>
-                      <input type="text" class="form-control" id="good_stock" placeholder="请输入商品库存" value="<?=isset($good['discount_price']) ? htmlspecialchars($shop['discount_price']) : ''?>">
+                      <input type="text" class="form-control" id="good_stock" placeholder="请输入商品库存" value="<?=isset($good['discount_price']) ? htmlspecialchars($good['discount_price']) : ''?>">
                     </div>
 
                     <div class="form-group">
                       <label>价格</label>
-                      <input type="text" class="form-control" id="good_price" placeholder="请输入商品价格" value="<?=isset($good['price']) ? htmlspecialchars($shop['price']) : ''?>">
+                      <input type="text" class="form-control" id="good_price" placeholder="请输入商品价格" value="<?=isset($good['price']) ? htmlspecialchars($good['price']) : ''?>">
                     </div>
 
                     <div class="form-group">
                       <label>折后价</label>
-                      <input type="text" class="form-control" id="good_d_price" placeholder="请输入商品折后价格" value="<?=isset($good['discount_price']) ? htmlspecialchars($shop['discount_price']) : ''?>">
+                      <input type="text" class="form-control" id="good_d_price" placeholder="请输入商品折后价格" value="<?=isset($good['discount_price']) ? htmlspecialchars($good['discount_price']) : ''?>">
                     </div>
 
                   </div><!-- /.box-body -->
@@ -102,6 +102,7 @@ $("#submit").click(function () {
     var good_d_price  =   $("#good_d_price").val();
     var good_id = $('#good_id').val();
     var shop_id = $('#shop_id').val();
+    var good_stock = $('#good_stock').val();
 
     if(!good_title || !good_slogan || !good_price || !good_d_price || !shop_id){
       alert("您填入的数据不完整,请你检查后重新提交!");
@@ -113,6 +114,7 @@ $("#submit").click(function () {
         'good_slogan':good_slogan,
         'good_price': good_price,
         'good_d_price': good_d_price,
+        'good_stock':good_stock,
         'good_id': good_id,
         'shop_id': shop_id
     }

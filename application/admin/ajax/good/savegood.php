@@ -23,14 +23,27 @@ class savegoodAction extends BaseAction
             }
         }
 
+        $shop_id = intval(GenerateEncrypt::decrypt($this->post('shop_id'), ID_SIMPLE_KEY));
+        if(!$shop_id){
+            $returnData = HelperResponse::result(HelperResponse::FAIL, 'shop_id must be number!', array());
+            $this->jsonReturn($returnData);
+        }
+        $shopRes = ShopModel::getShopById($shop_id);
+        if(!$shopRes){
+            $returnData = HelperResponse::result(HelperResponse::FAIL, 'cat not find shop_id = '.$shop_id.'!', array());
+            $this->jsonReturn($returnData);
+        }
+
 
         $data = array();
         $goodData['title'] = $this->post('good_title');
         $goodData['slogan'] = $this->post('good_slogan');
         $goodData['price'] = $this->post_unescape('good_price');
         $goodData['discount_price'] = $this->post('good_d_price');
+        $goodData['stock'] = $this->post('good_stock');
         $goodData['status'] = 1;
-        $goodData['shop_id'] = intval(GenerateEncrypt::decrypt($this->post('shop_id'), ID_SIMPLE_KEY));
+        $goodData['shop_id'] = $shop_id;
+        $goodData['district_id'] = $shopRes['district_id'];
 
 
         $rules = array(

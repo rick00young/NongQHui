@@ -23,11 +23,21 @@ class save_good_infoAction extends BaseAction
         }
 
         $res = array();
-        $resA = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $good_intro), $good_id, GoodModel::EXT_GOOD_INFO);
-        $resB = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $buy_needKnow), $good_id, GoodModel::EXT_BUY_NEEDKNOW);
-        $resC = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $buy_detail), $good_id, GoodModel::EXT_BUY_DETAIL);
-        $resD = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $use_list), $good_id, GoodModel::EXT_USE_LIST);
+        if(!empty($good_intro)){
+            $resA = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $good_intro), $good_id, GoodModel::EXT_GOOD_INFO);
+        }
 
+        if(!empty($buy_needKnow)){
+            $resB = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $buy_needKnow), $good_id, GoodModel::EXT_BUY_NEEDKNOW);
+        }
+
+        if(!empty($buy_detail)){
+            $resC = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $buy_detail), $good_id, GoodModel::EXT_BUY_DETAIL);
+        }
+
+        if(!empty($use_list)){
+            $resD = GoodModel::updateOrInsertGoodExInfoByGoodId(array('content' => $use_list), $good_id, GoodModel::EXT_USE_LIST);
+        }
 
         $returnData = HelperResponse::result(HelperResponse::SUCCESS, 'operation success!', $res);
         $this->jsonReturn($returnData);

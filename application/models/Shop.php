@@ -35,4 +35,12 @@ class ShopModel {
 
         return DB::getOne($sql);
     }
+
+    public static function getShopByIdAndUid($shopId, $uid){
+        $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
+        $sql .= sprintf('WHERE `id` = "%d" and own_id = "%d"', DB::escape($shopId), intval($uid));
+        //echo $sql . PHP_EOL;exit;
+
+        return DB::getOne($sql);
+    }
 } 

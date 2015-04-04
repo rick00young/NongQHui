@@ -60,22 +60,29 @@
                         <label>所在地区</label>
                         <div></div>
                         <div style="display: inline-block;width: 45%;float: left;">
-                            <select class="form-control" id="province">
+                            <select class="form-control" id="shop_city_id">
                                 <!--<option>省/直辖市</option>-->
                                 <option selected="selected" value="<?=$city['city']['id']?>"><?=$city['name']?></option>
                             </select>
                         </div>
 
                         <div style="display: inline-block;width: 45%;float: right;">
-                            <select class="form-control" id="district">
+                            <select class="form-control" id="shop_district_id">
                                 <!--<option>城市/区</option>-->
-                                <?php foreach($city['city']['county'] as $dis){?>
-                                    <option value="<?=$dis['id']?>"><?=$dis['name']?></option>
+                                <?php foreach($city['city']['county'] as $dis){
+                                    //echo $ids['id'];echo "-----";echo $shop['district_id'];continue;
+                                    ?>
+                                    <option value="<?=$dis['id']?>" <?=isset($shop) && $dis['id'] == $shop['district_id'] ? 'selected="selected"' : ''?>><?=$dis['name']?></option>
                                 <?php }?>
                             </select>
                         </div>
                         <div style="clear: both;"></div>
 
+                    </div>
+
+                    <div class="form-group">
+                          <label>店铺所在地址</label>
+                          <input type="text" class="form-control" id="shop_address" placeholder="请输入店铺详细地址" value="<?=isset($shop['address']) ? htmlspecialchars($shop['address']) : ''?>">
                     </div>
 
                     <div class="form-group">
@@ -185,6 +192,8 @@
     var shop_lat  =   $("#shop_lat").val();
     var shop_long =   $("#shop_long").val();
     var shop_id = $('#shop_id').val();
+    var shop_address = $('#shop_address').val();
+    var district_id = $('#shop_district_id').val();
 
     //TODO city_id
 
@@ -200,7 +209,9 @@
       'shop_lat': shop_lat,
       'shop_long': shop_long,
       'shop_logo':logoJson,
-      'shop_id' : shop_id
+      'shop_id' : shop_id,
+      'district_id' : district_id,
+      'shop_address': shop_address
     },function(response){
       //console.log(response);
 

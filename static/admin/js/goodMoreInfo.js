@@ -112,7 +112,7 @@
 
             if(0 == response.errno){
                 alert('保存成功.');
-                //location.href = '/admin/goodlist';
+                location.href = '/admin/goodlist?shop_id=' + shop_id;
             }else{
                 alert('好像出问题了.');
             }
