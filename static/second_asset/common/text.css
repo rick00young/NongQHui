@@ -1,0 +1,143 @@
+.text-normal,a.text-normal,a.text-normal:hover,a.text-normal:focus {
+    color: inherit
+}
+
+.text-muted {
+    color: #82888a
+}
+
+a.text-muted {
+    color: #82888a
+}
+
+a.text-muted:hover,a.text-muted:focus {
+    color: #82888a
+}
+
+.text-branding {
+    text-transform: uppercase
+}
+
+.text-contrast {
+    color: #fff}
+
+.text-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.link-reset {
+    color: inherit
+}
+
+.link-reset:hover,.link-reset:focus,.link-reset:active {
+    color: inherit;
+    outline: none;
+    text-decoration: none
+}
+
+.text-wrap {
+    word-wrap: break-word
+}
+
+.text-babu,.icon-babu {
+    color: #00d1c1
+}
+
+.text-beach,.icon-beach {
+    color: #ffb400
+}
+
+.text-ebisu,.icon-ebisu {
+    color: #ffaa91
+}
+
+.text-hackberry,.icon-hackberry {
+    color: #7b0051
+}
+
+.text-kazan,.icon-kazan {
+    color: #007a87
+}
+
+.text-lima,.icon-lima {
+    color: #3fb34f
+}
+
+.text-rausch,.icon-rausch {
+    color: #ff5a5f
+}
+
+.text-tirol,.icon-tirol {
+    color: #b4a76c
+}
+
+.text-light-gray,.icon-light-gray {
+    color: #cacccd
+}
+
+.text-dark-gray,.icon-dark-gray {
+    color: #3c3f40
+}
+
+.text-gray,.icon-gray {
+    color: #82888a
+}
+
+.text-white,.icon-white {
+    color: #fff
+}
+
+hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 0;
+    border-top: 1px solid #dce0e0
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 15px
+}
+
+small {
+    font-size: 0.85em
+}
+
+.text-lead {
+    font-size: 16px
+}
+
+.text-copy {
+    font-size: 16px
+}
+
+.text-copy .text-lead {
+    font-weight: bold
+}
+
+.text-left {
+    text-align: left
+}
+
+.text-right {
+    text-align: right
+}
+
+.text-center {
+    text-align: center
+}
+
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0
+}
+
+.text-jumbo {
+    font-size: 60px;
+    font-weight: 700
+}

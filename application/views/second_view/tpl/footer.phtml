@@ -1,0 +1,64 @@
+<!--footer-->
+<div id="footer" class="container-brand-dark footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-widget">
+                    <h5>公司信息</h5>
+                    <ul class="unstyled list-layout">
+                        <li><a href="/about" class="link-contrast">关于我们</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-widget">
+                    <h5>发现</h5>
+                    <ul class="unstyled list-layout">
+                        <li><a href="#" class="link-contrast">网站地图</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-widget">
+                    <!-- Heading -->
+                    <h4>联系我们</h4>
+                    <div class="contact-details">
+                        <!-- Address / Icon -->
+                        <i class="fa fa-map-marker"></i> <span class="link-contrast">北京市海淀区聂各庄(凤凰岭)<br>(公交346聂各庄)<br>  </span>
+                        <div class="clearfix"></div>
+                        <!-- Contact Number / Icon
+                        <i class="fa fa-phone"></i> <span class="link-contrast">+暂无</span>
+                        -->
+                        <div class="clearfix"></div>
+                        <!-- Email / Icon -->
+                        <i class="fa fa-envelope-o"></i> <span><a href="mailto:agrovips@163.com" class="link-contrast">agrovips@163.com</a></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider row-space-top-8 row-space-4 hide-sm">
+        <div class="social-media text-center row-space-3">
+            <div id="copyright" class="row-space-top-2 text-muted">
+                © 农趣会, Inc. 京ICP备15013076号-1
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<?php if(isset($js)){
+
+    foreach($js as $file){
+        echo '<script src="'.$file.'" type="text/javascript" /></script>';
+    }
+
+}
+?>
+</html>

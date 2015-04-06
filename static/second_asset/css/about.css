@@ -1,0 +1,43 @@
+body {
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #565a5c;
+    background-color: #f5f5f5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.sidenav-item[aria-selected="true"] {
+    text-decoration: none;
+    color: #565a5c;
+    font-weight: bold
+}
+
+
+.sidenav-text,.sidenav-item {
+    display: block;
+    padding: 6px 0;
+    font-size: 16px;
+    color: #82888a
+}
+
+.about-company-inner { margin: 10px 0; }
+.about-company .about-company-inner span.company-feature {
+    font-size: 25px;
+    line-height: 35px;
+    font-weight: 300;
+    color: #aaa;
+}
+
+.about-company-inner i {
+    display: inline-block;
+    margin-right: 5px;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 37px;
+    text-align: center;
+    color: #fff;
+    border-radius: 50px;
+}

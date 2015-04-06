@@ -1,0 +1,79 @@
+/**********************/
+/* Text color classes */
+/**********************/
+.white {
+    color: #ffffff !important;
+}
+.grey {
+    color: #eeeeee !important;
+}
+.black {
+    color: #555555 !important;
+}
+.red {
+    color: #f75353 !important;
+}
+.green {
+    color: #51d466 !important;
+}
+.lblue {
+    color: #32c8de !important;
+}
+.blue {
+    color: #609cec !important;
+}
+.orange {
+    color: #f78153 !important;
+}
+.yellow {
+    color: #fcd419 !important;
+}
+.purple {
+    color: #cb79e6 !important;
+}
+.rose {
+    color: #ff61e7 !important;
+}
+.brown {
+    color: #d08166 !important;
+}
+
+/****************************/
+/* Background color classes */
+/****************************/
+.br-white {
+    background-color: #ffffff !important;
+}
+.br-grey {
+    background-color: #eeeeee !important;
+}
+.br-black {
+    background-color: #555555 !important;
+}
+.br-red {
+    background-color: #f75353 !important;
+}
+.br-green {
+    background-color: #51d466 !important;
+}
+.br-lblue {
+    background-color: #32c8de !important;
+}
+.br-blue {
+    background-color: #609cec !important;
+}
+.br-orange {
+    background-color: #f78153 !important;
+}
+.br-yellow {
+    background-color: #fcd419 !important;
+}
+.br-purple {
+    background-color: #cb79e6 !important;
+}
+.br-rose {
+    background-color: #ff61e7 !important;
+}
+.br-brown {
+    background-color: #d08166 !important;
+}

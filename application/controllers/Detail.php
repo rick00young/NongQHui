@@ -5,7 +5,7 @@
  * @desc 默认控制器
  * @see http://www.php.net/manual/en/class.yaf-controller-abstract.php
  */
-class IndexController extends Yaf_Controller_Abstract {
+class DetailController extends Yaf_Controller_Abstract {
 
     /**
      * 默认动作
@@ -26,9 +26,6 @@ class IndexController extends Yaf_Controller_Abstract {
 
         //4. render by Yaf, 如果这里返回FALSE, Yaf将不会调用自动视图引擎Render模板
         //return TRUE;
-        $this->getView()->display('second_view/index.phtml');
+        $this->getView()->display('second_view/detail.phtml');
     }
-    public $actions = array(
-        'debug' => 'actions/index/debug.php',
-    );
 }

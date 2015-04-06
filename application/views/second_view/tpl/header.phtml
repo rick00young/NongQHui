@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+
+    <link href="/static/second_asset/common/header.css" rel="stylesheet" type="text/css">
+    <link href="/static/second_asset/common/h.css" rel="stylesheet" type="text/css">
+    <link href="/static/second_asset/common/text.css" rel="stylesheet" type="text/css">
+
+    <link href="/static/second_asset/common/row-space.css" rel="stylesheet" type="text/css">
+
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/second_asset/common/footer.css" rel="stylesheet" type="text/css" media="screen">
+
+    <script src="/static/admin_lte/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php if(isset($css)){
+
+        foreach($css as $file){
+            echo '<link href="'.$file.'" rel="stylesheet" type="text/css" media="screen">';
+        }
+
+    }
+    ?>
+</head>
+<body>

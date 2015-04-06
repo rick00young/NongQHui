@@ -1,0 +1,327 @@
+
+
+<!--header-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
+    array(
+        'css' => array(
+            '/static/second_asset/css/about.css',
+            '/static/second_asset/common/clor.css',
+            '/static/second_asset/css/detail.css',
+        )
+    )
+);
+?>
+
+<!--nav-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
+?>
+
+<div id="photos" class="with-photos with-modal">
+    <img src="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=large&amp;output-format=jpg&amp;output-quality=70" class="hide" srcset="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=large&amp;output-format=jpg&amp;output-quality=70 639w, https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=xx_large&amp;output-format=jpg&amp;output-quality=70 1440w">
+    <span class="cover-img-container" data-hook="cover-img-container">
+      <div class="cover-img show-sm" data-hook="img-sm" style="background-image: url(/static/second_asset/img/detail_banner.jpg);">
+      </div>
+    </span>
+</div>
+
+<!--content-->
+<div class="row-space-4 row-space-top-6"></div>
+<div id="content" class="panel room-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row-space-4 row-space-top-4">
+                    <div class="row">
+                        <div class="col-md-2 text-center" style="display: none;">
+                            <a href="#host-profile" class="media-photo media-round" style="display: none">
+                                <img alt="Catrina" class="host-profile-image" height="90" nopin="nopin" src="" title="Catrina" width="90">
+                            </a>
+                        </div>
+                        <div class="col-md-10">
+                            <h1 itemprop="name" class="overflow h3 row-space-1 text-center-sm" id="listing_name">
+                                Outer Sunset Beachfront Beauty
+                            </h1>
+                        <span class="hide" itemprop="breadcrumb">
+                        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                        <a href="/s/United-States" itemprop="url"><span itemprop="title">美国</span>,</a>
+                        </span>
+                        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                        <a href="/s/California--United-States" itemprop="url"><span itemprop="title">加利福尼亚</span>,</a>
+                        </span>
+                        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                        <a href="/s/San-Francisco--CA" itemprop="url"><span itemprop="title">旧金山</span></a>
+                        </span>
+                        </span>
+                            <div id="display-address" class="row-space-2 text-muted hide-sm" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" data-location="旧金山, CA, 美国">
+                                <a href="#neighborhood" class="link-reset">旧金山, CA, 美国</a> &nbsp;
+                                <a href="#reviews" class="link-reset">
+                                    <div class="star-rating">
+                                        <div class="foreground">
+                                            <i class="icon icon-beach fa fa-star"></i>
+                                            <i class="icon icon-beach fa fa-star"></i>
+                                            <i class="icon icon-beach fa fa-star"></i>
+                                            <i class="icon icon-beach fa fa-star"></i>
+                                            <i class="icon icon-beach fa fa-star"></i>
+                                            <meta itemprop="ratingValue" content="5.0">
+                                        </div>
+                                    </div>
+                                    (<span itemprop="reviewCount">48</span>)</a>
+                            </div>
+                            <div style="display: none;" class="row row-condensed text-muted text-center">
+                                <div class="col-sm-3">
+                                    <i class="icon icon-city icon-size-2"></i>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="icon icon-group icon-size-2"></i>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="icon icon-rooms icon-size-2"></i>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="icon icon-double-bed icon-size-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-md-3 text-muted text-center hide-sm">
+                            <a href="#host-profile" class="link-reset text-wrap">Catrina</a>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row row-condensed text-muted text-center">
+                                <div class="col-sm-3">
+                                    整套房子/公寓
+                                </div>
+                                <div class="col-sm-3">
+                                    6位房客
+                                </div>
+                                <div class="col-sm-3">
+                                    3间卧室
+                                </div>
+                                <div class="col-sm-3">
+                                    4张床
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" style="/* display: none; */">
+                <div id="tax-descriptions-tip" class="tooltip tooltip-top-middle" role="tooltip" data-sticky="true" data-trigger="#tax-descriptions-tooltip">
+                </div>
+
+                <form accept-charset="UTF-8" action="https://zh.airbnb.com/payments/book?hosting_id=2430258" class="info new-o2-form-inline" id="book_it_form" method="post" style="display: block;">
+                    <div style="margin:0;padding:0;display:inline">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input name="authenticity_token" type="hidden" value="V4$.airbnb.com$o6i3VEuXnWA$nQL-f5odze6HMaPU38L_ka8DlQoueeqCnDTpMQpphWQ=">
+                    </div>
+                    <div id="pricing" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="">
+                        <div id="price_amount" itemprop="price" class="pull-left h3 text-special">¥ 791/斤</div>
+                        <div id="payment-period-container" class="pull-right" style="display: none;">
+                            <div id="per_night" class="">
+                                每晚
+                            </div>
+                        </div>
+                        <meta content="USD" itemprop="priceCurrency">
+                    </div>
+                    <div id="book_it" class="" style="top: 0px;">
+                        <div class="panel">
+                            <div class="panel-body panel-light">
+                                <p itemprop="name" class="row-space-1 row-space-2 h4 vip_panel" id="listing_name">
+                                    精品草莓采摘
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-3 own_info">
+                                        <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
+                                            <i class="fa fa-user br-purple"></i>李阿姨
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3 own_info">
+                                        <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
+                                            <i class="fa fa-phone br-purple"></i>19010191882
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3 own_info">
+                                        <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
+                                            <i class="fa fa-map-marker br-purple"></i>北京海淀区
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3 own_info">
+                                        <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
+                                            <i class="fa fa-eye br-purple"></i>本周615人查看了
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <div id="book_it_status" style="display: none">
+                                    <div id="book_it_enabled" class="clearfix">
+
+                                        <div id="book_it_button_container" class="row-space-top-2">
+                                            <button type="submit" class="btn btn-applay btn-large btn-block" id="book_it_button">
+                                                <span class="book-it">申请预订</span>
+                                                        <span class="instant-book">
+                                                        <i class="icon icon-bolt icon-beach h4"></i>快捷预订</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="other-actions hide-sm text-center">
+                                    <div class="social-share-widget row-space-top-3">
+                                        <span class="share-title">分享：</span>
+                                                <span class="share-triggers">
+                                                  <a class="share-btn" data-network="weibo" href="http://service.weibo.com/share/share.php?url=https%3A%2F%2Fzh.airbnb.com%2Frooms%2F2430258%3Fs%3D11&amp;title=%E5%96%9C%E6%AC%A2%E8%BF%99%E4%B8%AA%EF%BC%81%22%E4%BD%8D%E4%BA%8E%E6%97%A7%E9%87%91%E5%B1%B1%E7%9A%84Outer+Sunset+Beachfront+Beauty%22+%40airbnb+%23SanFrancisco+%23Travel&amp;pic=https%3A%2F%2Fa0.muscache.com%2Fic%2Fpictures%2F32626612%2F22c92586_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa0.muscache.com%2Fic%2Fpictures%2F39248606%2F9f778a80_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa2.muscache.com%2Fic%2Fpictures%2F39248608%2F9f205f41_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa1.muscache.com%2Fic%2Fpictures%2F39248615%2F31b03959_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa2.muscache.com%2Fic%2Fpictures%2F39248619%2F6e19b169_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa1.muscache.com%2Fic%2Fpictures%2F39248626%2Fbaa3cad6_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70&amp;language=zh_cn&amp;ralateUid=3787942764&amp;searchPic=true&amp;appkey=1437815036" title="微博" rel="nofollow" target="_blank">
+                                                      <i class="fa fa-weibo icon-gray social-icon-size"></i>
+                                                  </a>
+
+                                                  <a class="share-btn embedly-btn link-reset text-muted" data-network="embedly" data-embedly-locale="zh" rel="nofollow" title="嵌入此房源" href="#">
+                                                      <i class="fa fa-weixin icon-gray social-icon-size"></i>
+                                                  </a>
+                                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shop_map">
+                            <img class="map-canvas" src="https://maps.googleapis.com/maps/api/staticmap?center=37.774771731719326%2C-122.4205836605131&amp;zoom=10&amp;size=314x214&amp;client=gme-airbnbinc&amp;channel=monorail-prod&amp;signature=ui4vfsQk7SBWRmhhZ1q3lyPgZ2g%3D">
+                        </div>
+
+                    </div>
+                    <input id="hosting_id" name="hosting_id" type="hidden" value="2430258">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--detail-->
+<div id="detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" style="">
+                <div class=row-space-top-8">
+                    <h4 class="row-space-4 new-tit">
+                        <span class="name">关于店家</span>
+                    </h4>
+                    <div class="panel panel-dark row-space-4">
+                        <div class="panel-body">通过Airbnb，您可以在人们家中找到独一无二的住宿体验——从独栋房子到公寓，再到树屋和圆顶小屋。以下的房源详情阐述了此房源所提供的一切。如有任何疑问，您可以直接联系房东。</div>
+                    </div>
+
+
+                    <h4 class="row-space-4 new-tit">
+                        <span class="name">产品产示</span>
+                    </h4>
+
+                    <div class="panel panel-dark row-space-4 good_imgs">
+                        <div><img src="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=xx_large&amp;output-format=jpg&amp;output-quality=70"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--reco-->
+<div id="recommend" class="container">
+    <h4 class="row-space-4 text-center-sm row-space-top-8">
+        为您推荐
+    </h4>
+    <div class="row">
+        <div class="col-md-4">
+            <div data-lat="37.78213221257644" data-lng="-122.44787046023013" data-name="Classic room in Lower Pac Heights" data-url="/rooms/764010" data-id="764010" class="listing" itemtype="http://schema.org/Enumeration">
+                <div class="panel-image listing-img">
+                    <a href="/rooms/764010" class="media-photo media-cover" target="_self">
+                        <div class="listing-img-container media-cover text-center">
+                            <img src="/static/second_asset/img/list.jpg" class="img-responsive-height">
+                        </div>
+                    </a>
+                    <div>
+                        <div>
+                            <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
+                                <div><sup class="h6 text-contrast">lei</sup><span class="h3 price-amount">304</span><sup class="h6 text-contrast"></sup></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-overlay-top-right wl-social-connection-panel"></div>
+                </div>
+                <div class="panel-body panel-card-section">
+                    <div class="media">
+                        <a href="/rooms/764010" class="text-normal" target="_self">
+                            <div title="Classic room in Lower Pac Heights" class="h5 listing-name text-truncate row-space-top-1">Classic room in Lower Pac Heights</div>
+                        </a>
+                        <div class="text-muted listing-location text-truncate">独立房间 · 旧金山</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div data-lat="37.78213221257644" data-lng="-122.44787046023013" data-name="Classic room in Lower Pac Heights" data-url="/rooms/764010" data-id="764010" class="listing" itemtype="http://schema.org/Enumeration">
+                <div class="panel-image listing-img">
+                    <a href="/rooms/764010" class="media-photo media-cover" target="_self">
+                        <div class="listing-img-container media-cover text-center">
+                            <img src="/static/second_asset/img/list.jpg" class="img-responsive-height">
+                        </div>
+                    </a>
+                    <div>
+                        <div>
+                            <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
+                                <div><sup class="h6 text-contrast">lei</sup><span class="h3 price-amount">304</span><sup class="h6 text-contrast"></sup></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-overlay-top-right wl-social-connection-panel"></div>
+                </div>
+                <div class="panel-body panel-card-section">
+                    <div class="media">
+                        <a href="/rooms/764010" class="text-normal" target="_self">
+                            <div title="Classic room in Lower Pac Heights" class="h5 listing-name text-truncate row-space-top-1">Classic room in Lower Pac Heights</div>
+                        </a>
+                        <div class="text-muted listing-location text-truncate">独立房间 · 旧金山</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div data-lat="37.78213221257644" data-lng="-122.44787046023013" data-name="Classic room in Lower Pac Heights" data-url="/rooms/764010" data-id="764010" class="listing" itemtype="http://schema.org/Enumeration">
+                <div class="panel-image listing-img">
+                    <a href="/rooms/764010" class="media-photo media-cover" target="_self">
+                        <div class="listing-img-container media-cover text-center">
+                            <img src="/static/second_asset/img/list.jpg" class="img-responsive-height">
+                        </div>
+                    </a>
+                    <div>
+                        <div>
+                            <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
+                                <div><sup class="h6 text-contrast">lei</sup><span class="h3 price-amount">304</span><sup class="h6 text-contrast"></sup></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-overlay-top-right wl-social-connection-panel"></div>
+                </div>
+                <div class="panel-body panel-card-section">
+                    <div class="media">
+                        <a href="/rooms/764010" class="text-normal" target="_self">
+                            <div title="Classic room in Lower Pac Heights" class="h5 listing-name text-truncate row-space-top-1">Classic room in Lower Pac Heights</div>
+                        </a>
+                        <div class="text-muted listing-location text-truncate">独立房间 · 旧金山</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml');
+?>
