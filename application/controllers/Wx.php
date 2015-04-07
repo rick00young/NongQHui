@@ -11,6 +11,7 @@ class WxController extends Yaf_Controller_Abstract
     public function init()
     {
         // ADD CODE
+        Yaf_Dispatcher::getInstance()->autoRender(false);
     }
 
     public function debugAction()
@@ -19,6 +20,23 @@ class WxController extends Yaf_Controller_Abstract
         //echo Yaf_Registry::get('config')->cookie->domain;
 
         echo Html::wxJsSDK();
+
+        $title = '测试的title';
+        $desc  = '测试的描述';
+        $link  = 'http://'. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $img_url='http://wx.qlogo.cn/mmopen/xrmo0T2dTxtkcicVA87uiaGoNzGXnIf85ZvV9XJZlp7rMjHoKWyz7mpXsegLic8ff2h1T1AmYeOmdqVVWkGoDqO4nWS33MwmibTs/0';
+        $cb = array(
+            'trigger' => '',
+            'success' => '',
+            'cancel'  => '',
+            'fail'    => '',
+        );
+
+        echo '<script>';
+        echo Html::wxMenuShareAppMessage($title, $desc, $link, $img_url, $cb);
+        echo '</script>';
+
+        echo '测试微信相关';
 
         return false;
     }
@@ -33,7 +51,6 @@ class WxController extends Yaf_Controller_Abstract
         else
         {
             echo 'OK, welcome.';
-            //header('Location: /h5/201501/xlpp/index.html');
         }
 
         return false;

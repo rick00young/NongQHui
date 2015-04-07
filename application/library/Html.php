@@ -212,7 +212,7 @@ class Html
         return $html;
     }
 
-    public static function wxJsSDK()
+    public static function wxJsSDK($debug = 0)
     {
         $sdk = <<<JS
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -224,12 +224,55 @@ if (-1 == _pos)
     _pos = _u.length;
 }
 var _c_url = _u.substr(0, _pos);
-var _s_url = '/wx/wxconfig?debug=0&url=' + encodeURIComponent(_c_url)  + '&p=' + (+(new Date()));
+var _s_url = '/wx/wxconfig?debug={$debug}&url=' + encodeURIComponent(_c_url)  + '&p=' + (+(new Date()));
 document.write('<script src="' + _s_url + '"><\/script>');
 </script>
 JS;
 
         return $sdk;
+    }
+
+    // 微信分享给好友
+    /**
+     * $cb = array(
+     *  trigger
+     *  success
+     *  cancel
+     *  fail
+     * );
+     * */
+    public static function wxMenuShareAppMessage($title, $desc, $link, $img_url, $cb)
+    {
+        $i = 0;
+        $cb_count = count($cb);
+
+        $js  = 'wx.ready(function () {';
+
+        // {{{
+        $js .= 'wx.onMenuShareAppMessage({';
+        $js .= "  title: '{$title}',";
+        $js .= "  desc: '{$desc}',";
+        $js .= "  link: '{$link}',";
+        $js .= "  imgUrl: '{$img_url}',";
+
+        // 回调
+        foreach ($cb as $fun_name => $js_code)
+        {
+            $js .= "  {$fun_name}: function (res) {{$js_code}}";
+            if ($i != $cb_count)
+            {
+                $js .= ',';
+            }
+
+            $i++;
+        }
+
+        $js .= '});';
+        // }}}
+
+        $js .= '});';
+
+        return $js;
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
