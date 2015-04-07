@@ -258,13 +258,13 @@ JS;
         // 回调
         foreach ($cb as $fun_name => $js_code)
         {
+            $i++;
+
             $js .= "  {$fun_name}: function (res) {{$js_code}}";
             if ($i != $cb_count)
             {
                 $js .= ',';
             }
-
-            $i++;
         }
 
         $js .= '});';
