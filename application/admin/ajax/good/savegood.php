@@ -40,7 +40,7 @@ class savegoodAction extends BaseAction
         $goodData['slogan'] = $this->post('good_slogan');
         $goodData['price'] = $this->post_unescape('good_price');
         $goodData['discount_price'] = $this->post('good_d_price');
-        $goodData['stock'] = $this->post('good_stock');
+        $goodData['stock'] = intval($this->post('good_stock'));
         $goodData['status'] = 1;
         $goodData['shop_id'] = $shop_id;
         $goodData['district_id'] = $shopRes['district_id'];
