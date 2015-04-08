@@ -272,6 +272,8 @@
     width: 100%;
     max-height: 300px;
     overflow: hidden;
+    border: 1px solid #dce0e0;
+    height: 300px;
 }
 .shop_map img{
     width: 100%;

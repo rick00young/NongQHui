@@ -12,20 +12,18 @@ class DetailController extends Yaf_Controller_Abstract {
      * Yaf支持直接把Yaf_Request_Abstract::getParam()得到的同名参数作为Action的形参
      * 对于如下的例子, 当访问http://yourhost/vips_web/index/index/index/name/rick 的时候, 你就会发现不同
      */
+
+
+    public $action = array(
+        'index' => 'actions/detail/index.php',
+
+    );
+
+
     public function indexAction($name = "Stranger") {
         Yaf_Dispatcher::getInstance()->autoRender(false);
-        //1. fetch query
-        $get = $this->getRequest()->getQuery("get", "default value");
-
-        //2. fetch model
-        $model = new SampleModel();
-
-        //3. assign
-        $this->getView()->assign("content", $model->selectSample());
-        $this->getView()->assign("name", $name);
-
-        //4. render by Yaf, 如果这里返回FALSE, Yaf将不会调用自动视图引擎Render模板
-        //return TRUE;
+        $goodId = intval(GenerateEncrypt::decrypt($_GET['good_id'], ID_SIMPLE_KEY));
         $this->getView()->display('second_view/detail.phtml');
     }
 }
+

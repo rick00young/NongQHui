@@ -41,22 +41,22 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         </div>
                         <div class="col-md-10">
                             <h1 itemprop="name" class="overflow h3 row-space-1 text-center-sm" id="listing_name">
-                                Outer Sunset Beachfront Beauty
+                                <?=$good['title']?><?=htmlspecialchars($good['slogan'])?>
                             </h1>
                         <span class="hide" itemprop="breadcrumb">
-                        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                        <a href="/s/United-States" itemprop="url"><span itemprop="title">美国</span>,</a>
+                        <span itemscope="">
+                        <a href="#" itemprop="url"><span itemprop="title">聂各庄</span>,</a>
                         </span>
-                        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                        <a href="/s/California--United-States" itemprop="url"><span itemprop="title">加利福尼亚</span>,</a>
+                        <span itemscope="">
+                        <a href="#" itemprop="url"><span itemprop="title">海淀区</span>,</a>
                         </span>
-                        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                        <a href="/s/San-Francisco--CA" itemprop="url"><span itemprop="title">旧金山</span></a>
+                        <span itemscope="">
+                        <a href="#" itemprop="url"><span itemprop="title">北京</span></a>
                         </span>
                         </span>
                             <div id="display-address" class="row-space-2 text-muted hide-sm" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" data-location="旧金山, CA, 美国">
-                                <a href="#neighborhood" class="link-reset">旧金山, CA, 美国</a> &nbsp;
-                                <a href="#reviews" class="link-reset">
+                                <a href="#neighborhood" class="link-reset"><?=$shop['address']?></a> &nbsp;
+                                <a href="#reviews" class="link-reset hide">
                                     <div class="star-rating">
                                         <div class="foreground">
                                             <i class="icon icon-beach fa fa-star"></i>
@@ -67,7 +67,8 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                             <meta itemprop="ratingValue" content="5.0">
                                         </div>
                                     </div>
-                                    (<span itemprop="reviewCount">48</span>)</a>
+                                    (<span itemprop="reviewCount">48</span>)
+                                </a>
                             </div>
                             <div style="display: none;" class="row row-condensed text-muted text-center">
                                 <div class="col-sm-3">
@@ -85,27 +86,6 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="display: none;">
-                        <div class="col-md-3 text-muted text-center hide-sm">
-                            <a href="#host-profile" class="link-reset text-wrap">Catrina</a>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="row row-condensed text-muted text-center">
-                                <div class="col-sm-3">
-                                    整套房子/公寓
-                                </div>
-                                <div class="col-sm-3">
-                                    6位房客
-                                </div>
-                                <div class="col-sm-3">
-                                    3间卧室
-                                </div>
-                                <div class="col-sm-3">
-                                    4张床
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-4" style="/* display: none; */">
@@ -118,7 +98,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         <input name="authenticity_token" type="hidden" value="V4$.airbnb.com$o6i3VEuXnWA$nQL-f5odze6HMaPU38L_ka8DlQoueeqCnDTpMQpphWQ=">
                     </div>
                     <div id="pricing" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="">
-                        <div id="price_amount" itemprop="price" class="pull-left h3 text-special">¥ 791/斤</div>
+                        <div id="price_amount" itemprop="price" class="pull-left h3 text-special">¥ <?=htmlspecialchars($good['discount_price'])?>/<?=htmlspecialchars($good['unit'])?></div>
                         <div id="payment-period-container" class="pull-right" style="display: none;">
                             <div id="per_night" class="">
                                 每晚
@@ -130,22 +110,22 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         <div class="panel">
                             <div class="panel-body panel-light">
                                 <p itemprop="name" class="row-space-1 row-space-2 h4 vip_panel" id="listing_name">
-                                    精品草莓采摘
+                                    <?=htmlspecialchars($good['title'])?>
                                 </p>
                                 <div class="row">
                                     <div class="col-md-3 own_info">
                                         <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
-                                            <i class="fa fa-user br-purple"></i>李阿姨
+                                            <i class="fa fa-user br-purple"></i><?=htmlspecialchars($good['contactor'])?>
                                         </p>
                                     </div>
                                     <div class="col-md-3 own_info">
                                         <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
-                                            <i class="fa fa-phone br-purple"></i>19010191882
+                                            <i class="fa fa-phone br-purple"></i><?=htmlspecialchars($good['phone'])?>
                                         </p>
                                     </div>
                                     <div class="col-md-3 own_info">
                                         <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
-                                            <i class="fa fa-map-marker br-purple"></i>北京海淀区
+                                            <i class="fa fa-map-marker br-purple"></i><?=htmlspecialchars($shop['address'])?>
                                         </p>
                                     </div>
                                     <div class="col-md-3 own_info">
@@ -173,7 +153,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                     <div class="social-share-widget row-space-top-3">
                                         <span class="share-title">分享：</span>
                                                 <span class="share-triggers">
-                                                  <a class="share-btn" data-network="weibo" href="http://service.weibo.com/share/share.php?url=https%3A%2F%2Fzh.airbnb.com%2Frooms%2F2430258%3Fs%3D11&amp;title=%E5%96%9C%E6%AC%A2%E8%BF%99%E4%B8%AA%EF%BC%81%22%E4%BD%8D%E4%BA%8E%E6%97%A7%E9%87%91%E5%B1%B1%E7%9A%84Outer+Sunset+Beachfront+Beauty%22+%40airbnb+%23SanFrancisco+%23Travel&amp;pic=https%3A%2F%2Fa0.muscache.com%2Fic%2Fpictures%2F32626612%2F22c92586_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa0.muscache.com%2Fic%2Fpictures%2F39248606%2F9f778a80_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa2.muscache.com%2Fic%2Fpictures%2F39248608%2F9f205f41_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa1.muscache.com%2Fic%2Fpictures%2F39248615%2F31b03959_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa2.muscache.com%2Fic%2Fpictures%2F39248619%2F6e19b169_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70%7C%7Chttps%3A%2F%2Fa1.muscache.com%2Fic%2Fpictures%2F39248626%2Fbaa3cad6_original.jpg%3Finterpolation%3Dlanczos-none%26size%3Dx_medium%26output-format%3Djpg%26output-quality%3D70&amp;language=zh_cn&amp;ralateUid=3787942764&amp;searchPic=true&amp;appkey=1437815036" title="微博" rel="nofollow" target="_blank">
+                                                  <a class="share-btn" data-network="weibo" href="" title="微博" rel="nofollow" target="_blank">
                                                       <i class="fa fa-weibo icon-gray social-icon-size"></i>
                                                   </a>
 
@@ -185,11 +165,12 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                 </div>
                             </div>
                         </div>
+                        <?php if($shop['long'] && $shop['lat']){?>
+                        <!--<img class="map-canvas" src="https://maps.googleapis.com/maps/api/staticmap?center=37.774771731719326%2C-122.4205836605131&amp;zoom=10&amp;size=314x214&amp;client=gme-airbnbinc&amp;channel=monorail-prod&amp;signature=ui4vfsQk7SBWRmhhZ1q3lyPgZ2g%3D">-->
+                        <div class="shop_map" id="shop_map" long="<?=htmlspecialchars($shop['long'])?>" lat="<?=htmlspecialchars($shop['lat'])?>">
 
-                        <div class="shop_map">
-                            <img class="map-canvas" src="https://maps.googleapis.com/maps/api/staticmap?center=37.774771731719326%2C-122.4205836605131&amp;zoom=10&amp;size=314x214&amp;client=gme-airbnbinc&amp;channel=monorail-prod&amp;signature=ui4vfsQk7SBWRmhhZ1q3lyPgZ2g%3D">
                         </div>
-
+                        <?php }?>
                     </div>
                     <input id="hosting_id" name="hosting_id" type="hidden" value="2430258">
                 </form>
@@ -209,17 +190,49 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         <span class="name">关于店家</span>
                     </h4>
                     <div class="panel panel-dark row-space-4">
-                        <div class="panel-body">通过Airbnb，您可以在人们家中找到独一无二的住宿体验——从独栋房子到公寓，再到树屋和圆顶小屋。以下的房源详情阐述了此房源所提供的一切。如有任何疑问，您可以直接联系房东。</div>
+                        <div class="panel-body"><?=$shop['describe']?></div>
                     </div>
 
 
+
+                    <?php if($good['photo']){?>
                     <h4 class="row-space-4 new-tit">
                         <span class="name">产品产示</span>
                     </h4>
-
                     <div class="panel panel-dark row-space-4 good_imgs">
-                        <div><img src="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=xx_large&amp;output-format=jpg&amp;output-quality=70"></div>
+                        <?php foreach((array)$good['photo'] as $key => $img){?>
+                        <div class="<?=($key > 0 && ($key + 1) < count($good['photo'])) ? 'row-space-3' : ''?>"><img src="<?=$img?>"></div>
+                        <?php }?>
                     </div>
+                    <?php }?>
+
+                    <?php if($good['buy_needKnow']){?>
+                    <h4 class="row-space-4 new-tit">
+                        <span class="name">用户须知</span>
+                    </h4>
+                    <div class="panel panel-dark row-space-4 good_imgs">
+                         <div class="" style="padding-top: 15px;"><?=$good['buy_needKnow']?></div>
+                    </div>
+                    <?php }?>
+
+
+                    <?php if($good['buy_detail']){?>
+                        <h4 class="row-space-4 new-tit">
+                            <span class="name">购买详情</span>
+                        </h4>
+                        <div class="panel panel-dark row-space-4 good_imgs">
+                            <div class="" style="padding-top: 15px;"><?=$good['buy_detail']?></div>
+                        </div>
+                    <?php }?>
+
+                    <?php if($good['use_list']){?>
+                        <h4 class="row-space-4 new-tit">
+                            <span class="name">使用流程</span>
+                        </h4>
+                        <div class="panel panel-dark row-space-4 good_imgs">
+                            <div class="" style="padding-top: 15px;"><?=$good['use_list']?></div>
+                        </div>
+                    <?php }?>
 
 
                 </div>
@@ -323,5 +336,35 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 
 <!--footer-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/footer.phtml');
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml',
+                            array(
+                                'js' => array(
+                                    'http://api.map.baidu.com/api?v=2.0&ak=T7gDQXp0hmAGKCFol7ktMC2P',
+                                )
+                            )
+);
 ?>
+
+
+<?php if($shop['long'] && $shop['lat']){?>
+
+<script type="text/javascript">
+    var map = new BMap.Map("shop_map");            // 创建Map实例
+    var point = new BMap.Point(<?=htmlspecialchars($shop['long'])?>, <?=htmlspecialchars($shop['lat'])?>); // 创建点坐标
+    map.centerAndZoom(point,15);                 // 初始化地图,设置中心点坐标和地图级别。
+    map.addControl(new BMap.MapTypeControl());    //添加地图缩放控件
+
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);               // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
+    $(window).resize(function() {
+        var window_width = $(window).width();
+        if(window_width < 1200 || window_width >= 1200){
+            map.centerAndZoom(point,15);
+        }
+    });
+
+</script>
+
+<?php }?>

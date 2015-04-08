@@ -11,7 +11,7 @@ class IndexController extends Yaf_Controller_Abstract {
      * 默认动作
      * Yaf支持直接把Yaf_Request_Abstract::getParam()得到的同名参数作为Action的形参
      * 对于如下的例子, 当访问http://yourhost/vips_web/index/index/index/name/rick 的时候, 你就会发现不同
-     */
+
     public function indexAction($name = "Stranger") {
         Yaf_Dispatcher::getInstance()->autoRender(false);
         //1. fetch query
@@ -28,7 +28,11 @@ class IndexController extends Yaf_Controller_Abstract {
         //return TRUE;
         $this->getView()->display('second_view/index.phtml');
     }
+    */
     public $actions = array(
         'debug' => 'actions/index/debug.php',
+        'index' => 'actions/index/index.php',
+        'detail' => 'actions/detail/detail.php',
+        'about' => 'actions/about/about.php',
     );
 }

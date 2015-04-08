@@ -44,6 +44,9 @@ class savegoodAction extends BaseAction
         $goodData['status'] = 1;
         $goodData['shop_id'] = $shop_id;
         $goodData['district_id'] = $shopRes['district_id'];
+        $goodData['contactor'] = $this->post('good_contactor');
+        $goodData['phone'] = $this->post('good_phone');
+        $goodData['unit'] = $this->post('good_unit');
 
 
         $rules = array(

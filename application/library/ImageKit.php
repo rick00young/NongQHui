@@ -432,7 +432,7 @@ class ImageKit {
 			return;
 		}
         //TODO define constants
-		$mask = new Imagick(APPLICATION_PATH.'/../public/mask/mask.jpg');
+		$mask = new Imagick(APPLICATION_PATH.'/../public/mask/mask.png');
 		$maskSize = $mask->getimagegeometry();
 		$width = $maskSize['width'];
 		$height = $maskSize['height'];
