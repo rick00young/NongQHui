@@ -19,7 +19,7 @@ class WxController extends Yaf_Controller_Abstract
         //print_r($_SERVER);
         //echo Yaf_Registry::get('config')->cookie->domain;
 
-        echo Html::wxJsSDK();
+        echo Html::wxJsSDK(1);
 
         $title = '测试的title';
         $desc  = '测试的描述';
@@ -34,6 +34,8 @@ class WxController extends Yaf_Controller_Abstract
 
         echo '<script>';
         echo Html::wxMenuShareAppMessage($title, $desc, $link, $img_url, $cb);
+        echo "\n";
+        echo Html::wxMenuShareTimeline($title, $link, $img_url, $cb);
         echo '</script>';
 
         echo '测试微信相关';

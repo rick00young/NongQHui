@@ -233,6 +233,7 @@ JS;
     }
 
     // 微信分享给好友
+    // @see http://demo.open.weixin.qq.com/jssdk/js/demo.js
     /**
      * $cb = array(
      *  trigger
@@ -240,8 +241,10 @@ JS;
      *  cancel
      *  fail
      * );
+     *
+     * $share onMenuShareAppMessage | onMenuShareTimeline
      * */
-    public static function wxMenuShareAppMessage($title, $desc, $link, $img_url, $cb)
+    public static function wxMenuShareAppMessage($title, $desc, $link, $img_url, $cb, $share = 'onMenuShareAppMessage')
     {
         $i = 0;
         $cb_count = count($cb);
@@ -249,7 +252,7 @@ JS;
         $js  = 'wx.ready(function () {';
 
         // {{{
-        $js .= 'wx.onMenuShareAppMessage({';
+        $js .= 'wx.' . $share . '({';
         $js .= "  title: '{$title}',";
         $js .= "  desc: '{$desc}',";
         $js .= "  link: '{$link}',";
@@ -273,6 +276,12 @@ JS;
         $js .= '});';
 
         return $js;
+    }
+
+    // 分享到朋友圈
+    public static function wxMenuShareTimeline($title, $link, $img_url, $cb)
+    {
+        return self::wxMenuShareAppMessage($title, '', $link, $img_url, $cb, 'onMenuShareTimeline');
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
