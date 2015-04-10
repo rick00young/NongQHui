@@ -31,10 +31,13 @@ class GoodModel {
         return DB::update($goodData, self::TABLE_NAME, $goodId, array('logo'));
     }
 
-    public static function getGoodsByShopId($goodId)
+    public static function getGoodsByShopId($goodId, $status = 'all')
     {
         $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
         $sql .= sprintf('WHERE `shop_id` = "%s" ', DB::escape($goodId));
+        if('all' != $status){
+            $sql .= sprintf(" AND status = '%d'", intval($status));
+        }
         //echo $sql . PHP_EOL;exit;
 
         return DB::getAll($sql);

@@ -193,6 +193,7 @@
     var shop_long =   $("#shop_long").val();
     var shop_id = $('#shop_id').val();
     var shop_address = $('#shop_address').val();
+    var shop_city_id = $('#shop_city_id').val();
     var district_id = $('#shop_district_id').val();
 
     //TODO city_id
@@ -210,6 +211,7 @@
       'shop_long': shop_long,
       'shop_logo':logoJson,
       'shop_id' : shop_id,
+      'shop_city_id':shop_city_id,
       'district_id' : district_id,
       'shop_address': shop_address
     },function(response){

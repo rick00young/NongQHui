@@ -148,29 +148,23 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                         </div>
                                     </div>
                                 </div>
-
+                                
+                                <!--share to sns-->
+                                <?php if($share){?>
                                 <div class="other-actions hide-sm text-center">
                                     <div class="social-share-widget row-space-top-3">
                                         <span class="share-title">分享：</span>
                                                 <span class="share-triggers">
-                                                <?php
-                                                $share_data = '';
-                                                if($share){
-                                                    $share_data = '?' . 'title=' .urlencode($share['title']) . '&url=' . urlencode($share['url']) . '&pic='.urlencode($share['pic']);
-                                                }
-                                                ?>                                               
+                                                    <?php
+                                                        $share_data = '?' . 'title=' .urlencode($share['title']) . '&url=' . urlencode($share['url']) . '&pic='.urlencode($share['pic']);
+                                                    ?>                                               
                                                   <a class="share-btn" data-network="weibo" href="http://service.weibo.com/share/share.php<?=$share_data?>" title="新浪微博分享" rel="nofollow" target="_blank">
                                                       <i class="fa fa-weibo icon-gray social-icon-size"></i>
                                                   </a>
-                                                    
-                                                  <!--
-                                                  <a class="share-btn embedly-btn link-reset text-muted" data-network="embedly" data-embedly-locale="zh" rel="nofollow" title="" href="#">
-                                                      <i class="fa fa-weixin icon-gray social-icon-size"></i>
-                                                  </a>
-                                                  -->
                                                 </span>
                                     </div>
                                 </div>
+                                <?php }?>
                             </div>
                         </div>
                         <?php if($shop['long'] && $shop['lat']){?>

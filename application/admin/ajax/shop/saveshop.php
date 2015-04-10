@@ -26,6 +26,7 @@ class saveshopAction extends BaseAction
         $shopData['long'] = $this->post('shop_long');
         $shopData['lat'] = $this->post('shop_lat');
         $shopData['address'] = $this->post('shop_address');
+        $shopData['city_id'] = $this->post('shop_city_id');
         $shopData['district_id'] = $this->post('district_id');
 
 

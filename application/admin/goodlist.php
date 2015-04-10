@@ -21,16 +21,21 @@ class goodlistAction extends BaseAction{
             $this->display404();
         }
 
-        $goodRes = GoodModel::getGoodsByShopId($shopId);
+        $goodRes = GoodModel::getGoodsByShopId($shopId, 1);
 
         if($goodRes){
             foreach($goodRes as &$good){
-                $good['online'] = '/admin/good_on_line?shop_id='.$shopId.'&good_id=' . GenerateEncrypt::encrypt($good['id'],ID_SIMPLE_KEY);
-                $good['offline'] = '/admin/good_off_line?shop_id='.$shopId.'&good_id=' . GenerateEncrypt::encrypt($good['id'],ID_SIMPLE_KEY);
-                $good['delete'] = '/admin/good_delete?shop_id='.$shopId.'&good_id=' . GenerateEncrypt::encrypt($good['id'],ID_SIMPLE_KEY);
-                $good['edit'] = '/admin/good_edit?shop_id='.$shopId.'&good_id=' . GenerateEncrypt::encrypt($good['id'],ID_SIMPLE_KEY);
-                $good['edit_info'] = '/admin/goodmoreinfo?shop_id='.$shopId.'&good_id=' . GenerateEncrypt::encrypt($good['id'],ID_SIMPLE_KEY);
-                $good['preview'] = '/admin/good_preview?shop_id='.$shopId.'&good_id=' . GenerateEncrypt::encrypt($good['id'],ID_SIMPLE_KEY);
+                $encodeGoodId = GenerateEncrypt::encrypt($good['id'],ID_SIMPLE_KEY);
+                $encodeShopId = GenerateEncrypt::encrypt($shopId,ID_SIMPLE_KEY);
+
+                $good['encode_shop_id'] = $encodeShopId;
+                $good['encode_good_id'] = $encodeGoodId;
+                $good['online'] = '/admin/good_on_line?shop_id='.$encodeShopId.'&good_id=' . $encodeGoodId;
+                $good['offline'] = '/admin/good_off_line?shop_id='.$encodeShopId.'&good_id=' . $encodeGoodId;
+                $good['delete'] = '/admin/good_delete?shop_id='.$encodeShopId.'&good_id=' . $encodeGoodId;
+                $good['edit'] = '/admin/good_edit?shop_id='.$encodeShopId.'&good_id=' . $encodeGoodId;
+                $good['edit_info'] = '/admin/goodmoreinfo?shop_id='.$encodeShopId.'&good_id=' . $encodeGoodId;
+                $good['preview'] = '/admin/good_preview?shop_id='.$encodeShopId.'&good_id=' . $encodeGoodId;
             }
 
         }

@@ -69,17 +69,17 @@ echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
                                         <td class=" "><?=$good['stock']?></td>
                                         <td class=" ">
                                             <div class="btn-group btn-group-sm" role="group" aria-label="Default button group">
-                                                <a type="button" class="btn btn-info" href="<?=1 == $good['status'] ? $good['offline'] : $good['online']?>">
+                                                <button type="button" class="btn btn-info" onclick="<?=1 == $good['status'] ? "good_off_line(".$good['encode_shop_id'].",".$good['encode_good_id'].")" : "good_on_line(".$good['encode_shop_id'].",".$good['encode_good_id'].")"?>" href="<?=1 == $good['status'] ? $good['offline'] : $good['online']?>">
                                                     <?=1 == $good['status'] ? '下架' : '发布'?>
-                                                </a>
-                                                <a type="button" class="btn btn-info" href="<?=$good['delete']?>">删除</a>
+                                                </button>
+                                                <button type="button" class="btn btn-info" href="<?=$good['delete']?>" onclick="good_delete(<?=$good['encode_shop_id']?>, <?=$good['encode_good_id']?>)">删除</button>
                                             </div>
                                         </td>
                                         <td class="" style="text-align: center;">
                                             <div class="btn-group btn-group-sm" role="group" aria-label="Default button group">
                                                 <a type="button" class="btn btn-info" href="<?=$good['edit']?>">编辑信息</a>
                                                 <a type="button" class="btn btn-info" href="<?=$good['edit_info']?>">编辑内容</a>
-                                                <a type="button" class="btn btn-info" href="<?=$good['preview']?>">预览</a>
+                                                <a type="button" class="btn btn-info" href="<?=$good['preview']?>" target="_blank">预览</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -125,5 +125,83 @@ echo Yaf_View_Simple::render('admin/tpl/footer.phtml');
 <script type="text/javascript" src="/static/plugin/uploadify/jquery.uploadify.min.js"></script>
 <?php $timestamp = time();?>
 <script type="text/javascript">
+
+function good_on_line(shop_id, good_id){
+    if(!shop_id || !good_id){
+        alert('好像出问题了,请联系管理员哦!');
+        return false;
+    }
+
+    if(confirm("您确定要将此条记录上架吗?")){
+        var postData = {
+            'shop_id':shop_id,
+            'good_id':good_id
+        };
+        console.log(postData);//return false;
+
+        $.post('/admin/good_online',postData,function(response){
+            if(0 == response.errno){
+              alert('上架成功.');
+              location.href = location.href;
+            }else{
+              alert('好像出问题了,请联系管理员哦!');
+            }           
+        })
+    }else{
+        return false;
+    }
+}
+
+function good_off_line(shop_id, good_id){
+    if(!shop_id || !good_id){
+        alert('好像出问题了,请联系管理员哦!');
+        return false;
+    }
+
+    if(confirm("您确定要将此条记录下架吗?")){
+        var postData = {
+            'shop_id':shop_id,
+            'good_id':good_id
+        };
+        console.log(postData);//return false;
+
+        $.post('/admin/good_offline',postData,function(response){
+            if(0 == response.errno){
+              alert('下架成功.');
+              location.href = location.href;
+            }else{
+              alert('好像出问题了,请联系管理员哦!');
+            }           
+        })
+    }else{
+        return false;
+    }
+}
+
+function good_delete(shop_id, good_id){
+    if(!shop_id || !good_id){
+        alert('好像出问题了,请联系管理员哦!');
+        return false;
+    }
+
+    if(confirm("您确定要删除这条记录吗?")){
+        var postData = {
+            'shop_id':shop_id,
+            'good_id':good_id
+        };
+        console.log(postData);//return false;
+
+        $.post('/admin/good_delete',postData,function(response){
+            if(0 == response.errno){
+              alert('删除成功.');
+              location.href = location.href;
+            }else{
+              alert('好像出问题了,请联系管理员哦!');
+            }           
+        })
+    }else{
+        return false;
+    }
+}
 
 </script>

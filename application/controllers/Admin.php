@@ -63,8 +63,12 @@ class AdminController extends Yaf_Controller_Abstract
         'good_edit' => 'admin/good_edit.php',
         'savegood'       => 'admin/ajax/good/savegood.php',
         'save_good_info' => 'admin/ajax/good/save_good_info.php',
+        'good_delete'    => 'admin/ajax/good/good_delete.php',
+        'good_online'    => 'admin/ajax/good/good_online.php',
+        'good_offline'   => 'admin/ajax/good/good_offline.php',
         'newgood'   => 'admin/newgood.php',
         'goodmoreinfo' => 'admin/goodMoreInfo.php',
+        'good_preview' => 'admin/good_preview.php',
     );
 
 }
