@@ -14,9 +14,15 @@ class DB
             
             $conf = Yaf_Registry::get('config')->mysql->vips_web->master->toArray();
             $dsn  = "mysql:dbname={$conf['database']};host={$conf['hostname']};port={$conf['port']}";
-            $db = new PDO($dsn, $conf['username'], $conf['password']);
-            // 忽略掉配置的字符,强制使用 utf8
-            $db->query('SET NAMES UTF8');
+            try {
+                $db = new PDO($dsn, $conf['username'], $conf['password']);
+                // 忽略掉配置的字符,强制使用 utf8
+                $db->query('SET NAMES UTF8');
+            } catch (PDOException $e) {
+                echo 'Connection failed: ' . $e->getCode();
+                SeasLog::error('Connection failed: ' . $e->getCode() . ' ' . $e->getMessage());
+                exit;
+            }
             self::$_db = $db;
         }
         return self::$_db;
