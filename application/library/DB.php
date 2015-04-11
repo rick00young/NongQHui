@@ -16,6 +16,8 @@ class DB
             $dsn  = "mysql:dbname={$conf['database']};host={$conf['hostname']};port={$conf['port']}";
             try {
                 $db = new PDO($dsn, $conf['username'], $conf['password']);
+                // 设置为异常模式
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 // 忽略掉配置的字符,强制使用 utf8
                 $db->query('SET NAMES UTF8');
             } catch (PDOException $e) {
@@ -37,7 +39,15 @@ class DB
     public static function query($sql)
     {
         $db = self::getDb();
-        return $db->query($sql, PDO::FETCH_ASSOC);
+
+        try {
+            return $db->query($sql, PDO::FETCH_ASSOC);
+        } catch(PDOException $e) {
+            echo 'Something has wrong: ' . $e->getCode();
+            $log = sprintf('[Error]: %s | [Message]: %s | [SQL]: %s', $e->getCode(), $e->getMessage(), $sql);
+            SeasLog::error($log);
+            exit();
+        }
     }
     /**
      * @brief select 以数组方式返回 select 的结果集
