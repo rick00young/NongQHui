@@ -43,6 +43,9 @@ class goodlistAction extends BaseAction{
         $this->assign('goods', $goodRes);
         $this->assign('shop', $shopRes);
 
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
+
         $this->getView()->display('admin/goodList.phtml');
     }
 } 

@@ -15,6 +15,7 @@ abstract class BaseAction extends Yaf_Action_Abstract
     protected $_page_title;
     protected $_page_keywords;
     protected $_page_description;
+    protected $_current_nav = 'rbac';
 
     protected function beforeExecute()
     {
@@ -25,7 +26,7 @@ abstract class BaseAction extends Yaf_Action_Abstract
             $this->user_info = $_SESSION['user_info'];
         }
         $this->assign('_uid_', $this->user_info['uid']);
-
+        $this->assign('_current_nav', $this->_current_nav);
         /**
          * 一些常用公共数据
          */
@@ -168,6 +169,10 @@ abstract class BaseAction extends Yaf_Action_Abstract
         $this->assign('_page_title', $this->_page_title);
         $this->assign('_page_keywords', $this->_page_keywords);
         $this->assign('_page_description', $this->_page_description);
+    }
+
+    protected function setCurrentNav(){
+        $this->assign('_current_nav', $this->_current_nav);
     }
 
     protected function isMobilePlatform(){

@@ -18,6 +18,10 @@ class newgoodAction extends BaseAction
             $this->display404();
         }
         $this->assign('shop_id', GenerateEncrypt::encrypt($shop_id, ID_SIMPLE_KEY));
+
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
+
         $this->getView()->display('admin/goodinfo.phtml');
     }
 }

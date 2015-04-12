@@ -12,6 +12,10 @@ class newshopAction extends BaseAction
         $beijingJson = $this->getBeiJingJson();
         $city = json_decode($beijingJson, true);
         $this->assign('city', $city);
+
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
+
         $this->getView()->display('admin/shopinfo.phtml');
     }
 }

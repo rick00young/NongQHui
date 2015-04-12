@@ -25,7 +25,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">导航栏</li>
-            <li class="active treeview">
+            <li class="<?='rbac' == $_current_nav ? 'active ' : ''?>treeview">
               <a href="#"><i class="fa fa-dashboard"></i><span>控制台</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li class="active"><a href="/admin"><i class="fa fa-circle-o"></i> 概况</a></li>
@@ -46,7 +46,7 @@ if (SUPERVISOR_UID == $_uid_)
               </ul>
             </li>
 
-            <li class="treeview">
+            <li class="<?='shop' == $_current_nav ? 'active ' : ''?>treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
                 <span>店铺管理</span>
@@ -68,7 +68,7 @@ if (SUPERVISOR_UID == $_uid_)
                 <li><a href="/admin/newgood"><i class="fa fa-circle-o"></i> 创建商品</a></li>
               </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview hide">
               <a href="#">
                 <i class="fa fa-table"></i> <span>Tables</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -78,19 +78,19 @@ if (SUPERVISOR_UID == $_uid_)
                 <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
               </ul>
             </li>
-            <li>
+            <li class="hide">
               <a href="pages/calendar.html">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>
                 <small class="label pull-right bg-red">3</small>
               </a>
             </li>
-            <li>
+            <li class="hide">
               <a href="pages/mailbox/mailbox.html">
                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
                 <small class="label pull-right bg-yellow">12</small>
               </a>
             </li>
-            <li class="treeview">
+            <li class="treeview hide">
               <a href="#">
                 <i class="fa fa-folder"></i> <span>Examples</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -105,7 +105,7 @@ if (SUPERVISOR_UID == $_uid_)
                 <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
               </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview hide">
               <a href="#">
                 <i class="fa fa-share"></i> <span>Multilevel</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -128,11 +128,11 @@ if (SUPERVISOR_UID == $_uid_)
                 <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
               </ul>
             </li>
-            <li><a href="documentation/index.html"><i class="fa fa-book"></i> Documentation</a></li>
-            <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
+            <li class="hide"><a href="documentation/index.html"><i class="fa fa-book"></i> Documentation</a></li>
+            <li class="header hide">LABELS</li>
+            <li class="hide"><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
+            <li class="hide"><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
+            <li class="hide"><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
           </ul>
         </section>
         <!-- /.sidebar -->

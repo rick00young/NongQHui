@@ -48,12 +48,12 @@
                     <div class="form-group">
                       <label>店铺名称</label>
                       <input type="hidden" name="shop_id" id="shop_id" value="<?=isset($shop['id']) ? htmlspecialchars($shop['id']) : ''?>">
-                      <input type="text" class="form-control" id="shop_name" placeholder="请输入店铺名称" value="<?=isset($shop['name']) ? htmlspecialchars($shop['name']) : ''?>">
+                      <input type="text" class="form-control" id="shop_name" placeholder="请输入店铺名称.如:[李阿姨采摘园]" value="<?=isset($shop['name']) ? htmlspecialchars($shop['name']) : ''?>">
                     </div>
 
                     <div class="form-group">
                       <label>店铺简单描述</label>
-                      <input type="text" class="form-control" id="shop_slogan" placeholder="请输入标题或为空" value="<?=isset($shop['slogan']) ? htmlspecialchars($shop['slogan']) : ''?>">
+                      <input type="text" class="form-control" id="shop_slogan" placeholder="请输入标题或为空.如: 长期供应各种蔬菜,绿色无污染." value="<?=isset($shop['slogan']) ? htmlspecialchars($shop['slogan']) : ''?>">
                     </div>
 
                     <div class="form-group">
@@ -82,13 +82,13 @@
 
                     <div class="form-group">
                           <label>店铺所在地址</label>
-                          <input type="text" class="form-control" id="shop_address" placeholder="请输入店铺详细地址" value="<?=isset($shop['address']) ? htmlspecialchars($shop['address']) : ''?>">
+                          <input type="text" class="form-control" id="shop_address" placeholder="请输入店铺详细地址.如: 北京市海淀区聂各庄" value="<?=isset($shop['address']) ? htmlspecialchars($shop['address']) : ''?>">
                     </div>
 
                     <div class="form-group">
                       <label>店铺logo</label>
                       <input type="file" id="shop_logo_file">
-                      <p class="help-block">请选择上传图片</p>
+                      <p class="help-block">请选择上传图片,图片最大8M</p>
                     </div>
 
                     <div class="form-group" id="shopLogoBox">
@@ -107,17 +107,17 @@
 
                     <div class="form-group">
                       <label>店铺详细描述</label>
-                      <textarea class="form-control" rows="3" placeholder="请输入店铺描述" id="shop_des"><?=isset($shop['describe']) ? htmlspecialchars($shop['describe']) : ''?></textarea>
+                      <textarea class="form-control" rows="3" placeholder="请输入店铺描述." id="shop_des"><?=isset($shop['describe']) ? htmlspecialchars($shop['describe']) : ''?></textarea>
                     </div>
 
                     <div class="form-group">
                       <label>店铺位置经度</label>
-                      <input type="text" class="form-control" id="shop_long" placeholder="请输入位置经度" value="<?=isset($shop['long']) ? htmlspecialchars($shop['long']) : ''?>">
+                      <input type="text" class="form-control" id="shop_long" placeholder="请输入位置经度.可以去百度地图系统里拾取坐标数据." value="<?=isset($shop['long']) ? htmlspecialchars($shop['long']) : ''?>">
                     </div>
 
                     <div class="form-group">
                       <label>店铺位置纬度</label>
-                      <input type="text" class="form-control" id="shop_lat" placeholder="请输入位置纬度" value="<?=isset($shop['lat']) ? htmlspecialchars($shop['lat']) : ''?>">
+                      <input type="text" class="form-control" id="shop_lat" placeholder="请输入位置纬度.可以去百度地图系统里拾取坐标数据" value="<?=isset($shop['lat']) ? htmlspecialchars($shop['lat']) : ''?>">
                     </div>
 
                   </div><!-- /.box-body -->

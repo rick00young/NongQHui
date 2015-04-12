@@ -40,6 +40,9 @@ class editshopAction extends BaseAction
         $city = json_decode($beijingJson, true);
         $this->assign('city', $city);
 
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
+
         $this->getView()->display('admin/shopinfo.phtml');
     }
 }
