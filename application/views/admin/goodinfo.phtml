@@ -47,7 +47,7 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label>商品名称</label>
-                      <input type="hidden" name="good_id" id="good_id" value="<?=isset($good['id']) ? htmlspecialchars($good['id']) : ''?>">
+                      <input type="hidden" name="good_id" id="good_id" value="<?=isset($good_id) ? htmlspecialchars($good_id) : ''?>">
                       <input type="hidden" name="shop_id" id="shop_id" value="<?=isset($shop_id) ? htmlspecialchars($shop_id) : 0?>">
                       <input type="text" class="form-control" id="good_title" placeholder="请输入商品名称.如:【精品草莓采摘】" value="<?=isset($good['title']) ? htmlspecialchars($good['title']) : ''?>">
                     </div>
