@@ -31,12 +31,14 @@ class GoodModel {
         return DB::update($goodData, self::TABLE_NAME, $goodId, array('logo'));
     }
 
-    public static function getGoodsByShopId($goodId, $status = 'all')
+    public static function getGoodsByShopId($goodId, $option = null)
     {
         $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
         $sql .= sprintf('WHERE `shop_id` = "%s" ', DB::escape($goodId));
-        if('all' != $status){
-            $sql .= sprintf(" AND status = '%d'", intval($status));
+        if(is_array($option) && !empty($option['status'])){
+            $sql .= sprintf(" AND status in (%s)", implode(',', $option['status']));
+        }else{
+            $sql .= sprintf(" AND status in (%s)", implode(',', array(1)));
         }
         //echo $sql . PHP_EOL;exit;
 

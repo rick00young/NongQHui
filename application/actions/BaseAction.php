@@ -12,6 +12,10 @@ abstract class BaseAction extends Yaf_Action_Abstract
         'base_info' => array(),
     );
 
+    protected $title;
+    protected $keywords;
+    protected $description;
+
     protected function beforeExecute()
     {
         // 满足特定条件的 controller 或 action 可以在此路由

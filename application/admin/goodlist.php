@@ -21,7 +21,7 @@ class goodlistAction extends BaseAction{
             $this->display404();
         }
 
-        $goodRes = GoodModel::getGoodsByShopId($shopId, 1);
+        $goodRes = GoodModel::getGoodsByShopId($shopId, array('status'=>array(1,2)));
 
         if($goodRes){
             foreach($goodRes as &$good){
