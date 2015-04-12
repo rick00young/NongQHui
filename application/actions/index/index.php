@@ -41,7 +41,8 @@ class indexAction extends BaseAction
                         }
                     }
                     unset($good);
-                    $goodRes['view_more'] = '/index/more?district=' . GenerateEncrypt::encrypt($district_id, ID_SIMPLE_KEY);
+                    //$goodRes['view_more'] = '/index/more?district=' . GenerateEncrypt::encrypt($district_id, ID_SIMPLE_KEY);
+                    $goodRes['view_more'] = '#';
                     $response[$district_id] = $goodRes;
                 }
             }
