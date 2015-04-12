@@ -203,7 +203,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                     </h4>
                     <div class="panel panel-dark row-space-4 good_imgs">
                         <?php foreach((array)$good['photo'] as $key => $img){?>
-                        <div class="<?=($key > 0 && ($key + 1) < count($good['photo'])) ? 'row-space-3' : ''?>"><img src="<?=$img?>"></div>
+                        <div class="<?=($key !== 0) ? 'row-space-top-3 ' : ''?>"><img src="<?=$img?>"></div>
                         <?php }?>
                     </div>
                     <?php }?>
