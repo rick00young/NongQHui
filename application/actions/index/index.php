@@ -46,7 +46,7 @@ class indexAction extends BaseAction
                     $response[$district_id] = $goodRes;
                 }
             }
-            $redis->set('$cacheKey',json_encode($response));
+            $redis->set($cacheKey,json_encode($response), 3600);
         }
 
         $this->assign('response', $response);
