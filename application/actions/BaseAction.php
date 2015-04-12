@@ -12,9 +12,9 @@ abstract class BaseAction extends Yaf_Action_Abstract
         'base_info' => array(),
     );
 
-    protected $title;
-    protected $keywords;
-    protected $description;
+    protected $_page_title;
+    protected $_page_keywords;
+    protected $_page_description;
 
     protected function beforeExecute()
     {
@@ -163,6 +163,20 @@ abstract class BaseAction extends Yaf_Action_Abstract
     protected function display404(){
         $this->getView()->display('error/404.phtml');
         die;
+    }
+    protected function setTDK(){
+        $this->assign('_page_title', $this->_page_title);
+        $this->assign('_page_keywords', $this->_page_keywords);
+        $this->assign('_page_description', $this->_page_description);
+    }
+
+    protected function isMobilePlatform(){
+        if(stristr($_SERVER['HTTP_USER_AGENT'],'Android')) {
+            return true;
+        }else if(stristr($_SERVER['HTTP_USER_AGENT'],'iPhone')){
+            return true;
+        }
+        return false;
     }
 
     protected function getBeiJingJson(){

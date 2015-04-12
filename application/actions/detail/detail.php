@@ -67,6 +67,16 @@ class detailAction extends BaseAction
         $this->assign('good', $goodRes);
         $this->assign('shop', $shopRes);
 
+        $this->assign('recomment', array());
+
+        //TKD
+        $this->_page_title = $goodRes['title'];
+        $this->_page_description = $goodRes['title'] . '--' . $goodRes['slogan'];
+        $this->_page_keywords = $goodRes['title'] . '--' . $goodRes['slogan'];
+        $this->setTDK();
+
+        $this->assign('is_mobile',$this->isMobilePlatform());
+
         $this->getView()->display('second_view/detail.phtml');
     }
 }

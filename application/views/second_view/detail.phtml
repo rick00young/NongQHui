@@ -18,7 +18,7 @@ echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
 echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 ?>
 
-<div id="photos" class="with-photos with-modal">
+<div id="photos" class="with-photos with-modal<?=(true == $is_mobile) ? ' hide' : ''?>">
     <img src="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=large&amp;output-format=jpg&amp;output-quality=70" class="hide" srcset="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=large&amp;output-format=jpg&amp;output-quality=70 639w, https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=xx_large&amp;output-format=jpg&amp;output-quality=70 1440w">
     <span class="cover-img-container" data-hook="cover-img-container">
       <div class="cover-img show-sm" data-hook="img-sm" style="background-image: url(/static/second_asset/img/detail_banner.jpg);">
@@ -244,6 +244,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 </div>
 
 <!--reco-->
+<?php if(is_array($recommed) && !empty($recommend)){?>
 <div id="recommend" class="container">
     <h4 class="row-space-4 text-center-sm row-space-top-8">
         为您推荐
@@ -335,6 +336,8 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
         </div>
     </div>
 </div>
+<?php }?>
+
 
 <!--footer-->
 <?php
