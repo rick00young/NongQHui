@@ -62,6 +62,7 @@ $omp2 = array(
     'wUrl' => 'http://mp1.agrovips.com/',
     'pwUrl' => 'http://mp1.agrovips.com/',//需要权限的写入接口
 );
+/*
 $omp3 = array(
     'rUrl' => 'http://mp3.agrovips.com/'.IMAGE_SOURCE,
     'wUrl' => 'http://mp1.agrovips.com/',
@@ -77,6 +78,7 @@ $omp5 = array(
     'wUrl' => 'http://mp1.agrovips.com/',
     'pwUrl' => 'http://mp1.agrovips.com/',//需要权限的写入接口
 );
+*/
 $onlineConfig = array(
     '0' => $omp1,
     '1' => $omp1,
@@ -85,15 +87,15 @@ $onlineConfig = array(
     '4' => $omp2,
     '5' => $omp2,
     '6' => $omp2,
-    '7' => $omp3,
-    '8' => $omp3,
-    '9' => $omp3,
-    'a' => $omp4,
-    'b' => $omp4,
-    'c' => $omp4,
-    'd' => $omp5,
-    'e' => $omp5,
-    'f' => $omp5,
+    '7' => $omp1,
+    '8' => $omp1,
+    '9' => $omp1,
+    'a' => $omp2,
+    'b' => $omp2,
+    'c' => $omp2,
+    'd' => $omp1,
+    'e' => $omp1,
+    'f' => $omp1,
 );
 
 return array(
