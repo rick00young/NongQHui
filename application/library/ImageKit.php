@@ -473,7 +473,7 @@ class ImageKit {
 			$composite = $mask->getimagecompose();
 			$image->compositeimage($mask, $composite, $ltx, $lty);//左上
 			if($setWater !== C_SET_WATER_2){
-				$image->compositeimage($mask, $composite, $cx, $cy);//中间
+				//$image->compositeimage($mask, $composite, $cx, $cy);//中间
 			}
 			$image->compositeimage($mask, $composite, $rbx, $rby);//右下
 		}while(false);
