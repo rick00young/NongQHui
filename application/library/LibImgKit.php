@@ -1,4 +1,4 @@
-<?
+<?php
 //require_once(CONFIG.'ipWhitelist.conf.php');
 require_once (APPLICATION_PATH.'/application/plugins/phpqrcode/qrlib.php');
 

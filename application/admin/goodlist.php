@@ -21,7 +21,7 @@ class goodlistAction extends BaseAction{
             $this->display404();
         }
 
-        $goodRes = GoodModel::getGoodsByShopId($shopId, 1);
+        $goodRes = GoodModel::getGoodsByShopId($shopId, array('status'=>array(1,2)));
 
         if($goodRes){
             foreach($goodRes as &$good){
@@ -42,6 +42,9 @@ class goodlistAction extends BaseAction{
 
         $this->assign('goods', $goodRes);
         $this->assign('shop', $shopRes);
+
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
 
         $this->getView()->display('admin/goodList.phtml');
     }

@@ -33,8 +33,12 @@ class good_editAction extends BaseAction
         if($goodRes){
             $this->assign('good', $goodRes);
         }
-
+        $this->assign('good_id', GenerateEncrypt::encrypt($goodRes['id'], ID_SIMPLE_KEY));
         $this->assign('shop_id', GenerateEncrypt::encrypt($shop_id, ID_SIMPLE_KEY));
+
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
+
         $this->getView()->display('admin/goodinfo.phtml');
     }
 }

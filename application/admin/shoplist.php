@@ -43,6 +43,9 @@ class shoplistAction extends BaseAction
         //var_export($shopRes);
         $this->assign('shops', $shopRes);
 
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
+
     	$this->getView()->display('admin/shoplist.phtml');
     }
 }

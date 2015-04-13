@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title><?php echo !empty($_page_title) ? $_page_title : '北京周边采摘 农家乐 散养柴鸡蛋.';?></title>
+    <meta name="keywords" content="<?php echo !empty($_page_keywords) ? $_page_keywords : '北京周边采摘 农家乐 散养柴鸡蛋.';?>">
+    <meta name="description" content="<?php echo !empty($_page_description) ? $_page_description : '北京周边采摘 农家乐 散养柴鸡蛋.';?>">
+
+    <link href="/static/favicon.ico" rel="icon" type="image/gif">
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
 
@@ -25,5 +29,15 @@
 
     }
     ?>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?2d15d93a9143a56e71046ffd887d2643";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>

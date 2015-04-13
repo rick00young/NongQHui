@@ -202,7 +202,8 @@ body {
 
 .map-container {
     height: 437px;
-    position: relative
+    position: relative;
+    overflow: hidden;
 }
 
 .discovery-friends {

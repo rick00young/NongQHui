@@ -42,6 +42,10 @@ class goodMoreInfoAction extends BaseAction
             }
         }
         $this->assign('good', $good);
+
+        $this->_current_nav = 'shop';
+        $this->setCurrentNav();
+
         $this->getView()->display('admin/goodMoreInfo.phtml');
     }
 }

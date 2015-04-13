@@ -31,12 +31,14 @@ class GoodModel {
         return DB::update($goodData, self::TABLE_NAME, $goodId, array('logo'));
     }
 
-    public static function getGoodsByShopId($goodId, $status = 'all')
+    public static function getGoodsByShopId($goodId, $option = null)
     {
         $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
         $sql .= sprintf('WHERE `shop_id` = "%s" ', DB::escape($goodId));
-        if('all' != $status){
-            $sql .= sprintf(" AND status = '%d'", intval($status));
+        if(is_array($option) && !empty($option['status'])){
+            $sql .= sprintf(" AND status in (%s)", implode(',', $option['status']));
+        }else{
+            $sql .= sprintf(" AND status in (%s)", implode(',', array(1)));
         }
         //echo $sql . PHP_EOL;exit;
 
@@ -97,4 +99,24 @@ class GoodModel {
 
         return DB::getAll($sql);
     }
+
+
+    /***use for index**/
+    public static function getGoodBydDstrictId($districtId){
+        if(empty($districtId)){
+            return false;
+        }
+        $sql = sprintf("select g.id,g.title,g.shop_id, g.slogan, g.price, g.unit,
+        s.address, s.district_id,
+        ext.content
+        from good as g
+        left join shop as s on g.shop_id = s.id
+        left join good_ext_info as ext on ext.good_id = g.id
+        where g.status = 1 and s.district_id = '%s' and ext.type = 1
+        order by g.up_time desc
+        limit 4", $districtId);
+
+        return DB::getAll($sql);
+    }
+
 } 

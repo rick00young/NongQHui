@@ -12,6 +12,11 @@ abstract class BaseAction extends Yaf_Action_Abstract
         'base_info' => array(),
     );
 
+    protected $_page_title;
+    protected $_page_keywords;
+    protected $_page_description;
+    protected $_current_nav = 'rbac';
+
     protected function beforeExecute()
     {
         // 满足特定条件的 controller 或 action 可以在此路由
@@ -21,7 +26,7 @@ abstract class BaseAction extends Yaf_Action_Abstract
             $this->user_info = $_SESSION['user_info'];
         }
         $this->assign('_uid_', $this->user_info['uid']);
-
+        $this->assign('_current_nav', $this->_current_nav);
         /**
          * 一些常用公共数据
          */
@@ -159,6 +164,24 @@ abstract class BaseAction extends Yaf_Action_Abstract
     protected function display404(){
         $this->getView()->display('error/404.phtml');
         die;
+    }
+    protected function setTDK(){
+        $this->assign('_page_title', $this->_page_title);
+        $this->assign('_page_keywords', $this->_page_keywords);
+        $this->assign('_page_description', $this->_page_description);
+    }
+
+    protected function setCurrentNav(){
+        $this->assign('_current_nav', $this->_current_nav);
+    }
+
+    protected function isMobilePlatform(){
+        if(stristr($_SERVER['HTTP_USER_AGENT'],'Android')) {
+            return true;
+        }else if(stristr($_SERVER['HTTP_USER_AGENT'],'iPhone')){
+            return true;
+        }
+        return false;
     }
 
     protected function getBeiJingJson(){

@@ -24,7 +24,7 @@ define('PERMIT_COOKIE','aapp');
 define('PIN', 'aa_pin');
 
 //code encrypt
-define('ID_SIMPLE_KEY', 'abc');
+define('ID_SIMPLE_KEY', 'abcdef');
 
 
 /*****************************image******************************/
