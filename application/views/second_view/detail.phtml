@@ -18,7 +18,7 @@ echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
 echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 ?>
 
-<div class="with-photos" style="">
+<div class="with-photos<?=(true == $is_mobile) ? ' hide' : ''?>" style="">
     <div class="media-photo media-photo-block discovery-hero">
         <div class="row row-table row-full-height" style="background-image:url(/static/second_asset/img/yingtao2.png);">
             <div class="col-middle text-center text-contrast panel-body" style="width: 100%;margin-top: 40px;">
