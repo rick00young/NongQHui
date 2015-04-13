@@ -1,3 +1,72 @@
+/*top img*/
+
+.discovery-hero {
+    height: 230px}
+
+.discovery-hero-image {
+    background-size: cover;
+    background-position: 0% 80%
+}
+
+.discovery-image {
+    min-height: 436px;
+    overflow: hidden;
+    /*height:436px;*/
+}
+
+.discovery-friends .media-photo {
+    margin-left: -25px
+}
+
+.discovery-friends .media-photo:first-child {
+    margin: 0
+}
+
+.media-photo {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    background-color: #cacccd
+}
+
+.media-photo-block {
+    display: block
+}
+
+.row-table {
+    display: table;
+    table-layout: fixed
+}
+
+.row-full-height {
+    height: 100%
+}
+
+:root .row.row-table {
+    width: 100%\9;
+}
+
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    :root .row.row-table {
+        width: calc(100% + 25px)
+    }
+}
+
+.col-middle {
+    vertical-align: middle}
+
+.col-top,.col-middle,.col-bottom {
+    float: none;
+    display: table-cell}
+
+
+/**top img**/
+
+
 #photos {
     height: 380px;
     position: relative;

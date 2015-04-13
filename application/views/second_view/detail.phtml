@@ -18,6 +18,18 @@ echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
 echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 ?>
 
+<div class="with-photos" style="">
+    <div class="media-photo media-photo-block discovery-hero">
+        <div class="row row-table row-full-height" style="background-image:url(/static/second_asset/img/yingtao2.png);">
+            <div class="col-middle text-center text-contrast panel-body" style="width: 100%;margin-top: 40px;">
+                <div class="h1 row-space-1">五月凤凰岭樱桃节,"樱"你而精彩!</div>
+                <div class="text-lead row-space-2">近千亩优质樱桃,期待您的光临</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <div id="photos" class="with-photos with-modal<?=(true == $is_mobile) ? ' hide' : ''?>">
     <img src="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=large&amp;output-format=jpg&amp;output-quality=70" class="hide" srcset="https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=large&amp;output-format=jpg&amp;output-quality=70 639w, https://a0.muscache.com/ic/pictures/32626612/22c92586_original.jpg?interpolation=lanczos-none&amp;size=xx_large&amp;output-format=jpg&amp;output-quality=70 1440w">
     <span class="cover-img-container" data-hook="cover-img-container">
@@ -25,6 +37,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
       </div>
     </span>
 </div>
+-->
 
 <!--content-->
 <div class="row-space-4 row-space-top-6"></div>
@@ -54,7 +67,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         <a href="#" itemprop="url"><span itemprop="title">北京</span></a>
                         </span>
                         </span>
-                            <div id="display-address" class="row-space-2 text-muted hide-sm" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" data-location="旧金山, CA, 美国">
+                            <div id="display-address" class="row-space-2 text-muted hide-sm" itemprop="aggregateRating" itemscope="" itemtype="" data-location="">
                                 <a href="#neighborhood" class="link-reset"><?=$shop['address']?></a> &nbsp;
                                 <a href="#reviews" class="link-reset hide">
                                     <div class="star-rating">
