@@ -103,7 +103,12 @@ class WxAPI
     }
 
     /**
+     * 如果相取用户 subscribe 状态,参看 @see: http://mp.weixin.qq.com/wiki/14/bb5031008f1494a59c6f71fa0f319c66.html
+     * */
+
+    /**
      * @brief getWxUserinfo
+     * @see http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
      *
      * @param: $req array 微信发送过来请求
      * @param: $decode bool 0: 返回 json 串; 1: 返回 php 数组
