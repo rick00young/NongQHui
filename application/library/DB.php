@@ -46,6 +46,7 @@ class DB
             echo 'Something has wrong: ' . $e->getCode();
             $log = sprintf('[Error]: %s | [Message]: %s | [SQL]: %s', $e->getCode(), $e->getMessage(), $sql);
             SeasLog::error($log);
+            Util::bt(__FILE__, __LINE__, $e);
             exit();
         }
     }
