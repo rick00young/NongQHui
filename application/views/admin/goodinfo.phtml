@@ -58,6 +58,26 @@
                     </div>
 
                     <div class="form-group">
+                        <label>商品类别</label>
+                        <div></div>
+                        <div style="display: inline-block;width: 45%;float: left;">
+                            <select class="form-control" id="good_category_id">
+                                <!--<option>省/直辖市</option>-->
+                                <?php foreach($category as $c_id => $cat){
+
+                                    ?>
+                                    <option value="<?=$c_id?>" <?=isset($good) && $c_id == $good['category_id'] ? 'selected="selected"' : ''?>><?=$cat?></option>
+                                <?php }?>
+                            </select>
+                        </div>
+
+                        <div style="display: inline-block;width: 45%;float: left;  line-height: 33px;margin-left: 20px;">
+                            <span>请选择商品类别.如:樱桃采摘</span>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+
+                    <div class="form-group">
                       <label>库存</label>
                       <input type="text" class="form-control" id="good_stock" placeholder="请输入商品库存.如: 2000斤/300盒" value="<?=isset($good['discount_price']) ? htmlspecialchars($good['discount_price']) : ''?>">
                     </div>
@@ -121,6 +141,7 @@ $("#submit").click(function () {
     var good_contactor = $('#good_contactor').val();
     var good_phone = $('#good_phone').val();
     var good_unit = $("#good_unit").val();
+    var good_category_id = $('#good_category_id').val();
 
     if(!good_title || !good_slogan || !good_price || !good_d_price || !shop_id && !good_contactor || !good_phone){
       alert("您填入的数据不完整,请你检查后重新提交!");
@@ -137,7 +158,8 @@ $("#submit").click(function () {
         'shop_id': shop_id,
         'good_contactor':good_contactor,
         'good_phone':good_phone,
-        'good_unit':good_unit
+        'good_unit':good_unit,
+        'good_category_id':good_category_id
     }
     //console.log(postData);//return;
 

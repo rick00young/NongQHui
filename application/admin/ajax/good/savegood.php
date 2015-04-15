@@ -47,6 +47,7 @@ class savegoodAction extends BaseAction
         $goodData['contactor'] = $this->post('good_contactor');
         $goodData['phone'] = $this->post('good_phone');
         $goodData['unit'] = $this->post('good_unit');
+        $goodData['category_id'] = $this->post('good_category_id');
 
 
         $rules = array(
