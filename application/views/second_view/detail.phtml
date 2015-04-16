@@ -231,7 +231,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                     <?php }?>
 
 
-                    <?php if($good['buy_detail']){?>
+                    <?php if(isset($good['buy_detail'])) {?>
                         <h4 class="row-space-4 new-tit">
                             <span class="name">购买详情</span>
                         </h4>
@@ -240,7 +240,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         </div>
                     <?php }?>
 
-                    <?php if($good['use_list']){?>
+                    <?php if(isset($good['use_list'])) {?>
                         <h4 class="row-space-4 new-tit">
                             <span class="name">使用流程</span>
                         </h4>
@@ -257,7 +257,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 </div>
 
 <!--reco-->
-<?php if(is_array($recommed) && !empty($recommend)){?>
+<?php if(isset($recommend) && is_array($recommend) && !empty($recommend)){?>
 <div id="recommend" class="container">
     <h4 class="row-space-4 text-center-sm row-space-top-8">
         为您推荐

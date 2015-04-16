@@ -33,7 +33,7 @@ class detailAction extends BaseAction
 
         $imageServer = ImageServer::getInstance();
 
-        foreach($goodExtInfo as $info){
+        foreach($goodExtInfo as $info) {
             if($info['type'] == GoodModel::EXT_GOOD_INFO){
                 $photoArr = json_decode($info['content'], true);
                 $photoTemp = array();
