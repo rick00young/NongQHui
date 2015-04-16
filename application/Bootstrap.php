@@ -61,5 +61,13 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
     {
         Yaf_loader::import(APPLICATION_PATH . '/application/service/autoload.php');
     }
+
+    /**
+     * 加载 QRcode 层
+     * */
+    public function _initQRcode(Yaf_Dispatcher $dispatcher)
+    {
+        Yaf_loader::import(APPLICATION_PATH . '/contrib/phpqrcode/phpqrcode.php');
+    }
 }
 

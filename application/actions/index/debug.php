@@ -30,6 +30,20 @@ class debugAction extends Yaf_Action_Abstract
 
         //UserModel::deleteUserByUid(2);
 
-        header("X-Accel-Redirect: /test/a.png");
+        //header("X-Accel-Redirect: /test/a.png");
+
+
+        // 二维码数据
+        $data = 'http://www.agrovips.com';
+
+        // 生成的文件名
+        $filename = false;
+
+        // 纠错级别：L、M、Q、H
+        $errorCorrectionLevel = 'L';
+
+        // 点的大小：1到10
+        $matrixPointSize = 4;
+        QRcode::png($data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
     }
 }

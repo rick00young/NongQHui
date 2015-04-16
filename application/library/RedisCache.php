@@ -17,7 +17,7 @@ class RedisCache
             }
         }
         if (! $ok) {
-            throw new ExceptionServererror("Can't connect Redis ({$config['host']}:{$config['port']}).");
+            throw new ExceptionServererror("Can't connect Redis ({$config['hostname']}:{$config['port']}).");
         }
 
         if (isset($config['password']) && $config['password']) {
