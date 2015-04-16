@@ -13,6 +13,11 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
         //把配置保存起来
         $arrConfig = Yaf_Application::app()->getConfig();
         Yaf_Registry::set('config', $arrConfig);
+
+        // redis 配置文件
+        $redis_ini  = new Yaf_Config_Ini(APPLICATION_PATH . '/conf/redis.ini');
+        $redis_conf = $redis_ini->redis;
+        Yaf_Registry::set('redis', $redis_conf);
     }
 
     public function _initPlugin(Yaf_Dispatcher $dispatcher) {
