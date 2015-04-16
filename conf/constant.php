@@ -81,11 +81,12 @@ define('IMG_PUBLIC', APPLICATION_PATH . '/../public/');
 define('IMG_RAW', '/data/'.RAW_FOLDER);
 define('IMG_ROOT', IMG_PUBLIC . IMAGE_FOLDER);//for imageserver
 define('IMG_WATER', IMG_ROOT . 'water/');
+define('META_FOLDER', 'meta/');//当前用处：如果图片在该目录存在，缩略图都不会打水印
 //define('IMG_360', IMG_ROOT.W360_FOLDER);
 //define('IMG_PRERAW', IMG_ROOT.PRERAW_FOLDER);
 //define('IMG_THUMB', IMG_ROOT.THUMB_FOLDER);
 //define('IMG_QRCODE', IMG_ROOT.QR_FOLDER);
-//define('IMG_META', IMG_ROOT.META_FOLDER);//当前用处：如果图片在该目录存在，缩略图都不会打水印
+define('IMG_META', IMG_ROOT.META_FOLDER);//当前用处：如果图片在该目录存在，缩略图都不会打水印
 //define('IMG_DELETE', WEBROOT.'data/');
 
 //image server

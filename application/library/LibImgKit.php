@@ -1,6 +1,5 @@
 <?php
 //require_once(CONFIG.'ipWhitelist.conf.php');
-require_once (APPLICATION_PATH.'/application/plugins/phpqrcode/qrlib.php');
 
 define('MAX_WATER_WIDTH', 1570);
 define('MAX_WATER_HEIGHT', 1110);
@@ -79,6 +78,7 @@ class LibImgKit
 		return $result;
 	}
 
+    /*
 	public static function ProduceQrImage($qrValue){
 		$md5 = md5($qrValue);
 		$imgService = MImageService::getInstance();
@@ -92,6 +92,7 @@ class LibImgKit
 		}
 		return $result;
 	}
+    */
 
 	private static function scaleImage($srcPath, $dstPath, $x, $y, $type, $setWater=1, $quality = 100){
 //var_export("type######$type\n");

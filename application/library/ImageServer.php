@@ -92,6 +92,7 @@ class ImageServer{
 		} else {
 			$urlPre .= "x$quality/";
 		}
+        //Seaslog::debug($urlPre);
 		return ImageServer::getImagePath($urlPre, $md5, $ext);
 	}
 
@@ -351,9 +352,11 @@ class ImageServer{
 	        return '';
 	    }
 		$strStorePath = $root.$md5{0}.$md5{1}.$md5{2};
+        /*
 		if(!is_dir($strStorePath)){
 			$this->mkdirEx($strStorePath);
 		}
+        */
 		$destination = $strStorePath."/".$md5.".".$ext;
 		return $destination;
 	}
@@ -362,7 +365,7 @@ class ImageServer{
 		if (strlen($md5) < 2) {
 	        return '';
 	    }
-		$strStorePath = $root.$md5{0}.$md5{1};
+		$strStorePath = $root.$md5{0}.$md5{1}.$md5{2};
 		$destination = $strStorePath."/".$md5.".".$ext;
 		return $destination;
 	}

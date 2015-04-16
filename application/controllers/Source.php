@@ -72,7 +72,7 @@ class SourceController extends Yaf_Controller_Abstract {
 
     	if($ret !== true) {
     		//echo 'xxxxxxx';
-    		//die;
+            Seaslog::debug($ret);
     		self::outputNoFileExist();
     	}
  		//header("Content-Type: application/octet-stream");
