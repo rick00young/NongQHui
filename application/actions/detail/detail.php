@@ -67,7 +67,10 @@ class detailAction extends BaseAction
         $this->assign('good', $goodRes);
         $this->assign('shop', $shopRes);
 
-        $this->assign('recomment', array());
+        $this->assign('recommend', array());
+
+        Widget::increasePV($goodId); // 自增 PV
+        $this->assign('visit_pv', Widget::getPV($goodId));
 
         //TKD
         $this->_page_title = $goodRes['title'];
