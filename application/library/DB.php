@@ -11,7 +11,7 @@ class DB
         if (null == self::$_db)
         {
             // 初始化数据库
-            
+
             $conf = Yaf_Registry::get('config')->mysql->vips_web->master->toArray();
             $dsn  = "mysql:dbname={$conf['database']};host={$conf['hostname']};port={$conf['port']}";
             try {
@@ -34,7 +34,7 @@ class DB
      *
      * @param: $sql
      *
-     * @return: 
+     * @return:
      */
     public static function query($sql)
     {
@@ -61,11 +61,11 @@ class DB
     {
         return self::query($sql);
     }
-    
-    
+
+
     /**
      * get一行数据
-     * 
+     *
      * @param string $sql
      * @return array
      */
@@ -74,10 +74,10 @@ class DB
         $res = self::select($sql);
         return $res->fetch();
     }
-    
+
     /**
      * get多行数据
-     * 
+     *
      * @param string $sql
      * @return array
      */
@@ -86,8 +86,8 @@ class DB
         $res = self::select($sql);
         return $res->fetchAll();
     }
-    
-    
+
+
     /**
      * 通用insert方法
      * @param unknown $save_data
@@ -96,12 +96,12 @@ class DB
      */
     public static function insert($save_data, $table, $unEscape = array())
     {
-    
+
         $set = array();
-        
+
         foreach ($save_data as $field => $value)
         {
-            if(!in_array($field, $unEscape)){
+            if (!in_array($field, $unEscape)) {
                 $value = DB::escape($value);
             }
 
@@ -110,10 +110,10 @@ class DB
         $sql = sprintf('INSERT INTO `%s` SET %s', $table, implode(', ', $set));
 
         DB::query($sql);
-    
+
         return DB::lastInsertId();
     }
-    
+
     /**
      * 通用update方法
      * @param unknown $save_data
@@ -122,9 +122,8 @@ class DB
      */
     public static function update($save_data, $table, $id, $unEscape = array())
     {
-    
         $set = array();
-    
+
         foreach ($save_data as $field => $value)
         {
             if(!in_array($field, $unEscape)){
@@ -135,9 +134,9 @@ class DB
         }
         $sql = sprintf('UPDATE `%s` SET %s WHERE id = %d', $table, implode(', ', $set), $id);
         return DB::query($sql);
-    
+
     }
-    
+
     /**
         * @brief lastInsertId 取最后插入的 id
         *
@@ -146,7 +145,7 @@ class DB
     public static function lastInsertId()
     {
         $db = self::getDb();
-        return $db->lastInsertId(); 
+        return $db->lastInsertId();
     }
     /**
         * @brief escape 防 sql 注入
@@ -159,6 +158,6 @@ class DB
     {
         return Util::isBinary($str) ? addslashes($str) : htmlspecialchars(trim($str), ENT_QUOTES);
     }
-    
-    
+
+
 }
