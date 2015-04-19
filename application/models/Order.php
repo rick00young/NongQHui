@@ -45,13 +45,23 @@ class OrderModel
         return DB::insert($save_data, self::LOG_TABLE_NAME, array('log'));
     }
 
-    public static function getOrderDateBySN($order_sn)
+    public static function getOrderDataById($order_id)
+    {
+        $sql  = sprintf('SELECT * FROM `%s` ', self::PRIMARY_TABLE_NAME);
+        $sql .= sprintf('WHERE `id` = "%d" ', $order_id);
+        $sql .= 'LIMIT 1';
+
+        SeasLog::debug(__METHOD__ . ' [SQL]: ' . $sql);
+        return DB::getOne($sql);
+    }
+
+    public static function getOrderDataBySN($order_sn)
     {
         $sql  = sprintf('SELECT * FROM `%s` ', self::PRIMARY_TABLE_NAME);
         $sql .= sprintf('WHERE `order_sn` = "%s" ', DB::escape($order_sn));
         $sql .= 'LIMIT 1';
 
-        Seaslog::debug(__METHOD__ . ' [SQL]: ' . $sql);
+        SeasLog::debug(__METHOD__ . ' [SQL]: ' . $sql);
         return DB::getOne($sql);
     }
 
@@ -61,7 +71,7 @@ class OrderModel
         while (1)
         {
             $order_sn = sprintf('%s%02d%d', date('ymdH'), $business, mt_rand(100000, 999999));
-            $order_dt = self::getOrderDateBySN($order_sn);
+            $order_dt = self::getOrderDataBySN($order_sn);
             // 不存在撞单
             if (! is_array($order_dt) || count($order_dt) <= 0)
             {

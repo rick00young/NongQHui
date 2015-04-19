@@ -92,7 +92,7 @@ class ImageServer{
 		} else {
 			$urlPre .= "x$quality/";
 		}
-        //Seaslog::debug($urlPre);
+        //SeasLog::debug($urlPre);
 		return ImageServer::getImagePath($urlPre, $md5, $ext);
 	}
 
