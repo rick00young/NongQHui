@@ -32,18 +32,28 @@ class debugAction extends Yaf_Action_Abstract
 
         //header("X-Accel-Redirect: /test/a.png");
 
+        //$order_dt = array(
+        //    'product_id' => 2,
+        //    'producer_uid' => 1,
+        //    'consumer_uid' => 123,
+        //    'amount' => '32.58',
+        //);
+        //$ret = OrderService::sCreateOrder($order_dt, '02');
+        //print_r($ret);
 
-        // 二维码数据
-        $data = 'http://www.agrovips.com';
+        //// 二维码数据
+        //$data = 'http://www.agrovips.com';
 
-        // 生成的文件名
-        $filename = false;
+        //// 生成的文件名
+        //$filename = false;
 
-        // 纠错级别：L、M、Q、H
-        $errorCorrectionLevel = 'L';
+        //// 纠错级别：L、M、Q、H
+        //$errorCorrectionLevel = 'L';
 
-        // 点的大小：1到10
-        $matrixPointSize = 4;
-        QRcode::png($data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+        //// 点的大小：1到10
+        //$matrixPointSize = 4;
+        //QRcode::png($data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+
+        return false;
     }
 }
