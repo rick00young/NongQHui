@@ -39,7 +39,13 @@ class savegoodAction extends BaseAction
         $goodData['title'] = $this->post('good_title');
         $goodData['slogan'] = $this->post('good_slogan');
         $goodData['price'] = $this->post_unescape('good_price');
-        $goodData['discount_price'] = $this->post('good_d_price');
+
+        $price = is_numeric($goodData['price']) ? $goodData['price'] : 0;
+        $goodData['real_price'] = sprintf('%.2f',$price);
+
+        $discount_price = is_numeric($this->post('good_d_price')) ? $this->post('good_d_price') : 0;
+        $goodData['discount_price'] = sprintf('%.2f', $discount_price);
+        
         $goodData['stock'] = intval($this->post('good_stock'));
         $goodData['status'] = 1;
         $goodData['shop_id'] = $shop_id;
