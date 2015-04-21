@@ -72,6 +72,7 @@ class OrderModel
         {
             $order_sn = sprintf('%s%02d%d', date('ymdH'), $business, mt_rand(100000, 999999));
             $order_dt = self::getOrderDataBySN($order_sn);
+
             // 不存在撞单
             if (! is_array($order_dt) || count($order_dt) <= 0)
             {

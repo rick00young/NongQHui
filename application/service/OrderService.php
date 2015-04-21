@@ -6,7 +6,7 @@
 class OrderService
 {
     // $business 对应 GoodModel::$category @see: GoodModel
-    public static function sCreateOrderSN($dt, $business)
+    public static function sCreateOrder($dt, $business)
     {
         $ret = false;
 
@@ -26,7 +26,7 @@ class OrderService
             $dt['create_time'] = time();
 
             $ret = OrderModel::createOrder($dt);
-        } while(1);
+        } while(0);
 
         return $ret;
     }
