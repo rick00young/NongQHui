@@ -6,12 +6,12 @@
  * Time: 下午3:30
  */
 
-class detailAction extends BaseAction
+class detailAction extends AdminBaseAction
 {
     public function run($arg = null)
     {
         Yaf_Dispatcher::getInstance()->autoRender(false);
-        $goodId = intval(GenerateEncrypt::decrypt($_GET['good_id'], ID_SIMPLE_KEY));
+        $goodId = intval(GenerateEncrypt::decrypt($this->get('good_id'), ID_SIMPLE_KEY));
 
         if(!$goodId){
             $this->display404();
@@ -28,6 +28,9 @@ class detailAction extends BaseAction
         if(!$shopRes){
             $this->display404();
         }
+
+        $goodRes['order_url'] = '/index/order_create';
+        $goodRes['encode_good_id'] = GenerateEncrypt::encrypt($goodRes['id'], ID_SIMPLE_KEY);
 
         $goodExtInfo = GoodModel::getGoodALLExInfoByGoodId($goodId);
 

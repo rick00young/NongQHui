@@ -10,6 +10,7 @@ class SnsOauthConfig{
 
     public static $CONFIG = array(
 
+
     );
 
     public static function getConfig($type){

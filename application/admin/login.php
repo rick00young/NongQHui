@@ -3,7 +3,7 @@
  * @describe:
  * @author: rick
  * */
-class loginAction extends BaseAction
+class loginAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

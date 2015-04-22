@@ -114,6 +114,55 @@ class UserService
 
         return $ret;
     }
+
+    public static function createSnsUser($type, $userInfo){
+        if(empty($type) || empty($userInfo)){
+            Html::setFlash('授权失败!');
+            SeasLog::error(__METHOD__ . json_encode(func_get_args()));
+            header('location: /');
+        }
+
+        $platforms = UserModel::getPlatform();
+        $platforms = array_flip($platforms);
+
+        $platform = isset($platforms[$type]) ? $platforms[$type] : null;
+
+        if(null == $platform){
+            SeasLog::error(__METHOD__ . ' platform:' . $platform);
+            header('location: /');
+        }
+
+        $register_time = time();
+        $save_data = array(
+            'openid'=> $userInfo['openid'],
+            'unionid' => isset($userInfo['unionid']) ? $userInfo['unionid'] : '',
+            'email' => '',
+            'nickname' => isset($userInfo['nickname']) ? $userInfo['nickname'] : '',
+            'password' => '',
+            'register_time' => $register_time,
+
+            /** mysql 5.6.23 不容许非 NULL 字段在插入时不给初值 */
+            'platform' => $platform,
+            'mobile' => '',
+            'avator' => $userInfo['avator'],
+            'ext'    => '',
+        );
+        $uid = UserModel::uCreateNewUser($save_data);
+        if ($uid <= 0)
+        {
+            Html::setFlash('创建用户失败，请联系管理员');
+            SeasLog::error(__METHOD__ . ' 创建用户失败:' . json_encode($save_data));
+            return false;
+        }
+
+        /** 创建 成功 */
+        $_SESSION['user_info'] = array(
+            'uid' => $uid,
+            'base_info' => UserModel::getUserInfoByUid($uid),
+        );
+
+        return $save_data;
+    }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
 

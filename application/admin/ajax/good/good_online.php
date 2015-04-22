@@ -3,7 +3,7 @@
  * @describe:
  * @author: rick
  * */
-class good_onlineAction extends BaseAction
+class good_onlineAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

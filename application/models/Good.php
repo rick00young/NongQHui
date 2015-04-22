@@ -146,4 +146,37 @@ class GoodModel {
         return DB::getAll($sql);
     }
 
+
+    public static function getGoodInfoByGoodId($goodId){
+        if(!intval($goodId)){
+            return false;
+        }
+
+        $goodRes = self::getGoodById($goodId);
+        if(!$goodRes){
+            return false;
+        }
+
+        $goodRes['encode_good_id'] = GenerateEncrypt::encrypt($goodRes['id'], ID_SIMPLE_KEY);
+
+        $goodExtInfo = self::getGoodALLExInfoByGoodId($goodId);
+
+        foreach($goodExtInfo as $info) {
+            if($info['type'] == self::EXT_GOOD_INFO){
+                $goodRes['photo'] = $info['content'];
+            }
+            if($info['type'] == self::EXT_BUY_NEEDKNOW){
+                $goodRes['buy_needKnow'] = $info['content'];
+            }
+            if($info['type'] == self::EXT_BUY_DETAIL){
+                $goodRes['buy_detail'] = $info['content'];
+            }
+            if($info['type'] == self::EXT_USE_LIST){
+                $goodRes['use_list']  = $info['content'];
+            }
+        }
+
+        return $goodRes;
+    }
+
 }

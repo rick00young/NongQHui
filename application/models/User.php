@@ -7,6 +7,27 @@ class UserModel
 {
     const TABLE_NAME = 'user';
 
+
+    //类别
+    //第三方平台:1为新浪微博,2为QQ空间,3为微信 0: 非第三方登陆与注册
+    const NORMAL   = 0;
+    const SINA      = 1;
+    const QQ   = 2;
+    const WEIXIN       = 3;
+
+
+    private static $platform = array(
+        self::NORMAL   => 'normal',
+        self::SINA   =>'sina',
+        self::QQ       => 'qq',
+        self::WEIXIN    => 'weixin',
+    );
+
+    public static function getPlatform()
+    {
+        return self::$platform;
+    }
+
     public static function getUserInfoByUid($uid)
     {
         $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
@@ -21,6 +42,16 @@ class UserModel
     {
         $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
         $sql .= sprintf('WHERE `email` = "%s" ', DB::escape($email));
+        $sql .= 'LIMIT 1';
+        //echo $sql . PHP_EOL;exit;
+
+        return DB::getOne($sql);
+    }
+
+    public static function getUserInfoByOpenId($openId)
+    {
+        $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
+        $sql .= sprintf('WHERE `openid` = "%s" ', DB::escape($openId));
         $sql .= 'LIMIT 1';
         //echo $sql . PHP_EOL;exit;
 
@@ -80,6 +111,28 @@ class UserModel
         $sql .= sprintf('LIMIT %d, %d', $offset, $page_size);
 
         return DB::getAll($sql);
+    }
+
+    //映射用户数据字段
+    public static function getUserInfoFromSnsData($type, $userInfo){
+        if(empty($type) || empty($userInfo)){
+            return array();
+        }
+
+        if('weixin' == $type){
+            return array(
+                'nickname' => $userInfo['nickname'],
+                'openid' => $userInfo['openid'],
+                'sex' => $userInfo['sex'],
+                'province' => $userInfo['province'],
+                'city' => $userInfo['city'],
+                'country' => $userInfo['country'],
+                'unionid' => $userInfo['unionid'],
+                'avator' => $userInfo['headimgurl'],
+            );
+        }
+
+        return array();
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */

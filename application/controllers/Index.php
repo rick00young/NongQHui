@@ -34,5 +34,7 @@ class IndexController extends Yaf_Controller_Abstract {
         'index' => 'actions/index/index.php',
         'detail' => 'actions/detail/detail.php',
         'about' => 'actions/about/about.php',
+        'order_create' => 'actions/order/order_create.php',
+        'order_list' => 'actions/order/order_list.php',
     );
 }

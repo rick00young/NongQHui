@@ -3,7 +3,7 @@
  * @describe:
  * @author: Jerry Yang(hy0kle@gmail.com)
  * */
-class create_userAction extends BaseAction
+class create_userAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

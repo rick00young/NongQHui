@@ -3,7 +3,7 @@
  * @describe: 将 action 抽象出一个基类,把常用的方法进行简化.
  * @author: Jerry Yang(hy0kle@gmail.com)
  * */
-abstract class BaseAction extends Yaf_Action_Abstract
+abstract class AdminBaseAction extends Yaf_Action_Abstract
 {
     abstract public function run($arg = null);
 
@@ -32,6 +32,52 @@ abstract class BaseAction extends Yaf_Action_Abstract
          */
         $current_controller = strtolower($this->getRequest()->getControllerName());
         $action_name        = strtolower($this->getRequest()->getActionName());
+
+        if ('admin' == $current_controller)
+        {
+            $unnecessary_login_actions = array(
+                'login', 'signin',
+                'register', 'logout',
+                'create_user',
+            );
+            if (! in_array($action_name, $unnecessary_login_actions) && 0 == $this->user_info['uid'])
+            {
+                header('Location: /admin/login');
+                return false;
+            }
+
+            /** rbac 权限控制 */
+            $uid = $this->user_info['uid'];
+            if (false !== strpos($action_name, 'rbac_'))
+            {
+                if (SUPERVISOR_UID == $uid)
+                {
+                    return true;
+                }
+                else
+                {
+                    Html::setFlash('没有授权');
+                    header('Location: /admin');
+                    return false;
+                }
+            }
+
+            $pid = RbacService::getPidByTitle($action_name);
+            if ($pid > 1) // 1: root
+            {
+                // 说明此 action 有权限控制
+                if (RbacService::check($pid, $uid))
+                {
+                    return true;
+                }
+                else
+                {
+                    Html::setFlash('没有授权,请联系管理员');
+                    $this->redirect('/admin');
+                    return false;
+                }
+            }
+        }
 
         return true;
     }

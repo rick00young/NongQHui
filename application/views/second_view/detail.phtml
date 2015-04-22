@@ -102,15 +102,17 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                 </div>
             </div>
             <div class="col-lg-4" style="/* display: none; */">
-                <div id="tax-descriptions-tip" class="tooltip tooltip-top-middle" role="tooltip" data-sticky="true" data-trigger="#tax-descriptions-tooltip">
+                <div id="tax-descriptions-tip" class="tooltip tooltip-top-middle">
                 </div>
 
-                <form accept-charset="UTF-8" action="" class="info new-o2-form-inline" id="book_it_form" method="post" style="display: block;">
+                <form accept-charset="UTF-8" action="<?=$good['discount_price'] > 0 ? htmlspecialchars($good['order_url']) : ''?>" class="info new-o2-form-inline" id="book_it_form" method="post" style="display: block;">
                     <div style="margin:0;padding:0;display:inline">
-                        <input name="utf8" type="hidden" value="✓">
+                        <input name="discount_price" type="hidden" value="<?=$good['discount_price']?>">
+                        <input name="good_id" type="hidden" value="<?=$good['encode_good_id']?>">
+                        <input name="good_num" type="hidden" value="<?=1?>">
                         <input name="authenticity_token" type="hidden" value="V4$.airbnb.com$o6i3VEuXnWA$nQL-f5odze6HMaPU38L_ka8DlQoueeqCnDTpMQpphWQ=">
                     </div>
-                    <div id="pricing" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="">
+                    <div id="pricing" class="">
                         <div id="price_amount" itemprop="price" class="pull-left h3 text-special">¥ <?=htmlspecialchars($good['discount_price'])?>/<?=htmlspecialchars($good['unit'])?></div>
                         <div id="payment-period-container" class="pull-right" style="display: none;">
                             <div id="per_night" class="">
@@ -143,24 +145,25 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                     </div>
                                     <div class="col-md-3 own_info">
                                         <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
-                                            <i class="fa fa-eye br-purple"></i>本周<?php echo $visit_pv; ?>人查看了
+                                            <i class="fa fa-eye br-purple"></i>共<?php echo $visit_pv; ?>人查看了
                                         </p>
                                     </div>
 
                                 </div>
-
-                                <div id="book_it_status" style="display: none">
+                                <?php if($good['discount_price'] > 0){?>
+                                <div id="book_it_status" style="">
                                     <div id="book_it_enabled" class="clearfix">
-
                                         <div id="book_it_button_container" class="row-space-top-2">
                                             <button type="submit" class="btn btn-applay btn-large btn-block" id="book_it_button">
-                                                <span class="book-it">申请预订</span>
-                                                        <span class="instant-book">
-                                                        <i class="icon icon-bolt icon-beach h4"></i>快捷预订</span>
+                                                <span class="book-it">立即购买</span>
+                                                <span class="instant-book">
+                                                        <i class="icon icon-bolt icon-beach h4"></i>快捷预订
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
+                                <?php }?>
                                 
                                 <!--share to sns-->
                                 <?php if($share){?>

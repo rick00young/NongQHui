@@ -3,7 +3,7 @@
  * @describe:
  * @author: rick
  * */
-class good_deleteAction extends BaseAction
+class good_deleteAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

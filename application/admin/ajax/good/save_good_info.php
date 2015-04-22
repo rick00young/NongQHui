@@ -3,7 +3,7 @@
  * @describe:
  * @author: rick
  * */
-class save_good_infoAction extends BaseAction
+class save_good_infoAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

@@ -6,7 +6,7 @@
  * Time: 下午10:59
  */
 
-class good_editAction extends BaseAction
+class good_editAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

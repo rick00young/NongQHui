@@ -6,7 +6,7 @@
  * Time: 下午10:59
  */
 
-class goodMoreInfoAction extends BaseAction
+class goodMoreInfoAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

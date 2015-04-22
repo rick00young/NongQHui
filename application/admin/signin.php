@@ -3,7 +3,7 @@
  * @describe:
  * @author: Jerry Yang(hy0kle@gmail.com)
  * */
-class signinAction extends BaseAction
+class signinAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

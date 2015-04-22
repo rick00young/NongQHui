@@ -3,7 +3,7 @@
  * @describe:
  * @author: rick
  * */
-class good_offlineAction extends BaseAction
+class good_offlineAction extends AdminBaseAction
 {
     public function run($arg = null)
     {
