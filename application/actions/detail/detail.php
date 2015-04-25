@@ -6,7 +6,7 @@
  * Time: 下午3:30
  */
 
-class detailAction extends AdminBaseAction
+class detailAction extends BaseAction
 {
     public function run($arg = null)
     {
@@ -82,6 +82,7 @@ class detailAction extends AdminBaseAction
         $this->setTDK();
 
         $this->assign('is_mobile',$this->isMobilePlatform());
+        $this->assign('_current_nav', 'detail');
 
         $this->getView()->display('second_view/detail.phtml');
     }

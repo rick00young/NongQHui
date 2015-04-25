@@ -2,7 +2,6 @@
 /**
  * zq-encipher双向加密解密
  * 密钥在config的global.authkey
- * @author zhifeng
  * @version 2014.04.16
  */
 class LibEncipher

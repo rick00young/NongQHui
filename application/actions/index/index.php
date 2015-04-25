@@ -6,7 +6,7 @@
  * Time: 下午3:30
  */
 
-class indexAction extends AdminBaseAction
+class indexAction extends BaseAction
 {
     public function run($arg = null)
     {

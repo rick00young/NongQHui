@@ -70,13 +70,17 @@ class SnsController extends Yaf_Controller_Abstract {
         $referer = $_SESSION[self::REFERER_KEY];
         $referer = $referer ? $referer : '/';
 
+        //这里有个问题,数据里的数据与第三方返回的用户数据有点偏差,数据库的少发用户地址城市等数据
         $userRes = UserModel::getUserInfoByOpenId($userInfo['openid']);
         if(is_array($userRes)){
 
             $_SESSION['user_info'] = array(
                 'uid' => $userRes['id'],
-                'base_info' => $userRes,
+                //'base_info' => $userRes,
+                'base_info' => UserModel::getUserInfoFromSnsData($type, $userInfo),
             );
+
+            //set cookie
 
             //TODO 跳到referer页面
             $this->redirect($referer);
@@ -88,6 +92,9 @@ class SnsController extends Yaf_Controller_Abstract {
         if(!$saveRes){
             echo '授权失败!';
         }else{
+            //set cookie
+
+
             //TODO 跳到referer页面
             $this->redirect($referer);
             echo '授权成功!';

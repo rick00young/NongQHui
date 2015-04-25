@@ -6,10 +6,11 @@
  * Time: 下午3:30
  */
 
-class aboutAction extends AdminBaseAction
+class aboutAction extends BaseAction
 {
     public function run($arg = null)
     {
+        $this->assign('_current_nav_', 'about');
         $this->getView()->display('second_view/about.phtml');
     }
 }

@@ -1,0 +1,137 @@
+<!--header-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
+    array(
+    'css' => array(
+        '/static/second_asset/css/me.css',
+        '/static/second_asset/common/color.css'
+        )
+    )
+);
+?>
+
+<!--nav-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
+?>
+
+<!--content-->
+<div class="row-space-4 row-space-top-6"></div>
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-6">
+                <div class="sidenav">
+                    <ul class="sidenav-list hide-sm">
+                        <li>
+                            <a class="sidenav-item" href="/index/me" aria-selected="true">
+                                我的资料
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sidenav-item" href="/index/order_list">
+                                我的订单
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-6">
+                <div class="panel row-space-4">
+
+                    <div class="panel-body">
+                        <div class="row-space-4">
+                        </div>
+
+                        <?php if(isset($_user_info_['avator']) && $_user_info_['avator']){?>
+                            <div class="row row-condensed row-space-4">
+                            <span class="text-right col-xs-3" for="user_first_name">
+                                头像
+                            </span>
+                                <div class="col-xs-9">
+                                    <label><img width="50" height="50" class="img-responsive" src="<?=htmlspecialchars($_user_info_['avator'])?>" alt=""></label>
+                                </div>
+                            </div>
+                        <?php }?>
+
+                        <?php if(isset($_user_info_['nickname']) && $_user_info_['nickname']){?>
+                        <div class="row row-condensed row-space-4">
+                            <span class="text-right col-xs-3" for="user_first_name">
+                                昵称
+                            </span>
+                            <div class="col-xs-9">
+                                <span><?=htmlspecialchars($_user_info_['nickname'])?></span>
+                            </div>
+                        </div>
+                        <?php }?>
+
+                        <?php if( isset($_user_info_['mobile']) && $_user_info_['mobile'] ){?>
+                        <div class="row row-condensed row-space-4">
+                            <span class="text-right col-xs-3" for="user_last_name">
+                                电话
+                            </span>
+                            <div class="col-xs-9">
+                                <span><?=htmlspecialchars($_user_info_['mobile'])?></span>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        <?php if( isset($_user_info_['email']) && $_user_info_['email'] ){ ?>
+                        <div class="row row-condensed row-space-4">
+                            <span class="text-right col-xs-3" for="user_last_name">
+                                邮箱
+                            </span>
+                            <div class="col-xs-9">
+                                <span><?=htmlspecialchars($_user_info_['email'])?></span>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        <?php if( isset($_user_info_['sex']) && $_user_info_['sex'] ){
+                            $gender = '';
+                            if(1 == $_user_info_['sex']) $gender = '男';
+                            if(2 == $_user_info_['sex']) $gender = '女';
+                        ?>
+                        <div class="row row-condensed row-space-4">
+                            <span class="text-right col-xs-3" for="user_last_name">
+                                 性别
+                            </span>
+                            <div class="col-xs-9">
+                                <span><?=$gender?></span>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        <?php if( isset($_user_info_['province']) && $_user_info_['province']  ){ ?>
+                        <div class="row row-condensed row-space-4">
+                            <span class="text-right col-xs-3" for="user_last_name">
+                                省份
+                            </span>
+                            <div class="col-xs-9">
+                                <span><?=htmlspecialchars($_user_info_['province'])?></span>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        <?php if( isset($_user_info_['city']) && $_user_info_['city'] ){ ?>
+                        <div class="row row-condensed row-space-4">
+                            <span class="text-right col-xs-3" for="user_last_name">
+                                城市
+                            </span>
+                            <div class="col-xs-9">
+                                <span><?=htmlspecialchars($_user_info_['city'])?></span>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml');
+?>

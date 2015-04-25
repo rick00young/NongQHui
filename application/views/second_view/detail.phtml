@@ -154,12 +154,19 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                 <div id="book_it_status" style="">
                                     <div id="book_it_enabled" class="clearfix">
                                         <div id="book_it_button_container" class="row-space-top-2">
+                                            <?php if(true === $_is_login_){?>
                                             <button type="submit" class="btn btn-applay btn-large btn-block" id="book_it_button">
                                                 <span class="book-it">立即购买</span>
                                                 <span class="instant-book">
                                                         <i class="icon icon-bolt icon-beach h4"></i>快捷预订
                                                 </span>
                                             </button>
+                                            <?php }else{?>
+
+                                            <button type="button" class="btn btn-applay btn-large btn-block" data-toggle="modal" data-target=".login_model">
+                                                <span class="book-it">立即购买</span>
+                                            </button>
+                                            <?php }?>
                                         </div>
                                     </div>
                                 </div>
@@ -316,7 +323,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         <a href="/rooms/764010" class="text-normal" target="_self">
                             <div title="Classic room in Lower Pac Heights" class="h5 listing-name text-truncate row-space-top-1">Classic room in Lower Pac Heights</div>
                         </a>
-                        <div class="text-muted listing-location text-truncate">独立房间 · 旧金山</div>
+                        <div class="text-muted listing-location text-truncate">独立房间</div>
                     </div>
                 </div>
             </div>
@@ -354,6 +361,26 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 </div>
 <?php }?>
 
+
+<!-- Modal -->
+<div class="modal fade login_model" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">登陆<a class="anchorjs-link" href="#mySmallModalLabel"><span class="anchorjs-icon"></span></a></h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center;">
+                    <a href="/sns/login?type=weixin">
+                        <img src="https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png" alt="" class="design_icon" style="vertical-align: bottom; margin-bottom: 5px;">
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--footer-->
 <?php
