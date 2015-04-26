@@ -220,18 +220,19 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 
 
 
-                    <?php if($good['photo']){?>
+                    <?php if(isset($good['photo']) && $good['photo']){?>
                     <h4 class="row-space-4 new-tit">
                         <span class="name">产品产示</span>
                     </h4>
                     <div class="panel panel-dark row-space-4 good_imgs">
                         <?php foreach((array)$good['photo'] as $key => $img){?>
-                        <div class="<?=($key !== 0) ? 'row-space-top-3 ' : ''?>"><img src="<?=$img?>"></div>
+                        <div class="<?=($key !== 0) ? 'row-space-top-3 ' : ''?>">
+                            <img class="lazy" src="/static/default/default_img.png" data-original="<?=$img?>"></div>
                         <?php }?>
                     </div>
                     <?php }?>
 
-                    <?php if($good['buy_needKnow']){?>
+                    <?php if(isset($good['buy_needKnow']) && $good['buy_needKnow']){?>
                     <h4 class="row-space-4 new-tit">
                         <span class="name">用户须知</span>
                     </h4>
@@ -384,13 +385,13 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 
 <!--footer-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/footer.phtml',
-                            array(
-                                'js' => array(
-                                    'http://api.map.baidu.com/api?v=2.0&ak=T7gDQXp0hmAGKCFol7ktMC2P',
-                                )
-                            )
+$js = array(
+    'js' => array(
+        'http://api.map.baidu.com/api?v=2.0&ak=T7gDQXp0hmAGKCFol7ktMC2P',
+        '/static/plugin/jquery.lazyload.min.js',
+    )
 );
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml', $js);
 ?>
 
 
@@ -412,6 +413,8 @@ echo Yaf_View_Simple::render('second_view/tpl/footer.phtml',
             map.centerAndZoom(point,15);
         }
     });
+
+    $("img.lazy").lazyload({ threshold : 200 });
 
 </script>
 
