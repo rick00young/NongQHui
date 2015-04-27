@@ -99,6 +99,37 @@ class OrderModel
 
         return $id;
     }
+
+
+    public static function getOrderByeUid($uid, $start = 0, $offset = 0, $status = 0, $option = array()){
+        $sql  = sprintf('SELECT SQL_CALC_FOUND_ROWS * FROM `%s` ', self::PRIMARY_TABLE_NAME);
+        $sql .= sprintf('WHERE `consumer_uid` = "%d" ', $uid);
+
+        if(intval($status)){
+            $sql .= sprintf('WHERE `status` = "%d" ', intval($status));
+        }
+
+        $limit = array();
+        if(intval($start)){
+            array_push($limit, intval($start));
+        }
+        if(intval($offset)){
+            array_push($limit, intval($offset));
+        }
+
+        if(!empty($limit)){
+            $sql .= sprintf(' LIMIT %s', implode(',', $limit));
+        }
+
+        SeasLog::debug(__METHOD__ . ' [SQL]: ' . $sql);
+        $orders =  DB::getAll($sql);
+        if(!$orders){
+            return $orders;
+        }
+        $count = DB::foundRows();
+
+        return array('list' => $orders, 'count' => $count);
+    }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
 

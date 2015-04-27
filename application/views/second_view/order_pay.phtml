@@ -1,13 +1,12 @@
 <!--header-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
-    array(
+$css = array(
     'css' => array(
         '/static/second_asset/css/order.css',
         '/static/second_asset/common/color.css',
-        )
     )
 );
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml', $css);
 ?>
 
 <!--nav-->

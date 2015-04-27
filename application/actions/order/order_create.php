@@ -4,6 +4,9 @@ class order_createAction extends BaseAction
     public function run($arg = null)
     {
         Yaf_Dispatcher::getInstance()->autoRender(FALSE);
+        if(true !== $this->_islogin){
+            $this->display404();
+        }
 
         $goodId = intval(GenerateEncrypt::decrypt($this->post('good_id'), ID_SIMPLE_KEY));
         if(!$goodId){
@@ -41,10 +44,11 @@ class order_createAction extends BaseAction
             SeasLog::error('price problem  fee:' . $fee . ' realFee:' . $realFee);
         }
 
+        $uid = $this->getUid();
         $order_dt = array(
             'product_id' => $goodId,
             'producer_uid' => 1,
-            'consumer_uid' => 123,
+            'consumer_uid' => $uid,
             'amount' => $realFee,
         );
         $orderRes = OrderService::sCreateOrder($order_dt, $goodRes['category_id']);

@@ -1,13 +1,13 @@
 <!--header-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
-    array(
+$css = array(
     'css' => array(
-        '/static/second_asset/css/about.css',
-        '/static/second_asset/common/color.css'
-        )
+        //'/static/second_asset/css/about.css',
+        '/static/second_asset/common/color.css',
+        '/static/second_asset/css/order.css',
     )
 );
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml',  $css);
 ?>
 
 <!--nav-->
@@ -46,38 +46,42 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         <div class="suspension-container">
                             <ul class="list-unstyled list-layout">
 
-                                <li class="listing panel-body">
-                                    <div class="row row-table">
-                                        <div class="col-xs-2">
-                                            <a href="">
-                                                <div class="media-photo media-photo-block" style="height: 150px;">
-                                                    <div class="media-cover text-center">
-                                                        <img class="lazy img-responsive-height" src="<?=isset($good['photo'][0]) ? $good['photo'][0] : ''?>" style="display: inline;">
-                                                    </div>
+                                <?php if(isset($orders) && !empty($orders['list'])){ ?>
+                                    <?php foreach($orders['list'] as $order){ ?>
+                                        <li class="listing panel-body">
+                                            <div class="row row-table">
+                                                <div class="col-xs-2">
+                                                    <a href="">
+                                                        <div class="media-photo media-photo-block" style="height: 150px;">
+                                                            <div class="media-cover text-center">
+                                                                <img class="lazy img-responsive-height" src="<?=isset($order['head_img']) ? $order['head_img'] : ''?>" style="display: inline;">
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-7 col-middle">
+                                                <div class="col-xs-7 col-middle">
                                             <span class="h4">
-                                                <a href="" class="text-normal"><?=$good['title']?></a>
+                                                <a href="" class="text-normal"><?=$order['title']?></a>
                                             </span>
-                                            <div class="actions row-space-top-1">
-                                                <span href="">金额: <?=$order['amount']?></span>
-                                                <span href="">订单: <?=$order['order_sn']?></span>
-                                                <span href="">订单: <?=date('Y-m-d H:i:s', $order['create_time'])?></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-3 col-middle">
-                                            <div class="pull-right">
-                                                <div class="listing-criteria-header activation-notification">
-                                                    <div class="listing-criteria-header-message">
-                                                        <a href="" order_sn="<?=$order['order_sn']?>" class="btn btn-danger">立即支付</a>
+                                                    <div class="actions row-space-top-1">
+                                                        <span href="">金额: <?=$order['amount']?></span>
+                                                        <span href="">订单: <?=$order['order_sn']?></span>
+                                                        <span href="">订单: <?=date('Y-m-d H:i:s', $order['create_time'])?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3 col-middle">
+                                                    <div class="pull-right">
+                                                        <div class="listing-criteria-header activation-notification">
+                                                            <div class="listing-criteria-header-message">
+                                                                <a href="" order_sn="<?=$order['order_sn']?>" class="btn btn-danger">立即支付</a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                        </li>
+                                    <?php }?>
+                                <?php }?>
 
                                 <li class="listing panel-body hide" data-hosting-id="">
                                     <div class="row row-table">

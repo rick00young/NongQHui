@@ -179,4 +179,39 @@ class GoodModel {
         return $goodRes;
     }
 
+    /*************** 前端使用 ***************/
+    //通过goodIds 批量获取商品
+    public static function getGoodsByGoodId($goodIds, $option = null)
+    {
+        if(empty($goodIds)) return false;
+
+        $sql  = sprintf('SELECT * FROM `%s` ', self::TABLE_NAME);
+        $sql .= sprintf('WHERE `id` in ("%s") ', implode(',', $goodIds));
+
+        if(is_array($option) && !empty($option['status'])){
+            $sql .= sprintf(" AND status in (%s)", implode(',', $option['status']));
+        }else{
+            $sql .= sprintf(" AND status in (%s)", implode(',', array(1)));
+        }
+        //echo $sql . PHP_EOL;exit;
+
+        return DB::getAll($sql);
+    }
+
+    //通过goodIds 批量获取商品扩展信息
+    public static function getGoodsExInfoByGoodId($goodIds, $option = null)
+    {
+        if(empty($goodIds)) return false;
+
+        $sql  = sprintf('SELECT * FROM `%s` ', self::EXT_INFO_TABLE);
+        $sql .= sprintf('WHERE `good_id` in ("%s") ', implode(',', $goodIds));
+
+        if(is_array($option) && !empty($option['type'])){
+            $sql .= sprintf(" AND type in (%s)", implode(',', $option['type']));
+        }
+        //echo $sql . PHP_EOL;exit;
+
+        return DB::getAll($sql);
+    }
+
 }
