@@ -58,7 +58,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                     <div class="panel-image listing-img">
                         <a href="<?=$good['detail_url']?>" class="media-photo media-cover" target="_blank">
                             <div class="listing-img-container media-cover text-center">
-                                <img src="<?=$good['photo'][0]?>" class="img-responsive-height">
+                                <img class="lazy" src="/static/default/default_img.png" data-original="<?=$good['photo'][0]?>" class="img-responsive-height">
                             </div>
                         </a>
                         <div>
@@ -100,5 +100,16 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 
 <!--footer-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/footer.phtml');
+$js = array(
+    'js' => array(
+        '/static/plugin/jquery.lazyload.min.js',
+    )
+);
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml', $js);
 ?>
+
+<script type="text/javascript">
+
+    $("img.lazy").lazyload({ threshold : 200 });
+    
+</script>
