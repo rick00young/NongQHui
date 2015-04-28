@@ -3,7 +3,7 @@
  * @describe:
  * @author: rick
  * */
-class saveshopAction extends BaseAction
+class saveshopAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

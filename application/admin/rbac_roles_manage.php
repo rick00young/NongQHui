@@ -3,7 +3,7 @@
  * @describe:
  * @author: Jerry Yang(hy0kle@gmail.com)
  * */
-class rbac_roles_manageAction extends BaseAction
+class rbac_roles_manageAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

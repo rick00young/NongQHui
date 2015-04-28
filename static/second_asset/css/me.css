@@ -1,0 +1,41 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,sans-serif !important;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #565a5c;
+    background-color: #f5f5f5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.sidenav-item[aria-selected="true"] {
+    text-decoration: none;
+    color: #565a5c;
+    font-weight: bold
+}
+
+.sidenav-item_nobold {
+    text-decoration: none;
+    color: #565a5c;
+    font-weight: bold
+}
+
+
+.sidenav-text,.sidenav-item {
+    display: block;
+    padding: 6px 0;
+    font-size: 16px;
+    color: #82888a
+}
+
+.panel {
+    border: 1px solid #dce0e0;
+    background-color: #fff;
+    border-radius: 0
+}
+
+
+label{
+
+}
+

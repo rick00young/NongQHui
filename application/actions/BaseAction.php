@@ -12,10 +12,12 @@ abstract class BaseAction extends Yaf_Action_Abstract
         'base_info' => array(),
     );
 
+    protected $_islogin = false;
+
     protected $_page_title;
     protected $_page_keywords;
     protected $_page_description;
-    protected $_current_nav = 'rbac';
+    protected $_current_nav = 'home';
 
     protected function beforeExecute()
     {
@@ -24,60 +26,17 @@ abstract class BaseAction extends Yaf_Action_Abstract
         if (isset($_SESSION['user_info']) && count($_SESSION['user_info']) && $_SESSION['user_info']['uid'] > 0)
         {
             $this->user_info = $_SESSION['user_info'];
+            $this->_islogin = true;
         }
         $this->assign('_uid_', $this->user_info['uid']);
-        $this->assign('_current_nav', $this->_current_nav);
+        $this->assign('_current_nav_', $this->_current_nav);
+        $this->assign('_is_login_', $this->_islogin);
+        $this->assign('_user_info_', $this->user_info['base_info']);
         /**
          * 一些常用公共数据
          */
         $current_controller = strtolower($this->getRequest()->getControllerName());
         $action_name        = strtolower($this->getRequest()->getActionName());
-
-        if ('admin' == $current_controller)
-        {
-            $unnecessary_login_actions = array(
-                'login', 'signin',
-                'register', 'logout',
-                'create_user',
-            );
-            if (! in_array($action_name, $unnecessary_login_actions) && 0 == $this->user_info['uid'])
-            {
-                header('Location: /admin/login');
-                return false;
-            }
-
-            /** rbac 权限控制 */
-            $uid = $this->user_info['uid'];
-            if (false !== strpos($action_name, 'rbac_'))
-            {
-                if (SUPERVISOR_UID == $uid)
-                {
-                    return true;
-                }
-                else
-                {
-                    Html::setFlash('没有授权');
-                    header('Location: /admin');
-                    return false;
-                }
-            }
-
-            $pid = RbacService::getPidByTitle($action_name);
-            if ($pid > 1) // 1: root
-            {
-                // 说明此 action 有权限控制
-                if (RbacService::check($pid, $uid))
-                {
-                    return true;
-                }
-                else
-                {
-                    Html::setFlash('没有授权,请联系管理员');
-                    $this->redirect('/admin');
-                    return false;
-                }
-            }
-        }
 
         return true;
     }
@@ -154,6 +113,10 @@ abstract class BaseAction extends Yaf_Action_Abstract
 
     public function getUid(){
         return isset($this->user_info['uid']) ? $this->user_info['uid'] : 0;
+    }
+
+    public function getUserInfo(){
+        return isset($this->user_info['base_info']) ? $this->user_info['base_info'] : '';
     }
 
     protected function jsonReturn($info){

@@ -3,7 +3,7 @@
  * @describe:
  * @author: Jerry Yang(hy0kle@gmail.com)
  * */
-class logoutAction extends BaseAction
+class logoutAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

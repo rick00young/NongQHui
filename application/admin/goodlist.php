@@ -6,7 +6,7 @@
  * Time: 下午10:59
  */
 
-class goodlistAction extends BaseAction{
+class goodlistAction extends AdminBaseAction{
     public function run($arg = null)
     {
         $uid = $this->getUid();

@@ -13,7 +13,7 @@ class AdminController extends Yaf_Controller_Abstract
         // 后台管理通过服务器站的 session 实现
         // 不支持管理员记住登陆状态
         // session.gc_maxlifetime 默认 1440
-        session_start();
+        //session_start();
         Yaf_Dispatcher::getInstance()->autoRender(false);
     }
 
@@ -69,6 +69,8 @@ class AdminController extends Yaf_Controller_Abstract
         'newgood'   => 'admin/newgood.php',
         'goodmoreinfo' => 'admin/goodMoreInfo.php',
         'good_preview' => 'admin/good_preview.php',
+
+        'order_list' => 'admin/order/order_list.php',
     );
 
 }

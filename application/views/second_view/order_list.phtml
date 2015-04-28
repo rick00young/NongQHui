@@ -1,0 +1,130 @@
+<!--header-->
+<?php
+$css = array(
+    'css' => array(
+        //'/static/second_asset/css/about.css',
+        '/static/second_asset/common/color.css',
+        '/static/second_asset/css/order.css',
+    )
+);
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml',  $css);
+?>
+
+<!--nav-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
+?>
+
+<!--content-->
+<div class="row-space-4 row-space-top-6"></div>
+<div id="content">
+    <div class="container page-container-responsive">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="sidenav">
+                    <ul class="sidenav-list hide-sm">
+                        <li>
+                            <a class="sidenav-item" href="/index/me">
+                                我的资料
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sidenav-item" href="/index/order_list" aria-selected="true">
+                                我的订单
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10">
+
+                <div class="panel row-space-4">
+                    <div class="panel-body">
+                        <div class="">
+                        </div>
+
+                        <div class="suspension-container">
+                            <ul class="list-unstyled list-layout">
+
+                                <?php if(isset($orders) && !empty($orders['list'])){ ?>
+                                    <?php foreach($orders['list'] as $order){ ?>
+                                        <li class="listing panel-body">
+                                            <div class="row row-table">
+                                                <div class="col-xs-2">
+                                                    <a href="">
+                                                        <div class="media-photo media-photo-block" style="height: 150px;">
+                                                            <div class="media-cover text-center">
+                                                                <img class="lazy img-responsive-height" src="<?=isset($order['head_img']) ? $order['head_img'] : ''?>" style="display: inline;">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-7 col-middle">
+                                            <span class="h4">
+                                                <a href="" class="text-normal"><?=$order['title']?></a>
+                                            </span>
+                                                    <div class="actions row-space-top-1">
+                                                        <span href="">金额: <?=$order['amount']?></span>
+                                                        <span href="">订单: <?=$order['order_sn']?></span>
+                                                        <span href="">订单: <?=date('Y-m-d H:i:s', $order['create_time'])?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3 col-middle">
+                                                    <div class="pull-right">
+                                                        <div class="listing-criteria-header activation-notification">
+                                                            <div class="listing-criteria-header-message">
+                                                                <a href="" order_sn="<?=$order['order_sn']?>" class="btn btn-danger">立即支付</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php }?>
+                                <?php }?>
+
+                                <li class="listing panel-body hide" data-hosting-id="">
+                                    <div class="row row-table">
+                                        <div class="col-xs-2">
+                                            <a href="">
+                                                <div class="media-photo media-photo-block" style="height: 63px;">
+                                                    <div class="media-cover text-center">
+                                                        <img class="lazy img-responsive-height" data-original="https://z2.muscache.com/airbnb/static/page3/v3/room_default_no_photos-90b75fadaf2d12ac60c0fd29a8537387.png" src="https://z2.muscache.com/airbnb/static/page3/v3/room_default_no_photos-90b75fadaf2d12ac60c0fd29a8537387.png" style="display: inline;">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-7 col-middle">
+                                            <span class="h4">
+                                            <a href="" class="text-normal">Beijing的整套房子/公寓</a>
+                                            </span>
+                                            <div class="actions row-space-top-1">
+                                                <a href="">管理房源和日历</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-middle">
+                                            <div class="pull-right">
+                                                <div class="listing-criteria-header activation-notification">
+                                                    <div class="listing-criteria-header-message">
+                                                        <a href="" class="btn btn-success">支付成功</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml');
+?>

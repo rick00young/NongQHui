@@ -6,9 +6,9 @@
                 <a href="/">
                     <!-- Logo area -->
                     <div class="logo">
-                        <img class="img-responsive" src="/static/assert/logo.jpg" alt="">
+                        <img class="img-responsive" src="/static/assert/logo.png" alt="">
                         <!-- Heading -->
-                        <h1>农趣会</h1>
+                        <h1>农曲星</h1>
                         <!-- Paragraph -->
                         <p>北京周边采摘 农家乐 散养柴鸡蛋.</p>
                     </div>
@@ -31,9 +31,10 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="current">
+                                <li class="<?=isset($_current_nav_) && 'home' == $_current_nav_ ? 'current' : ''?>">
                                     <a href="/"> 首页</a>
                                 </li>
+                                <!--
                                 <li class="">
                                     <a href="#" class="dropdown-toggle"> 采摘</a>
                                 </li>
@@ -44,9 +45,15 @@
                                 <li class="">
                                     <a href="#" class="">柴鸡蛋</a>
                                 </li>
-                                <li class="">
-                                    <a href="/about"> 关于我们</a>
+                                -->
+                                <li class="<?=isset($_current_nav_) && 'about' == $_current_nav_ ? 'current' : ''?>">
+                                    <a href="/index/about"> 关于我们</a>
                                 </li>
+                                <?php if(isset($_is_login_) && true == $_is_login_){?>
+                                <li class="<?=isset($_current_nav_) && 'me' == $_current_nav_ ? 'current' : ''?>">
+                                    <a href="/index/me" class=""><?=$_user_info_['nickname']?></a>
+                                </li>
+                                <?php }?>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->

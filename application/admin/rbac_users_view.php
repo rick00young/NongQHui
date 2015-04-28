@@ -3,7 +3,7 @@
  * @describe:
  * @author: Jerry Yang(hy0kle@gmail.com)
  * */
-class rbac_users_viewAction extends BaseAction
+class rbac_users_viewAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

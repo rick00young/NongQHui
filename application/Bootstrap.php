@@ -46,6 +46,12 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
         Yaf_loader::import(APPLICATION_PATH . '/application/actions/BaseAction.php');
     }
 
+    // 加入admin的基类 action
+    public function _initAdminBaseAction(Yaf_Dispatcher $dispatcher)
+    {
+        Yaf_loader::import(APPLICATION_PATH . '/application/actions/AdminBaseAction.php');
+    }
+
     // 加入第三方 rbac,基于角色的权限管理
     //  @see: http://phprbac.net/index.php
     //  需要 yaf 打开 yaf.use_spl_autoload = 1

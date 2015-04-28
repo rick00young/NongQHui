@@ -159,5 +159,27 @@ class DB
         return Util::isBinary($str) ? addslashes($str) : htmlspecialchars(trim($str), ENT_QUOTES);
     }
 
+    /**
+     * select 后的count方法
+     */
+    public static function foundRows()
+    {
+        $sql = "SELECT FOUND_ROWS()";
+        $res =  DB::query($sql);
+        $row =  $res->fetch();
+
+        if (false === $row) {
+            return false;
+        } elseif (null === $row) {
+            return null;
+        }
+
+        if (!is_array($row)) {
+            return false;
+        }
+
+        $ret = array_values($row);
+        return $ret[0];
+    }
 
 }

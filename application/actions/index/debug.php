@@ -53,7 +53,15 @@ class debugAction extends Yaf_Action_Abstract
         //// 点的大小：1到10
         //$matrixPointSize = 4;
         //QRcode::png($data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+        $sql = 'select * from comment';
+        var_export(PGDB::getAll($sql));
 
+        //'pgsql:dbname=rate_comment;host=127.0.0.1;port=5432;user=rick;password=rick'
+//        $dbh = new PDO('pgsql:dbname=rate_comment;
+//                           host=127.0.0.1;
+//                           user=rick;
+//                           password=rick');
+        //var_export($dbh->query($sql)->fetch());
         return false;
     }
 }

@@ -6,7 +6,7 @@
  * Time: 下午3:30
  */
 
-class editshopAction extends BaseAction
+class editshopAction extends AdminBaseAction
 {
     public function run($arg = null)
     {

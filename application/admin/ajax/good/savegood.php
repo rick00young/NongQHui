@@ -3,7 +3,7 @@
  * @describe:
  * @author: rick
  * */
-class savegoodAction extends BaseAction
+class savegoodAction extends AdminBaseAction
 {
     public function run($arg = null)
     {
@@ -45,7 +45,7 @@ class savegoodAction extends BaseAction
 
         $discount_price = is_numeric($this->post('good_d_price')) ? $this->post('good_d_price') : 0;
         $goodData['discount_price'] = sprintf('%.2f', $discount_price);
-        
+
         $goodData['stock'] = intval($this->post('good_stock'));
         $goodData['status'] = 1;
         $goodData['shop_id'] = $shop_id;

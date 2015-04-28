@@ -1,0 +1,222 @@
+
+
+
+<!--header-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/header.phtml', array('css' => array('/static/admin_lte//plugins/datatables/dataTables.bootstrap.css')));
+?>
+<link rel="stylesheet" type="text/css" href="/static/plugin/uploadify/uploadify.css">
+<!--/header-->
+<!--navbar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/navbar.phtml');
+?>
+<!--navbar-->
+
+<!-- Left side column. contains the logo and sidebar -->
+<!--sidebar-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/sidebar.phtml');
+?>
+<!--sidebar-->
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            订单列表
+            <small>Preview</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">订单管理</a></li>
+            <li class="active">订单列表</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title"> </h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <div id="example2_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-xs-6"></div>
+                                <div class="col-xs-6"></div>
+                            </div>
+
+                            <div class="btn-group">
+                                <?php foreach((array)$order_status as $status){ ?>
+                                    <a type="button" class="btn<?=$current_status == $status['value'] ? ' btn-primary' : ' btn-default'?>" href="<?=$status['url']?>">
+                                        <?=$status['name']?>
+                                    </a>
+                                <?php }?>
+
+                            </div>
+                            <table id="example2" class="table table-bordered table-hover dataTable" aria-describedby="example2_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="" role="columnheader" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">商品标题</th>
+                                    <th class="" role="columnheader" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">订单号</th>
+                                    <th class="" role="columnheader" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">金额</th>
+                                    <th class="" role="columnheader" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">下单时间</th>
+                                    <th class="" role="columnheader" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">购买者</th>
+                                    <th class="" role="columnheader" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">状态</th>
+                                    <th class="hide" role="columnheader" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">操作</th>
+                                </tr>
+                                </thead>
+
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    <?php foreach((array)$orders['list'] as $key => $order){?>
+                                    <tr <?=0 == $key%2 ? 'class="odd"' : 'class="even"'?>>
+                                        <td class=" sorting_1"><?=$order['title']?></td>
+                                        <td class=" "><?=$order['id']?></td>
+                                        <td class=" "><?=$order['amount']?></td>
+                                        <td class=" "><?=date('Y-m-d H:i:s', $order['create_time'])?></td>
+                                        <td class=" "><?=isset($order['user_info']) ? $order['user_info']['nickname'] : ''?></td>
+                                        <td class=" ">
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Default button group">
+                                                <button type="button" class="btn btn-info">
+                                                    <?=$order['payment_handle']['title']?>
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                        <td class="hide" style="text-align: center;">
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Default button group">
+                                                <a type="button" class="btn btn-info" href="<?=$order['edit']?>">编辑信息</a>
+                                                <a type="button" class="btn btn-info" href="<?=$order['edit_info']?>">编辑内容</a>
+                                                <a type="button" class="btn btn-info" href="<?=$order['preview']?>" target="_blank">预览</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php }?>
+                                </tbody>
+                            </table>
+                            <div class="row hide">
+                                <div class="col-xs-6">
+                                    <div class="dataTables_info" id="example2_info">Showing 51 to 57 of 57 entries</div>
+                                </div>
+                                <div class="col-xs-6"><div class="dataTables_paginate paging_bootstrap">
+                                        <ul class="pagination">
+                                            <li class="prev"><a href="#">← 上一页</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li class="active"><a href="#">6</a></li>
+                                            <li class="next disabled"><a href="#">下一页 → </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?=$pp?>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+
+
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+
+<!--footer-->
+<?php
+echo Yaf_View_Simple::render('admin/tpl/footer.phtml');
+?>
+<!--footer-->
+<script type="text/javascript" src="/static/plugin/uploadify/jquery.uploadify.min.js"></script>
+<?php $timestamp = time();?>
+<script type="text/javascript">
+
+function good_on_line(shop_id, good_id){
+    if(!shop_id || !good_id){
+        alert('好像出问题了,请联系管理员哦!');
+        return false;
+    }
+
+    if(confirm("您确定要将此条记录发布吗?")){
+        var postData = {
+            'shop_id':shop_id,
+            'good_id':good_id
+        };
+        console.log(postData);//return false;
+
+        $.post('/admin/good_online',postData,function(response){
+            if(0 == response.errno){
+              alert('上架成功.');
+              location.href = location.href;
+            }else{
+              alert('好像出问题了,请联系管理员哦!');
+            }           
+        })
+    }else{
+        return false;
+    }
+}
+
+function good_off_line(shop_id, good_id){
+    if(!shop_id || !good_id){
+        alert('好像出问题了,请联系管理员哦!');
+        return false;
+    }
+
+    if(confirm("您确定要将此条记录下架吗?")){
+        var postData = {
+            'shop_id':shop_id,
+            'good_id':good_id
+        };
+        console.log(postData);//return false;
+
+        $.post('/admin/good_offline',postData,function(response){
+            if(0 == response.errno){
+              alert('下架成功.');
+              location.href = location.href;
+            }else{
+              alert('好像出问题了,请联系管理员哦!');
+            }           
+        })
+    }else{
+        return false;
+    }
+}
+
+function good_delete(shop_id, good_id){
+    if(!shop_id || !good_id){
+        alert('好像出问题了,请联系管理员哦!');
+        return false;
+    }
+
+    if(confirm("您确定要删除这条记录吗?")){
+        var postData = {
+            'shop_id':shop_id,
+            'good_id':good_id
+        };
+        console.log(postData);//return false;
+
+        $.post('/admin/good_delete',postData,function(response){
+            if(0 == response.errno){
+              alert('删除成功.');
+              location.href = location.href;
+            }else{
+              alert('好像出问题了,请联系管理员哦!');
+            }           
+        })
+    }else{
+        return false;
+    }
+}
+
+</script>
