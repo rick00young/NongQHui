@@ -103,6 +103,11 @@ class order_listAction extends AdminBaseAction{
 
         $this->assign('order_status',array(
             array(
+                'value' => 0,
+                'name' => '全部',
+                'url' => '/admin/order_list?status=0',
+            ),
+            array(
                 'value' => OrderModel::ORDER_STATUS_NO_PAYMENT,
                 'name' => OrderModel::displayOrderStatus(OrderModel::ORDER_STATUS_NO_PAYMENT),
                 'url' => '/admin/order_list?status='. GenerateEncrypt::encrypt(OrderModel::ORDER_STATUS_NO_PAYMENT, ID_SIMPLE_KEY),
