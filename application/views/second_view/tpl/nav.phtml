@@ -49,7 +49,7 @@
                                 <li class="<?=isset($_current_nav_) && 'about' == $_current_nav_ ? 'current' : ''?>">
                                     <a href="/index/about"> 关于我们</a>
                                 </li>
-                                <?php if(true == $_is_login_){?>
+                                <?php if(isset($_is_login_) && true == $_is_login_){?>
                                 <li class="<?=isset($_current_nav_) && 'me' == $_current_nav_ ? 'current' : ''?>">
                                     <a href="/index/me" class=""><?=$_user_info_['nickname']?></a>
                                 </li>

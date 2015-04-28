@@ -145,7 +145,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                     </div>
                                     <div class="col-md-3 own_info">
                                         <p itemprop="name" class="row-space-1 vip_panel" id="listing_name">
-                                            <i class="fa fa-eye br-purple"></i>共<?php echo $visit_pv; ?>人查看了
+                                            <i class="fa fa-eye br-purple"></i>共<?=isset($visit_pv) ? $visit_pv : 0?>人查看了
                                         </p>
                                     </div>
 
@@ -154,7 +154,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                 <div id="book_it_status" style="">
                                     <div id="book_it_enabled" class="clearfix">
                                         <div id="book_it_button_container" class="row-space-top-2">
-                                            <?php if(true === $_is_login_){?>
+                                            <?php if(isset($_is_login_) && true === $_is_login_){?>
                                             <button type="submit" class="btn btn-applay btn-large btn-block" id="book_it_button">
                                                 <span class="book-it">立即购买</span>
                                                 <span class="instant-book">
@@ -173,7 +173,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                 <?php }?>
                                 
                                 <!--share to sns-->
-                                <?php if($share){?>
+                                <?php if(isset($share) && $share){?>
                                 <div class="other-actions hide-sm text-center">
                                     <div class="social-share-widget row-space-top-3">
                                         <span class="share-title">分享：</span>
