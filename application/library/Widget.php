@@ -38,6 +38,43 @@ class Widget
 
         return $ret;
     }
+
+    public static function getClinetIP()
+    {
+        $clinet_ip = '';
+        if (isset($_SERVER))
+        {
+            if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            {
+                $clinet_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }
+            elseif (isset($_SERVER['HTTP_CLIENT_IP']))
+            {
+                $clinet_ip = $_SERVER['HTTP_CLIENT_IP'];
+            }
+            else
+            {
+                $clinet_ip = $_SERVER['REMOTE_ADDR'];
+            }
+        }
+        else
+        {
+            if (getenv('HTTP_X_FORWARDED_FOR'))
+            {
+                $clinet_ip = getenv('HTTP_X_FORWARDED_FOR');
+            }
+            elseif (getenv('HTTP_CLIENT_IP'))
+            {
+                $clinet_ip = getenv('HTTP_CLIENT_IP');
+            }
+            else
+            {
+                $clinet_ip = getenv('REMOTE_ADDR');
+            }
+        }
+
+        return $clinet_ip;
+    }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
 
