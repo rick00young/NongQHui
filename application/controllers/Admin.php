@@ -69,6 +69,8 @@ class AdminController extends Yaf_Controller_Abstract
         'newgood'   => 'admin/newgood.php',
         'goodmoreinfo' => 'admin/goodMoreInfo.php',
         'good_preview' => 'admin/good_preview.php',
+
+        'order_list' => 'admin/order/order_list.php',
     );
 
 }

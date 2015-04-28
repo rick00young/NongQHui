@@ -101,20 +101,25 @@ class OrderModel
     }
 
 
-    public static function getOrderByeUid($uid, $start = 0, $offset = 0, $status = 0, $option = array()){
+    public static function getOrderByeUid($uid, $start = 0, $size = 0, $status = 0, $option = array()){
         $sql  = sprintf('SELECT SQL_CALC_FOUND_ROWS * FROM `%s` ', self::PRIMARY_TABLE_NAME);
-        $sql .= sprintf('WHERE `consumer_uid` = "%d" ', $uid);
+
+        if(!empty($option) && isset($option['role']) && $option['role'] == 'admin'){
+            $sql .= sprintf('WHERE `consumer_uid` > "%d" ', 0);
+        }else{
+            $sql .= sprintf('WHERE `consumer_uid` = "%d" ', $uid);
+        }
 
         if(intval($status)){
-            $sql .= sprintf('WHERE `status` = "%d" ', intval($status));
+            $sql .= sprintf(' and `status` = "%d" ', intval($status));
         }
 
         $limit = array();
         if(intval($start)){
             array_push($limit, intval($start));
         }
-        if(intval($offset)){
-            array_push($limit, intval($offset));
+        if(intval($size)){
+            array_push($limit, intval($size));
         }
 
         if(!empty($limit)){
