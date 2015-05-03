@@ -17,6 +17,8 @@ define('REGISTER_MODEL_BUSINESS',2);//商家
 define('REGISTER_MODEL_UNKNOWN',0);
 
 
+define('C_FE_GUEST_AVATAR_68x68', '/static/default/people68x68.jpg');
+
 ////  根域名
 define('PERMIT_COOKIE','aapp');
 

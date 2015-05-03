@@ -86,4 +86,5 @@ class detailAction extends BaseAction
 
         $this->getView()->display('second_view/detail.phtml');
     }
+
 }

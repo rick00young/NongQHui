@@ -139,7 +139,7 @@ class UserModel
         if(empty($uids)) return false;
         $uids = array_unique($uids);
 
-        $sql  = 'SELECT `id`, `nickname`, `email`, `register_time`, `last_login_time`, `register_model`, `deleted` ';
+        $sql  = 'SELECT `id`, `nickname`, `avator`, `email`, `register_time`, `last_login_time`, `register_model`, `deleted` ';
         $sql .= sprintf('FROM `%s` ', self::TABLE_NAME);
         $sql .= sprintf(' WHERE id in (%s)', implode(',', $uids));
 

@@ -472,4 +472,20 @@
 }
 
 
+/** comment **/
+.media-photo {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    background-color: #cacccd
+}
+.img-round,.media-round {
+    border-radius: 50%;
+    border: 2px solid #fff
+}
+
+
 
