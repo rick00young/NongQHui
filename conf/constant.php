@@ -94,3 +94,8 @@ define('C_SET_WATER_2', 10002); //打水印的类型，只在左上和右下打�
 define('C_SET_WATER', 1);//打水印的类型，左上、中间和右下都打水印
 define('C_NOT_SET_WATER', 0);
 /*****************************image******************************/
+
+/** 微信支付 {{{ */
+define('SSLCERT_ABS_PATH', APPLICATION_PATH . '/application/library/WxPayPubHelper/cacert/apiclient_cert.pem');
+define('SSLKEY_ABS_PATH',  APPLICATION_PATH . '/application/library/WxPayPubHelper/cacert/apiclient_key.pem');
+/** }}}*/
