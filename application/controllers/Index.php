@@ -37,5 +37,9 @@ class IndexController extends Yaf_Controller_Abstract {
         'me' => 'actions/about/me.php',
         'order_create' => 'actions/order/order_create.php',
         'order_list' => 'actions/order/order_list.php',
+
+        'comment_list' => 'actions/comment/comment_list.php',
+        'comment_add' => 'actions/comment/comment_add.php',
+        'comment_del' => 'actions/comment/comment_del.php',
     );
 }

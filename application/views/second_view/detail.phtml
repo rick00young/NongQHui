@@ -2,15 +2,14 @@
 
 <!--header-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
-    array(
-        'css' => array(
-            '/static/second_asset/css/about.css',
-            '/static/second_asset/common/clor.css',
-            '/static/second_asset/css/detail.css',
-        )
+$css = array(
+    'css' => array(
+        '/static/second_asset/css/about.css',
+        '/static/second_asset/common/color.css',
+        '/static/second_asset/css/detail.css',
     )
 );
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml', $css);
 ?>
 
 <!--nav-->
@@ -260,6 +259,54 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         </div>
                     <?php }?>
 
+                    <!--comment-->
+                        <h4 class="row-space-4 new-tit">
+                            <span class="name">用户评论</span>
+                        </h4>
+
+                        <div class="panel panel-dark row-space-4 good_imgs">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="row-space-8 row-space-top-8">
+
+                                    </div>
+                                    <div class="review-content">
+                                        <div class="panel-body">
+
+                                            <div id="comment_down"></div>
+
+                                            <div class="row">
+                                                <div class="col-lg-9 col-md-offset-3">
+                                                    <p class="">
+                                                        暂无评论
+                                                    </p>
+                                                    <button style="display: none;" class="btn btn-default" page="1" id="more_comment" has_next="true" max_oid="0" oid="<?=htmlspecialchars($good['encode_good_id'])?>">查看其他评价</button>
+                                                </div>
+                                            </div>
+
+                                            <?php if(isset($_is_login_) && true == $_is_login_){ ?>
+                                            <div class="row row-space-top-1">
+                                                <div class="col-md-9 col-md-push-3">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-lg-9 col-md-offset-3">
+                                                    <textarea class="form-control" rows="3" placeholder="我也要评论..." id="word_text"></textarea>
+                                                    <p><span class="pull-right" style="font-size: 11px;color: #ccc;" id="word_count">800个字</span></p>
+                                                </div>
+
+                                                <div class="col-lg-9 col-md-offset-3 row-space-top-2">
+                                                    <button type="button" class="btn btn-success btn-sm" oid="<?=htmlspecialchars($good['encode_good_id'])?>" id="add_comment">提交</button>
+                                                </div>
+                                            </div>
+                                            <?php }?>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--comment-->
+
 
                 </div>
             </div>
@@ -362,33 +409,13 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 </div>
 <?php }?>
 
-
-<!-- Modal -->
-<div class="modal fade login_model" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="mySmallModalLabel">登陆<a class="anchorjs-link" href="#mySmallModalLabel"><span class="anchorjs-icon"></span></a></h4>
-            </div>
-            <div class="modal-body">
-                <p style="text-align: center;">
-                    <a href="/sns/login?type=weixin">
-                        <img src="https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png" alt="" class="design_icon" style="vertical-align: bottom; margin-bottom: 5px;">
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!--footer-->
 <?php
 $js = array(
     'js' => array(
         'http://api.map.baidu.com/api?v=2.0&ak=T7gDQXp0hmAGKCFol7ktMC2P',
         '/static/plugin/jquery.lazyload.min.js',
+        '/static/second_asset/js/detail.js',
     )
 );
 echo Yaf_View_Simple::render('second_view/tpl/footer.phtml', $js);

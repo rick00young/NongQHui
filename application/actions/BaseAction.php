@@ -13,6 +13,7 @@ abstract class BaseAction extends Yaf_Action_Abstract
     );
 
     protected $_islogin = false;
+    protected $_uid = 0;
 
     protected $_page_title;
     protected $_page_keywords;
@@ -28,6 +29,8 @@ abstract class BaseAction extends Yaf_Action_Abstract
             $this->user_info = $_SESSION['user_info'];
             $this->_islogin = true;
         }
+        $this->_uid = $this->user_info['uid'];
+
         $this->assign('_uid_', $this->user_info['uid']);
         $this->assign('_current_nav_', $this->_current_nav);
         $this->assign('_is_login_', $this->_islogin);

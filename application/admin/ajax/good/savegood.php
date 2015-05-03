@@ -71,7 +71,7 @@ class savegoodAction extends AdminBaseAction
         }
 
         $res = array();
-        if($goodId){
+        if(isset($goodId) && $goodId){
             //update
             $updateRes = GoodModel::updateGood($goodData, $goodId);
             if($updateRes){

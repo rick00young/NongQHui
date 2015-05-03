@@ -100,22 +100,25 @@ class PGDB
      */
     public static function insert($save_data, $table, $unEscape = array())
     {
+        if(empty($save_data)) return false;
 
-        $set = array();
+        $fields = array();
+        $values = array();
 
         foreach ($save_data as $field => $value)
         {
             if (!in_array($field, $unEscape)) {
-                $value = DB::escape($value);
+                $value = PGDB::escape($value);
             }
+            $fields[] = $field;
+            $values[] = "'".$value."'";
 
-            $set[] = "`{$field}` = '{$value}'";
         }
-        $sql = sprintf('INSERT INTO `%s` SET %s', $table, implode(', ', $set));
+        $sql = sprintf('INSERT INTO %s (%s) VALUES (%s)', $table, implode(', ', $fields), implode(',', $values));
 
-        DB::query($sql);
+        PGDB::query($sql);
 
-        return DB::lastInsertId();
+        return PGDB::lastInsertId();
     }
 
     /**
@@ -131,13 +134,13 @@ class PGDB
         foreach ($save_data as $field => $value)
         {
             if(!in_array($field, $unEscape)){
-                $value = DB::escape($value);
+                $value = PGDB::escape($value);
             }
 
             $set[] = "`{$field}` = '{$value}'";
         }
         $sql = sprintf('UPDATE `%s` SET %s WHERE id = %d', $table, implode(', ', $set), $id);
-        return DB::query($sql);
+        return PGDB::query($sql);
 
     }
 
@@ -169,7 +172,7 @@ class PGDB
     public static function foundRows()
     {
         $sql = "SELECT FOUND_ROWS()";
-        $res =  DB::query($sql);
+        $res =  PGDB::query($sql);
         $row =  $res->fetch();
 
         if (false === $row) {
