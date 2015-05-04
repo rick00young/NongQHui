@@ -17,6 +17,7 @@ class order_listAction extends BaseAction
 
         $uid = $this->getUid();
 
+        $this->assign('_current_nav_', 'me');
         $this->canApplySeller();
 
         $orderStatus = intval(GenerateEncrypt::decrypt($this->get('status'), ID_SIMPLE_KEY));
