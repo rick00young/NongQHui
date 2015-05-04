@@ -16,6 +16,9 @@ class order_listAction extends BaseAction
         }
 
         $uid = $this->getUid();
+
+        $this->canApplySeller();
+
         $orderStatus = intval(GenerateEncrypt::decrypt($this->get('status'), ID_SIMPLE_KEY));
         if(!$orderStatus){
             $orderStatus= 0;
@@ -77,7 +80,6 @@ class order_listAction extends BaseAction
         }
         unset($order);
 
-
         $this->assign('orders', $orderRes);
         $this->getView()->display('second_view/order_list.phtml');
     }
@@ -95,7 +97,7 @@ class order_listAction extends BaseAction
         }else if($status == OrderModel::ORDER_STATUS_REFUND){
             $result['title'] = '已退款';
         }
-        //已取消
+        //TODO 已取消
         return $result;
     }
 

@@ -1,13 +1,12 @@
 <!--header-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/header.phtml',
-    array(
+$css =array(
     'css' => array(
         '/static/second_asset/css/me.css',
         '/static/second_asset/common/color.css'
-        )
     )
 );
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml', $css);
 ?>
 
 <!--nav-->
@@ -33,6 +32,27 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                 我的订单
                             </a>
                         </li>
+
+                        <?php if(isset($_register_model_) && UserModel::REGESTER_MODEL_SELLER == $_register_model_){?>
+                            <li>
+                                <a class="sidenav-item" href="/admin" target="_blank">
+                                    我的店铺
+                                </a>
+                            </li>
+                        <?php }else{?>
+                            <li>
+                                <?php if(isset($can_apply) && $can_apply){ ?>
+                                    <a class="sidenav-item" href="" data-toggle="modal" data-target="#applyModal" data-whatever="">
+                                        我要开店
+                                    </a>
+                                <?php }else{?>
+                                    <a class="sidenav-item" href="javascript:void(0);" onclick="alert('您已经申请过了,请您明天再试!');">
+                                        我要开店
+                                    </a>
+                                <?php }?>
+                            </li>
+                        <?php }?>
+
                     </ul>
                 </div>
             </div>
@@ -131,7 +151,19 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
     </div>
 </div>
 
+<!--apply modal-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/apply_modal.phtml');
+?>
+
 <!--footer-->
 <?php
-echo Yaf_View_Simple::render('second_view/tpl/footer.phtml');
+$js = array(
+    'js' => array(
+        'http://api.map.baidu.com/api?v=2.0&ak=T7gDQXp0hmAGKCFol7ktMC2P',
+        '/static/plugin/jquery.lazyload.min.js',
+        '/static/second_asset/js/apply.js',
+    )
+);
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml', $js);
 ?>

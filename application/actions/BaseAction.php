@@ -14,6 +14,7 @@ abstract class BaseAction extends Yaf_Action_Abstract
 
     protected $_islogin = false;
     protected $_uid = 0;
+    protected $_register_model = 0;//用户注册身份
 
     protected $_page_title;
     protected $_page_keywords;
@@ -28,6 +29,7 @@ abstract class BaseAction extends Yaf_Action_Abstract
         {
             $this->user_info = $_SESSION['user_info'];
             $this->_islogin = true;
+            $this->_register_model = $this->user_info['base_info']['register_model'];
         }
         $this->_uid = $this->user_info['uid'];
 
@@ -35,6 +37,8 @@ abstract class BaseAction extends Yaf_Action_Abstract
         $this->assign('_current_nav_', $this->_current_nav);
         $this->assign('_is_login_', $this->_islogin);
         $this->assign('_user_info_', $this->user_info['base_info']);
+
+        $this->assign('_register_model_', $this->_register_model);
         /**
          * 一些常用公共数据
          */
@@ -238,6 +242,19 @@ abstract class BaseAction extends Yaf_Action_Abstract
         }';
         return $beijingJson;
 
+    }
+
+    //此方法只在个人中心及订单中心使用,主要用来做商户申请
+    protected function canApplySeller(){
+        $redis = RedisCache::getInstance();
+        $cacheKey = 'apply_seller_' . $this->getUid();
+        $can_apply = false;
+        if(UserModel::REGESTER_MODEL_SELLER == $this->_register_model || $redis->get($cacheKey)){
+            $can_apply = false;
+        }else{
+            $can_apply =  true;
+        }
+        $this->assign('can_apply', $can_apply);
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */

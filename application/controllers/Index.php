@@ -41,5 +41,7 @@ class IndexController extends Yaf_Controller_Abstract {
         'comment_list' => 'actions/comment/comment_list.php',
         'comment_add' => 'actions/comment/comment_add.php',
         'comment_del' => 'actions/comment/comment_del.php',
+
+        'apply_seller' => 'actions/apply/apply_seller.php',
     );
 }

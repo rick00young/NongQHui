@@ -170,22 +170,11 @@ var comment = function() {
                 +'</div>'
             +'</div>';
 
-            console.log(tpl);
+            //console.log(tpl);
             $('#comment_down').before(tpl);
-        },
-        checkNumber: function(t) {
-            var s = $(t).parent();
-            /^1[3578]\d{9}$/.test($(t).val()) ? (s.next().children()[0].style.visibility = "hidden", s.removeClass("has-error"), s = null, this.status.number = $(t).val(), this.status.numberOK = !0) : (s.next().children()[0].style.visibility = "visible", s.addClass("has-error"), s = null, this.status.numberOK = !1)
-        },
-        checkPWD: function(t) {
-            var s = $(t).parent();
-            $(t).val().length <= 12 && $(t).val().length >= 6 ? (s.next().children()[0].style.visibility = "hidden", s.removeClass("has-error"), s = null, this.status.passwd = $(t).val(), this.status.passwdOk = !0) : (s.next().children()[0].style.visibility = "visible", s.addClass("has-error"), s = null, this.status.passwdOk = !1)
-        },
-        checkInfo: function() {
-            this.checkPWD($(".form-control.password")[0]), this.checkNumber($(".form-control.tel")[0]), this.status.passwdOk && this.status.numberOK && $.post("/account/user/login", {mobile: this.status.number,password: this.status.passwd}, function(t) {
-            1 == t.status ? ($(".checkInfo").css({visibility: "hidden"}), location.href = location.search) : $(".checkInfo").css({visibility: "visible"})
-        })
         }
+
+
     }
 }();
 $(function() {

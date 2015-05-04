@@ -10,10 +10,12 @@ class meAction extends BaseAction
 {
     public function run($arg = null)
     {
+        Yaf_Dispatcher::getInstance()->autoRender(FALSE);
         $this->assign('_current_nav_', 'me');
         if(true != $this->_islogin){
             $this->redirect('/sns/login');
         }
+        $this->canApplySeller();
 
         $this->getView()->display('second_view/me.phtml');
     }

@@ -16,6 +16,13 @@ class UserModel
     const WEIXIN       = 3;
 
 
+    //用户身份
+    const REGESTER_MODEL_UNKNOWN = 0;//未知用户
+    const REGESTER_MODEL_NORMAL =1 ;//普通用户
+    const REGESTER_MODEL_SELLER = 2;//商家用户 注:商家用户也可以有前台消费的
+    const REGESTER_MODEL_SELLER_APPLYING = 3;//正在申请商户
+
+
     private static $platform = array(
         self::NORMAL   => 'normal',
         self::SINA   =>'sina',
