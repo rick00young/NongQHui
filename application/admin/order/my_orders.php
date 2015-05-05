@@ -2,37 +2,40 @@
 /**
  * Created by PhpStorm.
  * User: rick
- * Date: 15/4/21
- * Time: 下午10:31
+ * Date: 15/3/19
+ * Time: 下午10:59
  */
 
-class order_listAction extends BaseAction
-{
+class my_ordersAction extends AdminBaseAction{
     public function run($arg = null)
     {
-        Yaf_Dispatcher::getInstance()->autoRender(FALSE);
-        if(true !== $this->_islogin){
-            $this->display404();
-        }
 
         $uid = $this->getUid();
-
-        $this->assign('_current_nav_', 'me');
-        $this->canApplySeller();
-
+        $pageSize = 10;
         $orderStatus = intval(GenerateEncrypt::decrypt($this->get('status'), ID_SIMPLE_KEY));
         if(!$orderStatus){
             $orderStatus= 0;
         }
-        $orderRes = OrderModel::getOrderByConsumerUid($uid, 0, 100, $orderStatus);
+        $this->assign('current_status', $orderStatus);
 
-        if(!$orderRes){
-            $this->getView()->display('second_view/order_list.phtml');
-            return;
+        $page = intval($this->get('cpage'));
+        if($page <= 0){
+            $page = 1;
         }
+        $start = ($page - 1) * $pageSize;
+        $orderRes = OrderModel::getOrderByProducerUid($uid, $start, $pageSize, $orderStatus);
+
+        $orderRes['list'] = isset($orderRes['list']) ? $orderRes['list'] : array();
+        $orderRes['count'] = isset($orderRes['count']) ? $orderRes['count'] : 0;
+
+        $orderRes['page_current'] = $page;
+        $orderRes['page_size'] = $pageSize;
+
         $goodIds = array();
+        $uids = array();
         foreach($orderRes['list'] as $order){
             $goodIds[] = $order['product_id'];
+            $uids [] = $order['consumer_uid'];
         }
         unset($order);
 
@@ -50,6 +53,11 @@ class order_listAction extends BaseAction
         $extRes = GoodModel::getGoodsExInfoByGoodId($extIds, GoodModel::EXT_GOOD_INFO);
         $extRes = is_array($extRes) ? $extRes : array();
         $extRes = HelperTool::arrToHashmap($extRes,'good_id');
+
+        //consumer
+        $consumerRes = UserModel::getBatchUserInfoByUid($uids);
+        $consumerRes = is_array($consumerRes) ? $consumerRes : array();
+        $consumerRes = HelperTool::arrToHashmap($consumerRes, 'id');
 
         $imageServer = ImageServer::getInstance();
 
@@ -75,21 +83,60 @@ class order_listAction extends BaseAction
                     }
                 }
             }
+            if( isset($consumerRes[$order['consumer_uid']]) ){
+                $order['user_info'] = $consumerRes[$order['consumer_uid']];
+            }
 
             $order['payment_handle'] = $this->handlePayStatus($order['status'], $order);
+
+            $order['encode_uid'] = GenerateEncrypt::encrypt($order['consumer_uid'], ID_SIMPLE_KEY);
 
         }
         unset($order);
 
+
+
+        //$pp = Html::createPager($page, $pageSize, $orderRes['count']);
+        $pp = Html::CcreatePager($page,  $pageSize, $orderRes['count']);
+        $this->assign('pp', $pp);
         $this->assign('orders', $orderRes);
-        $this->getView()->display('second_view/order_list.phtml');
+
+        $this->assign('order_status',array(
+            array(
+                'value' => 0,
+                'name' => '全部',
+                'url' => '/admin/my_orders?status=0',
+            ),
+            array(
+                'value' => OrderModel::ORDER_STATUS_NO_PAYMENT,
+                'name' => OrderModel::displayOrderStatus(OrderModel::ORDER_STATUS_NO_PAYMENT),
+                'url' => '/admin/my_orders?status='. GenerateEncrypt::encrypt(OrderModel::ORDER_STATUS_NO_PAYMENT, ID_SIMPLE_KEY),
+            ),
+            array(
+                'value' => OrderModel::ORDER_STATUS_NO_CONSUME,
+                'name' => OrderModel::displayOrderStatus(OrderModel::ORDER_STATUS_NO_CONSUME),
+                'url' => '/admin/my_orders?status='. GenerateEncrypt::encrypt(OrderModel::ORDER_STATUS_NO_CONSUME, ID_SIMPLE_KEY),
+            ),
+            array(
+                'value' => OrderModel::ORDER_STATUS_CONSUMED,
+                'name' => OrderModel::displayOrderStatus(OrderModel::ORDER_STATUS_CONSUMED),
+                'url' => '/admin/my_orders?status='. GenerateEncrypt::encrypt(OrderModel::ORDER_STATUS_CONSUMED, ID_SIMPLE_KEY),
+            ),
+            array(
+                'value' => OrderModel::ORDER_STATUS_REFUND,
+                'name' => OrderModel::displayOrderStatus(OrderModel::ORDER_STATUS_REFUND),
+                'url' => '/admin/my_orders?status='. GenerateEncrypt::encrypt(OrderModel::ORDER_STATUS_REFUND, ID_SIMPLE_KEY),
+            ),
+        ));
+
+        $this->getView()->display('admin/order_list.phtml');
     }
 
     protected function handlePayStatus($status, $order){
 
         $result = array();
         if($status == OrderModel::ORDER_STATUS_NO_PAYMENT){
-            $result['title'] = '立即支付';
+            $result['title'] = '未支付';
             $result['pay_url'] = '/index/pay';
         }else if($status == OrderModel::ORDER_STATUS_NO_CONSUME){
             $result['title'] = '未消费';
@@ -98,8 +145,11 @@ class order_listAction extends BaseAction
         }else if($status == OrderModel::ORDER_STATUS_REFUND){
             $result['title'] = '已退款';
         }
-        //TODO 已取消
+        //已取消
         return $result;
     }
 
-}
+    protected function handlePage($orders){
+
+    }
+} 

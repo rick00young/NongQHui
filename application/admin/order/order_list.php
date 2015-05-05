@@ -23,7 +23,7 @@ class order_listAction extends AdminBaseAction{
             $page = 1;
         }
         $start = ($page - 1) * $pageSize;
-        $orderRes = OrderModel::getOrderByeUid($uid, $start, $pageSize, $orderStatus, array('role' => 'admin'));
+        $orderRes = OrderModel::getOrderByConsumerUid($uid, $start, $pageSize, $orderStatus, array('role' => 'admin'));
 
         $orderRes['list'] = isset($orderRes['list']) ? $orderRes['list'] : array();
         $orderRes['count'] = isset($orderRes['count']) ? $orderRes['count'] : 0;

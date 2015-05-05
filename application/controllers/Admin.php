@@ -70,6 +70,8 @@ class AdminController extends Yaf_Controller_Abstract
         'goodmoreinfo' => 'admin/goodMoreInfo.php',
         'good_preview' => 'admin/good_preview.php',
 
+        'my_orders' => 'admin/order/my_orders.php',//商户订单中心
+
         'order_list' => 'admin/order/order_list.php',
     );
 
