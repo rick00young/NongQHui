@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label>商品类别</label>
                         <div></div>
-                        <div style="display: inline-block;width: 45%;float: left;">
+                        <div style="display: inline-block;width: 30%;float: left;">
                             <select class="form-control" id="good_category_id">
                                 <!--<option>省/直辖市</option>-->
                                 <?php foreach($category as $c_id => $cat){
@@ -95,7 +95,30 @@
                     <div class="form-group">
                       <label>计价单位</label>
                       <input type="text" class="form-control" id="good_unit" placeholder="请输入商品计价单位.如: 斤/人/次/盒/打" value="<?=isset($good['unit']) ? htmlspecialchars($good['unit']) : ''?>">
-                     </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>是否限购</label>
+                        <div></div>
+                        <div style="display: inline-block;width: 30%;float: left;">
+                            <select class="form-control" id="good_buyer_limit">
+                                <option value="-1">不限购</option>
+                                <?php for($_limit = 1; $_limit <= 10; $_limit++){ ?>
+                                    <?php if(isset($sale_strategy) && $_limit == $sale_strategy['buyer_limit']){?>
+                                        <option value="<?=$_limit?>" selected="selected">每人限购<?=$_limit?>个</option>
+                                    <?php }else{?>
+                                        <option value="<?=$_limit?>">每人限购<?=$_limit?>个</option>
+                                    <?php }?>
+                                <?php }?>
+                            </select>
+                        </div>
+
+                        <div style="display: inline-block;width: 60%;float: left;  line-height: 33px;margin-left: 20px;">
+                            <span>请选择商品销售形式.如:不限购或每人限购1个</span>
+                        </div>
+                        <div style="clear: both;"></div>
+
+                    </div>
 
                     <div class="form-group">
                       <label>联系人姓名</label>
@@ -141,6 +164,7 @@ $("#submit").click(function () {
     var good_contactor = $('#good_contactor').val();
     var good_phone = $('#good_phone').val();
     var good_unit = $("#good_unit").val();
+    var good_buyer_limit = $('#good_buyer_limit').val();
     var good_category_id = $('#good_category_id').val();
 
     if(!good_title || !good_slogan || !good_price || !good_d_price || !shop_id && !good_contactor || !good_phone){
@@ -159,6 +183,7 @@ $("#submit").click(function () {
         'good_contactor':good_contactor,
         'good_phone':good_phone,
         'good_unit':good_unit,
+        'good_buyer_limit':good_buyer_limit,
         'good_category_id':good_category_id
     }
     //console.log(postData);//return;

@@ -154,12 +154,17 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                     <div id="book_it_enabled" class="clearfix">
                                         <div id="book_it_button_container" class="row-space-top-2">
                                             <?php if(isset($_is_login_) && true === $_is_login_){?>
-                                            <button type="submit" class="btn btn-applay btn-large btn-block" id="book_it_button">
-                                                <span class="book-it">立即购买</span>
-                                                <span class="instant-book">
-                                                        <i class="icon icon-bolt icon-beach h4"></i>快捷预订
-                                                </span>
-                                            </button>
+                                                <?php if(isset($can_buy) && true == $can_buy) {?>
+                                                    <button type="submit" class="btn btn-applay btn-large btn-block" id="book_it_button">
+                                                        <span class="book-it">立即购买</span>
+
+                                                    </button>
+                                                <?php }else{?>
+                                                    <a href="javascript:void(0)" style="font-size: 16px;padding: 9px 27px;" class="btn btn-warning btn-large btn-block" id="book_it_button">
+                                                        <span class="book-it">限购商品,您已经购买过了</span>
+
+                                                    </a>
+                                                <?php }?>
                                             <?php }else{?>
 
                                             <button type="button" class="btn btn-applay btn-large btn-block" data-toggle="modal" data-target=".login_model">

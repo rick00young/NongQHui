@@ -115,6 +115,59 @@ class DB
     }
 
     /**
+     * 通用insertOrUpdate方法  未完成
+     * @param unknown $save_data
+     * @param unknown $table
+     * @return Ambigous <:, string>
+     */
+    public static function insertOrUpdateOnDuplicateKey($save_data, $table, $unEscape = array())
+    {
+
+        $set = array();
+
+        foreach ($save_data as $field => $value)
+        {
+            if (!in_array($field, $unEscape)) {
+                $value = DB::escape($value);
+            }
+
+            $set[] = "`{$field}` = '{$value}'";
+        }
+        $sql = sprintf('INSERT INTO `%s` SET %s', $table, implode(', ', $set));
+        $sql .= sprintf('');
+
+        DB::query($sql);
+
+        return DB::lastInsertId();
+    }
+
+    /**
+     * 通用replaceInto方法  注意:此方法会有副作用,老数据会被删除,新的数据会被插入
+     * @param unknown $save_data
+     * @param unknown $table
+     * @return Ambigous <:, string>
+     */
+    public static function replaceInto($save_data, $table, $unEscape = array())
+    {
+
+        $set = array();
+
+        foreach ($save_data as $field => $value)
+        {
+            if (!in_array($field, $unEscape)) {
+                $value = DB::escape($value);
+            }
+
+            $set[] = "`{$field}` = '{$value}'";
+        }
+        $sql = sprintf('REPLACE INTO `%s` SET %s', $table, implode(', ', $set));
+
+        DB::query($sql);
+
+        return DB::lastInsertId();
+    }
+
+    /**
      * 通用update方法
      * @param unknown $save_data
      * @param unknown $table

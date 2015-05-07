@@ -34,6 +34,8 @@ class savegoodAction extends AdminBaseAction
             $this->jsonReturn($returnData);
         }
 
+        $buyer_limit = intval($this->post('good_buyer_limit'));
+
 
         $data = array();
         $goodData['title'] = $this->post('good_title');
@@ -84,6 +86,18 @@ class savegoodAction extends AdminBaseAction
             if($insertRes){
                 $res['good_id'] = $insertRes;
             }
+        }
+
+        //保存销售策略
+        if(0 != $buyer_limit && -1 != $buyer_limit){
+            $saleData = array(
+                'strategy_type' => SaleStrategyModel::SALE_STRATEGY_TYPE_LIMIT_BUYER,
+                'buyer_limit' => $buyer_limit,
+                'add_time' => time(),
+                'product_id' => $goodId,
+                'status' => 1,
+            );
+            $strategyRes = SaleStrategyModel::createSaleStrategy($saleData);
         }
         if(empty($res)){
             $returnData = HelperResponse::result(HelperResponse::FAIL, 'operation fail!', array());

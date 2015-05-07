@@ -33,6 +33,13 @@ class good_editAction extends AdminBaseAction
         if($goodRes){
             $this->assign('good', $goodRes);
         }
+        $saleStrategyRes = SaleStrategyModel::getSaleStrategyByProductId($good_id);
+
+        if($saleStrategyRes){
+
+            $this->assign('sale_strategy', $saleStrategyRes);
+        }
+
         $this->assign('good_id', GenerateEncrypt::encrypt($goodRes['id'], ID_SIMPLE_KEY));
         $this->assign('shop_id', GenerateEncrypt::encrypt($shop_id, ID_SIMPLE_KEY));
 

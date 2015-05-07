@@ -1,0 +1,76 @@
+
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">添加收货人信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">*收货人:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="receiver_name" placeholder="收货人姓名">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">*所在地区:</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" id="province">
+                                <option>省份</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <select class="form-control" id="city">
+                                <option>城市</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <select class="form-control" id="district">
+                                <option>地区</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">*详细地址:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="receiver_detail_address" placeholder="请填入详细地址">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">*手机号码:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="receiver_mobile" placeholder="请填入手机号码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">*邮箱:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="receiver_email" placeholder="请填入邮箱" aria-describedby="helpBlock">
+                            <span id="helpBlock" class="help-block">用来接收订单提醒邮件，便于您及时了解订单状态</span>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">保存收货人信息</button>
+            </div>
+        </div>
+    </div>
+</div>

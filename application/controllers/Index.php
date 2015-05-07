@@ -43,5 +43,7 @@ class IndexController extends Yaf_Controller_Abstract {
         'comment_del' => 'actions/comment/comment_del.php',
 
         'apply_seller' => 'actions/apply/apply_seller.php',
+
+        'get_address' => 'actions/address/get_address.php',//收货人地址
     );
 }

@@ -84,6 +84,10 @@ class detailAction extends BaseAction
         $this->assign('is_mobile',$this->isMobilePlatform());
         $this->assign('_current_nav', 'detail');
 
+        $canBuy = SaleStrategyService::canBuyThisProduct($this->getUid(), $goodId);
+
+        $this->assign('can_buy', $canBuy);
+
         $this->getView()->display('second_view/detail.phtml');
     }
 
