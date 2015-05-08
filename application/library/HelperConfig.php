@@ -37,10 +37,10 @@ class HelperConfig
 
     public static function getRunMode()
     {
-        if ($_SERVER['ENVIRONMENT'] == self::ONLINE_ENV) {
+        if ( isset($_SERVER['ENVIRONMENT']) && $_SERVER['ENVIRONMENT'] == self::ONLINE_ENV ) {
             return self::ONLINE_ENV;
         }
-        if ($_SERVER['ENVIRONMENT'] == self::TEST_ENV) {
+        if ( isset($_SERVER['ENVIRONMENT']) && $_SERVER['ENVIRONMENT'] == self::TEST_ENV ) {
             return self::TEST_ENV;
         }
         return self::DEV_ENV;
