@@ -127,6 +127,30 @@ class GoodModel {
         return DB::getAll($sql);
     }
 
+    /**
+     * 下单后库存减一
+     * @param $goodId
+     * @return anything
+     */
+    public static function decrGoodStock($goodId){
+        if(!intval($goodId)) return false;
+        $sql = sprintf('UPDATE `%s` SET stock = stock-1 WHERE id = %d', self::TABLE_NAME, intval($goodId));
+        SeasLog::debug(__METHOD__ . ' [SQL]: ' . $sql);
+        return DB::query($sql);
+    }
+
+    /**
+     * 订单过期或取消后库存加一
+     * @param $goodId
+     * @return anything
+     */
+    public static function incrGoodtStock($goodId){
+        if(!intval($goodId)) return false;
+        $sql = sprintf('UPDATE `%s` SET stock = stock+1 WHERE id = %d', self::TABLE_NAME, intval($goodId));
+        SeasLog::debug(__METHOD__ . ' [SQL]: ' . $sql);
+        return DB::query($sql);
+    }
+
 
     /***use for index**/
     public static function getGoodBydDstrictId($districtId){

@@ -26,10 +26,26 @@ class order_createAction extends BaseAction
 
         $fee = bcmul($discountPrice, $goodNum, 2);
 
+        $uid = $this->getUid();
         $goodRes = GoodModel::getGoodInfoByGoodId($goodId);
+
         if(!$goodRes){
             $this->display404();
         }
+
+        //库存不足
+        if($goodRes['stock'] <= 0){
+            SeasLog::error(__METHOD__ . ' [库存不足]: good_id:' . $goodId);
+            $this->display404();
+        }
+
+        //是否限购
+        $canBuy = SaleStrategyService::canBuyThisProduct($uid, $goodId);
+        if(!$canBuy){
+            SeasLog::error(__METHOD__ . ' [限购]: good_id:' . $goodId);
+            $this->display404();
+        }
+
 
         $imageServer = ImageServer::getInstance();
         $photoArr = json_decode($goodRes['photo'], true);
@@ -44,7 +60,7 @@ class order_createAction extends BaseAction
             SeasLog::error('price problem  fee:' . $fee . ' realFee:' . $realFee);
         }
 
-        $uid = $this->getUid();
+
         $order_dt = array(
             'product_id' => $goodId,
             'producer_uid' => 1,
@@ -61,6 +77,15 @@ class order_createAction extends BaseAction
         $this->assign('good', $goodRes);
         //$this->assign('order_no', $orderRes);
         $this->assign('order', $orderInfo);
+
+        //TODO 库存减1
+        $decrStock = OrderService::decrProductStock($goodId);
+        if(!$decrStock){
+            $this->display404();
+        }
+
+        //测试SaleStrategyService限购
+        //SaleStrategyService::IncrBuyerLimit($uid, $goodId);
 
         $this->getView()->display('second_view/order_pay.phtml');
     }

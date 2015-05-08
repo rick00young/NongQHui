@@ -155,19 +155,25 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                                         <div id="book_it_button_container" class="row-space-top-2">
                                             <?php if(isset($_is_login_) && true === $_is_login_){?>
                                                 <?php if(isset($can_buy) && true == $can_buy) {?>
-                                                    <button type="submit" class="btn btn-applay btn-large btn-block" id="book_it_button">
-                                                        <span class="book-it">立即购买</span>
+                                                    <?php if($good['stock'] <= 0){ ?>
+                                                        <a href="javascript:void(0)" des="库存不足" style="font-size: 16px;padding: 9px 27px;" class="btn btn-warning btn-large btn-block" id="book_it_button">
+                                                            <span class="book-it">库存不足</span>
+                                                        </a>
+                                                    <?php }else{ ?>
+                                                        <button type="submit" des="正常购买" class="btn btn-applay btn-large btn-block" id="book_it_button">
+                                                            <span class="book-it">立即购买</span>
+                                                        </button>
+                                                    <?php } ?>
 
-                                                    </button>
                                                 <?php }else{?>
-                                                    <a href="javascript:void(0)" style="font-size: 16px;padding: 9px 27px;" class="btn btn-warning btn-large btn-block" id="book_it_button">
+                                                    <a href="javascript:void(0)" des="限购" style="font-size: 16px;padding: 9px 27px;" class="btn btn-warning btn-large btn-block" id="book_it_button">
                                                         <span class="book-it">限购商品,您已经购买过了</span>
 
                                                     </a>
                                                 <?php }?>
                                             <?php }else{?>
 
-                                            <button type="button" class="btn btn-applay btn-large btn-block" data-toggle="modal" data-target=".login_model">
+                                            <button type="button" des="没有登录" class="btn btn-applay btn-large btn-block" data-toggle="modal" data-target=".login_model">
                                                 <span class="book-it">立即购买</span>
                                             </button>
                                             <?php }?>

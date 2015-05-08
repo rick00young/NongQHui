@@ -55,7 +55,7 @@ class SaleStrategyService
         if(!is_array($saleStrategy)) return true;
 
         $cacheKey = 'buyer_limit_' . $uid;
-        $redis = RedisCache::getInstance();
+        $redis = RedisDB::getInstance();
 
         $count = intval($redis->hGet($cacheKey, $productId));
         if(0 == $count) return true;//没有记录可以购买
@@ -70,13 +70,23 @@ class SaleStrategyService
      * 此商品限购,付款后对此用户的商品购买加一标记
      * @param $uid
      * @param $productId
-     *
+     * @param $saleStrategy 销售策略数据
      * @return null
      */
-    public static function IncrBuyerLimit($uid, $productId){
-        $cacheKey = 'buyer_limit_' . $uid;
-        $redis = RedisCache::getInstance();
-        $redis->hIncrBy($cacheKey, $productId, 1);
+    public static function incrBuyerLimit($uid, $productId, $saleStrategy = array()){
+        if(empty($saleStrategy)){
+            $saleStrategy = self::getProdutSaleStrategyByProductId($productId);
+        }
+        if(empty($saleStrategy)) return false;
+
+        if(SaleStrategyModel::SALE_STRATEGY_TYPE_LIMIT_BUYER == $saleStrategy['strategy_type']){
+            $cacheKey = 'buyer_limit_' . $uid;
+            $redis = RedisDB::getInstance();
+            $redis->hIncrBy($cacheKey, $productId, 1);
+            return true;
+        }
+        return false;
+
     }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */

@@ -63,7 +63,7 @@ class detailAction extends BaseAction
         $share = array();
         $share['title'] = '北京五月樱桃节! 北京周边采摘!'.htmlspecialchars($goodRes['title']).' '.htmlspecialchars($goodRes['slogan']).'; '.$shopRes['name'].'; 地址: '.$shopRes['address'];
         $share['url'] = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-        $share['pic'] = $goodRes['photo'][0];
+        $share['pic'] = isset($goodRes['photo'][0]) ? $goodRes['photo'][0] : '';
 
         $this->assign('share', $share);
 

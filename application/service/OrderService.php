@@ -30,6 +30,25 @@ class OrderService
 
         return $ret;
     }
+
+
+    /**
+     * 订单过期或取消后库存加一
+     * @param $productId
+     * @return anything
+     */
+    public static function incrProductStock($productId){
+        return GoodModel::incrGoodtStock($productId);
+    }
+
+    /**
+     * 下单后库存减一
+     * @param $productId
+     * @return anything
+     */
+    public static function decrProductStock($productId){
+        return GoodModel::decrGoodStock($productId);
+    }
 }
 /* vi:set ts=4 sw=4 et fdm=marker: */
 
