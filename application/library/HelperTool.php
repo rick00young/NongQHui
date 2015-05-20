@@ -184,4 +184,10 @@ class HelperTool{
         return $strEcho;
     }
 
+    public static function  niceMobile($mobile){
+        if(empty($mobile)) return '';
+        preg_replace('/(1[358]{1}[0-9])[0-9]{4}([0-9]{4})/i','$1****$2',$mobile);
+        return $mobile;
+    }
+
 }

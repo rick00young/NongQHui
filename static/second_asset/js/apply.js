@@ -119,6 +119,4 @@ var apply = function() {
 }();
 $(function() {
     apply.init()
-});/**
- * Created by rick on 15/5/4.
- */
+});

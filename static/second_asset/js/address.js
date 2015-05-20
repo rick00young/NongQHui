@@ -1,17 +1,17 @@
 /**
  * Created by rick on 15/5/3.
  */
-var address = function() {
+var Address = function() {
     return {
 
         init: function() {
             //this.bindEvent();
+            this.getProvince();
             this.bindProvinceEvent();
             this.bindCityEvent();
-            this.bindDistrictEvent();
         },
 
-        bindProvinceEvent:function(t){
+        getProvince:function(t){
             var that = this;
 
             $this = $(this);
@@ -34,7 +34,7 @@ var address = function() {
             }
 
         },
-        bindCityEvent:function(t){
+        bindProvinceEvent:function(t){
             var that = this;
             $('#province').change(function(){
 
@@ -44,6 +44,7 @@ var address = function() {
                 if(!province_id) {
                     that.handleCitySelect({});
                     that.handleDistrictSelect({});
+
                     return false;
                 }
 
@@ -70,13 +71,14 @@ var address = function() {
             });
         },
 
-        bindDistrictEvent:function(t){
+        bindCityEvent:function(t){
             var that = this;
             $('#city').change(function(){
 
                 var $this = $(this);
-                var city_id = $this.val();
 
+                var city_id = $this.val();
+Debug.log('on_chang ' + city_id);
                 if(!city_id) {
                     that.handleDistrictSelect({});
                     return false;
@@ -149,7 +151,7 @@ var address = function() {
             var $district = $('#district');
             var district_id = $district.val();
             var district_text = $district.find("option:selected").text();
-
+//Debug.log('handleDistrictSelect');
             var options = '';
             options += '<option value="">地区</option>';
 
@@ -162,11 +164,115 @@ var address = function() {
             }
             //console.log(options);
             $district.html(options);
+        },
+
+        setProvince:function(province){
+            if(!province) return false;
+            var that = this;
+            var $province = $('#province');
+            $province.find('option').each(function(agr){
+                var text = $(this).text();
+                if(text == province){
+                    $(this).attr('selected','selected');
+                }else{
+                    $(this).removeAttr('selected');
+                }
+            });
+        },
+        triggerEvent:function(name){
+            if(!name) return false;
+
+            if('province' == name){
+                $('#province').change();
+
+            }else if('city' == name){
+                //哎,太乱了,这个逻辑,他妈的老子服了
+                var $city = $('#city');
+                var count = 0
+
+                var intervalID = setInterval(function(){
+                    if($city.find('option').size() >= 2 ){
+
+                        clearInterval(intervalID);
+                        $city.change();
+                    }
+                    count++;
+                    if(count >= 10){
+                        clearInterval(intervalID);
+                    }
+                }, 500);
+
+            }else if('district' == name){
+
+                $('#district').change();
+            }
+        },
+
+        setCity:function(city){
+            if(!city) return false;
+
+            var that = this;
+            var $city = $('#city');
+            var count = 0
+            var intervalID = setInterval(function(){
+                if($city.find('option').size() >= 2 ){
+
+                    clearInterval(intervalID);
+
+                    $city.find('option').each(function(agr){
+                        var text = $(this).text();
+                        if(text == city){
+                            $(this).attr('selected','selected');
+                        }else{
+                            $(this).removeAttr('selected');
+                        }
+                        Debug.log('setCity-' + city);
+                    });
+
+                }
+                count++;
+                if(count >= 10){
+                    clearInterval(intervalID);
+                }
+            }, 500);
+
+
+        },
+
+        setDistrict:function(district){
+            if(!district) return false;
+
+            var that = this;
+            var $district = $('#district');
+            var count = 0
+            var intervalID = setInterval(function(){
+                if($district.find('option').size() >= 2 ){
+
+                    clearInterval(intervalID);
+
+                    $district.find('option').each(function(agr){
+                        var text = $(this).text();
+                        if(text == district){
+                            $(this).attr('selected','selected');
+                        }else{
+                            $(this).removeAttr('selected');
+                        }
+                        Debug.log('setDistrict-' + district);
+                    });
+
+                }
+                count++;
+                if(count >= 10){
+                    clearInterval(intervalID);
+                }
+            }, 500);
+
+
         }
 
     }
 }();
 
 $(function() {
-    address.init()
+    Address.init()
 });

@@ -47,7 +47,7 @@ class order_listAction extends BaseAction
             }
         }
 
-        $extRes = GoodModel::getGoodsExInfoByGoodId($extIds, GoodModel::EXT_GOOD_INFO);
+        $extRes = GoodModel::getGoodsExInfoByGoodId($extIds, array('type'=> array(GoodModel::EXT_GOOD_INFO)) );
         $extRes = is_array($extRes) ? $extRes : array();
         $extRes = HelperTool::arrToHashmap($extRes,'good_id');
 
@@ -81,6 +81,7 @@ class order_listAction extends BaseAction
         }
         unset($order);
 
+        //TODO 定单过期后怎么显示
         $this->assign('orders', $orderRes);
         $this->getView()->display('second_view/order_list.phtml');
     }

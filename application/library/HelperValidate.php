@@ -129,6 +129,17 @@ class HelperValidate
     }
 
     /**
+     * Check if is mobile
+     *
+     * @param string $email
+     * @return boolean
+     */
+    public static function mobile($mobile)
+    {
+        return preg_match('/(1[358]{1}[0-9]{9})/i', $mobile) ? true : false;
+    }
+
+    /**
      * Check if is url
      *
      * @param string $url

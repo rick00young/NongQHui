@@ -73,7 +73,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
      * */
     public function _initQRcode(Yaf_Dispatcher $dispatcher)
     {
-        Yaf_loader::import(APPLICATION_PATH . '/contrib/phpqrcode/phpqrcode.php');
+        //Yaf_loader::import(APPLICATION_PATH . '/contrib/phpqrcode/phpqrcode.php');
     }
 }
 

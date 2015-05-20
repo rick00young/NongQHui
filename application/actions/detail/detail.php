@@ -30,6 +30,9 @@ class detailAction extends BaseAction
         }
 
         $goodRes['order_url'] = '/index/order_create';
+        if( $goodRes['category_id'] == GoodModel::EGG ){
+            $goodRes['order_url'] = '/index/order_confirm';
+        }
         $goodRes['encode_good_id'] = GenerateEncrypt::encrypt($goodRes['id'], ID_SIMPLE_KEY);
 
         $goodExtInfo = GoodModel::getGoodALLExInfoByGoodId($goodId);

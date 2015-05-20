@@ -1,0 +1,211 @@
+<!--header-->
+<?php
+$css = array(
+    'css' => array(
+        '/static/second_asset/css/order_confirm.css',
+        '/static/second_asset/common/color.css',
+    )
+);
+echo Yaf_View_Simple::render('second_view/tpl/header.phtml', $css);
+?>
+
+<script type="text/javascript">
+    var CONFIG = {
+        'shipment_address':{}
+    };
+</script>
+
+<!--nav-->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
+?>
+
+<!--content-->
+<div class="row-space-4 row-space-top-6"></div>
+<div id="content">
+    <div class="container page-container-responsive">
+        <div class="row">
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10">
+                <div class="panel row-space-4">
+                    <div class="panel-header active-panel-header">
+                        <div class="row">
+                            <div class="col-md-6 active-panel-padding">填写并核对订单信息</div>
+                            <div id="ib-master-switch-container" class="col-md-6"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel-body" des="mark! bnb droped this div">
+                        <div class="">
+                        </div>
+
+                        <div class="suspension-container">
+                            <ul class="list-unstyled list-layout">
+                                <li class="listing" id="address_container">
+                                    <div class="row">
+                                        <div class="col-md-12"><span class="h4">收货人信息</span> <span class="pull-right" id="address_create">新增收货地址</span></div>
+                                    </div>
+                                    <button id="pop_address_modal" type="button" class="" data-toggle="modal" data-target="#addressModal">新增收货地址</button>
+                                    <!---single address-->
+                                    <div class="row row-table" id="address_0">
+                                        <div class="col-xs-3 address_title">
+                                            <div class="panel-body">
+                                                <button class="option-item item-selected" address_id="1" receiver="xxx"  province="北京" city="北京" district="海淀" street="" address="详细地址" mobile="158083738" email="yyr@163.com">
+                                                    <span>xxx 北京</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-9 address_body">
+                                            <div class="panel-body">
+                                                <span class="detail_address">
+                                                    xxx 北京 朝阳区 三环到四环之间 北京市朝阳区安贞门渔阳置业大厦b4  180****1536
+                                                </span>
+                                                <span class="pull-right">
+                                                    <button class="hide">设为默认地址</button>
+                                                    <a href="javascript:void(0)" class="address_edit" address_id="1" receiver="xxx" province="北京" city="北京" district="海淀" street="" address="详细地址" mobile="158083738" email="yyr@163.com">编辑</a>
+                                                    <button class="hide">删除</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!---single address-->
+                                    <div class="row row-table" id="address_1">
+                                        <div class="col-xs-3 address_title">
+                                            <div class="panel-body">
+                                                <button href="" class="option-item" address_id="2" receiver="xxx" province="河北" city="张家口" district="张北" street="" address="详细地址" mobile="158083738" email="yyr@163.com">
+                                                    <span>xxx 河北</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-9 address_body">
+                                            <div class="panel-body">
+                                                <span class="detail_address">
+                                                    xxx 河北 朝阳区 三环到四环之间 北京市朝阳区安贞门渔阳置业大厦b4...
+                                                </span>
+                                                <span class="pull-right">
+                                                    <button class="hide">设为默认地址</button>
+                                                    <a href="javascript:void(0)" class="address_edit" address_id="2" receiver="xxx" province="河北" city="张家口" district="张北" street="" address="详细地址" mobile="158083738" email="yyr@163.com">编辑</a>
+                                                    <button class="hide">删除</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <!--style 纠正panel-body产生的padding-->
+                                <li class="listing panel-body" style="padding-left: 0px;">
+                                    <div class="row">
+                                        <div class="col-md-12"><span class="h4">支付方式</span></div>
+                                    </div>
+
+                                    <div class="row row-table">
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <button class="option-item item-selected">
+                                                    <span>微信支付</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--style 纠正panel-body产生的padding-->
+                                <li class="listing panel-body" style="padding-left: 0px;">
+                                    <div class="row">
+                                        <div class="col-md-12"><span class="h4">送货方式</span></div>
+                                    </div>
+
+                                    <div class="row row-table">
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <button class="option-item item-selected delivery_type" data_delivery="express">
+                                                    <span>快递</span>
+                                                </button>
+
+                                                <button href="" class="option-item delivery_type" data_delivery="self">
+                                                    <span>上门自提</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="listing panel-body" data-hosting-id="5690553">
+                                    <div class="row row-table">
+                                        <div class="col-xs-2">
+                                            <a href="">
+                                                <div class="media-photo media-photo-block" style="height: 63px;">
+                                                    <div class="media-cover text-center">
+                                                        <img class="lazy img-responsive-height" data-original="https://z2.muscache.com/airbnb/static/page3/v3/room_default_no_photos-90b75fadaf2d12ac60c0fd29a8537387.png" src="https://z2.muscache.com/airbnb/static/page3/v3/room_default_no_photos-90b75fadaf2d12ac60c0fd29a8537387.png" style="display: inline;">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-7 col-middle">
+                                            <span class="h4">
+                                            <a href="" class="text-normal">Beijing的整套房子/公寓</a>
+                                            </span>
+                                            <div class="actions row-space-top-1">
+                                                <a href="">管理房源和日历</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-middle">
+                                            <div class="pull-right">
+                                                <div class="listing-criteria-header activation-notification">
+                                                    <div class="listing-criteria-header-message">
+                                                        <span href="" class="">￥6558.00 </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!--form -->
+                                <li class="listing panel-body">
+                                    <div class="row row-table">
+                                        <div class="col-xs-12">
+                                            <div class="pull-right">
+                                                <form action="" method="post">
+                                                    <span class="total_fee">应付总额：<strong id="payPriceId">￥6558.00</strong></span>
+                                                    <button type="submit" class="btn btn-danger" style="font-weight: bold;">提交定单</button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--address modal--->
+<?php
+echo Yaf_View_Simple::render('second_view/tpl/address_modal.phtml');
+?>
+
+<!--footer-->
+<?php
+$js = array(
+    'js' => array(
+        '/static/second_asset/js/debug.js',
+        '/static/second_asset/js/order_confirm.js',
+        '/static/second_asset/js/address.js',
+    )
+);
+
+echo Yaf_View_Simple::render('second_view/tpl/footer.phtml', $js);
+?>
