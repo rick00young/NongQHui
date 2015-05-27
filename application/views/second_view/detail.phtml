@@ -109,7 +109,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
                         <input name="discount_price" type="hidden" value="<?=$good['discount_price']?>">
                         <input name="good_id" type="hidden" value="<?=$good['encode_good_id']?>">
                         <input name="good_num" type="hidden" value="<?=1?>">
-                        <input name="authenticity_token" type="hidden" value="V4$.airbnb.com$o6i3VEuXnWA$nQL-f5odze6HMaPU38L_ka8DlQoueeqCnDTpMQpphWQ=">
+                        <input name="auth_token" type="hidden" value="<?=time()?>">
                     </div>
                     <div id="pricing" class="">
                         <div id="price_amount" itemprop="price" class="pull-left h3 text-special">¥ <?=htmlspecialchars($good['discount_price'])?>/<?=htmlspecialchars($good['unit'])?></div>
@@ -424,7 +424,7 @@ echo Yaf_View_Simple::render('second_view/tpl/nav.phtml');
 <?php
 $js = array(
     'js' => array(
-        //'http://api.map.baidu.com/api?v=2.0&ak=T7gDQXp0hmAGKCFol7ktMC2P',
+        'http://api.map.baidu.com/api?v=2.0&ak=T7gDQXp0hmAGKCFol7ktMC2P',
         '/static/plugin/jquery.lazyload.min.js',
         '/static/second_asset/js/detail.js',
     )
